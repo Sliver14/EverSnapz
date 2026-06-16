@@ -1,17 +1,60 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getEvents, deleteEvent } from "@/lib/actions/event";
+import Link from "next/link";
 
 export default function SettingsPage() {
   const [activeTab, setActiveTab] = useState("general");
+  const [events, setEvents] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedEventId, setSelectedEventId] = useState<string>("");
+
+  useEffect(() => {
+    async function loadData() {
+      const data = await getEvents();
+      setEvents(data);
+      if (data.length > 0) {
+        setSelectedEventId(data[0].id);
+      }
+      setLoading(false);
+    }
+    loadData();
+  }, []);
+
+  const selectedEvent = events.find(e => e.id === selectedEventId);
+
+  const handleDelete = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this event? This action cannot be undone.")) return;
+    
+    try {
+      await deleteEvent(id);
+      const updatedEvents = events.filter(e => e.id !== id);
+      setEvents(updatedEvents);
+      if (id === selectedEventId && updatedEvents.length > 0) {
+        setSelectedEventId(updatedEvents[0].id);
+      } else if (updatedEvents.length === 0) {
+        setSelectedEventId("");
+        setActiveTab("events");
+      }
+    } catch (error) {
+      console.error("Failed to delete event:", error);
+      alert("Failed to delete event.");
+    }
+  };
 
   const tabs = [
-    { id: "general", name: "General", icon: "fa-solid fa-sliders" },
-    { id: "appearance", name: "Appearance", icon: "fa-solid fa-paint-roller" },
-    { id: "photoWall", name: "Photo Wall", icon: "fa-solid fa-tv" },
-    { id: "moderation", name: "Moderation", icon: "fa-solid fa-shield-halved" },
+    ...(events.length > 0 ? [
+      { id: "general", name: "General", icon: "fa-solid fa-sliders" },
+      { id: "appearance", name: "Appearance", icon: "fa-solid fa-paint-roller" },
+      { id: "photoWall", name: "Photo Wall", icon: "fa-solid fa-tv" },
+      { id: "moderation", name: "Moderation", icon: "fa-solid fa-shield-halved" },
+    ] : []),
+    { id: "events", name: "My Events", icon: "fa-solid fa-calendar-days" },
     { id: "collaborators", name: "Collaborators", icon: "fa-solid fa-users" },
   ];
+
+  if (loading) return <div className="py-20 text-center font-bold text-gray-text">Loading settings...</div>;
 
   return (
     <div className="max-w-[1000px] mx-auto">
@@ -37,8 +80,25 @@ export default function SettingsPage() {
       </div>
 
       <div className="animate-in fade-in duration-500">
-        {activeTab === "general" && (
+        {activeTab === "general" && selectedEvent && (
           <div className="flex flex-col gap-10">
+            {/* Active Event Dropdown */}
+            <div>
+              <div className="mb-4">
+                <h4 className="text-[16px] font-bold text-dark-text mb-1">Selected Event</h4>
+                <p className="text-[14px] text-gray-text">Select which event you want to manage.</p>
+              </div>
+              <select 
+                value={selectedEventId}
+                onChange={(e) => setSelectedEventId(e.target.value)}
+                className="w-full max-w-[450px] p-4 rounded-xl border border-border-color bg-white outline-none focus:border-primary-lilac transition-all font-bold text-dark-text"
+              >
+                {events.map(e => (
+                  <option key={e.id} value={e.id}>{e.name}</option>
+                ))}
+              </select>
+            </div>
+
             {/* Event Name */}
             <div>
               <div className="mb-4">
@@ -47,7 +107,7 @@ export default function SettingsPage() {
               </div>
               <input 
                 type="text" 
-                defaultValue="J&S Wedding" 
+                defaultValue={selectedEvent.name} 
                 className="w-full max-w-[450px] p-4 rounded-xl border border-border-color bg-white outline-none focus:border-primary-lilac transition-all font-medium"
               />
             </div>
@@ -61,37 +121,9 @@ export default function SettingsPage() {
               <div className="relative max-w-[200px]">
                 <input 
                   type="date" 
-                  defaultValue="2026-06-15"
-                  className="w-full p-4 rounded-xl border border-border-color bg-white outline-none focus:border-primary-lilac transition-all font-medium appearance-none"
+                  defaultValue={selectedEvent.date ? new Date(selectedEvent.date).toISOString().split('T')[0] : ""}
+                  className="w-full p-4 rounded-xl border border-border-color bg-white outline-none focus:border-primary-lilac transition-all font-medium"
                 />
-              </div>
-            </div>
-
-            {/* Event Type */}
-            <div>
-              <div className="mb-4">
-                <h4 className="text-[16px] font-bold text-dark-text mb-1">Event Type</h4>
-                <p className="text-[14px] text-gray-text">We&apos;ll adjust the experience according to your event type.</p>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  { label: "💍 Wedding", value: "wedding" },
-                  { label: "🎉 Party", value: "party" },
-                  { label: "🎤 Conference", value: "conference" },
-                  { label: "🎂 Birthday", value: "birthday" },
-                  { label: "❓ Other", value: "other" }
-                ].map((type) => (
-                  <button
-                    key={type.value}
-                    className={`px-6 py-3 rounded-xl border font-bold text-[14px] transition-all ${
-                      type.value === "wedding"
-                        ? "bg-primary-lilac text-white border-primary-lilac shadow-lg shadow-primary-lilac/20"
-                        : "bg-white text-gray-text border-border-color hover:border-primary-lilac hover:text-primary-lilac"
-                    }`}
-                  >
-                    {type.label}
-                  </button>
-                ))}
               </div>
             </div>
 
@@ -99,33 +131,20 @@ export default function SettingsPage() {
             <div>
               <div className="mb-4">
                 <div className="flex items-center gap-3 mb-1">
-                  <h4 className="text-[16px] font-bold text-dark-text m-0">Event Custom Link</h4>
-                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-primary-lilac/10 text-primary-lilac text-[10px] font-black uppercase tracking-widest border border-primary-lilac/20">
-                    <i className="fa-solid fa-star text-[8px]"></i> Pro
-                  </div>
-                  <span className="text-[10px] font-bold text-primary-lilac uppercase tracking-widest cursor-pointer hover:underline">Upgrade</span>
+                  <h4 className="text-[16px] font-bold text-dark-text m-0">Event Slug</h4>
                 </div>
-                <p className="text-[14px] text-gray-text">Choose a unique link ending to easily share your event with guests.</p>
+                <p className="text-[14px] text-gray-text">Your event is accessible at this unique slug.</p>
               </div>
               <div className="flex max-w-[500px]">
                 <div className="px-4 py-4 border border-r-0 border-border-color bg-bg-light rounded-l-xl text-gray-text font-medium text-[14px] shrink-0">
-                  app.eversnapz.com/
+                  /guest/
                 </div>
                 <input 
                   type="text" 
-                  disabled
-                  defaultValue="j-s-wedding" 
+                  readOnly
+                  value={selectedEvent.slug} 
                   className="flex-1 p-4 border border-border-color bg-gray-50 text-gray-400 outline-none font-medium cursor-not-allowed"
                 />
-                <button disabled className="px-6 border border-l-0 border-border-color bg-gray-50 text-gray-300 rounded-r-xl font-bold uppercase tracking-widest text-[12px] cursor-not-allowed">
-                  Save
-                </button>
-              </div>
-              <div className="mt-3">
-                <button disabled className="flex items-center gap-2 px-4 py-2 rounded-lg border border-border-color bg-white text-gray-400 font-bold text-[12px] cursor-not-allowed">
-                  <i className="fa-solid fa-wand-magic-sparkles text-primary-lilac opacity-30"></i>
-                  Suggest
-                </button>
               </div>
             </div>
 
@@ -133,14 +152,88 @@ export default function SettingsPage() {
               <button className="btn btn-primary px-10 py-4 rounded-xl font-black uppercase tracking-widest text-xs">
                 Save All Changes
               </button>
-              <button className="text-danger font-black uppercase tracking-widest text-[11px] hover:underline bg-transparent border-none cursor-pointer">
+              <button 
+                onClick={() => handleDelete(selectedEvent.id)}
+                className="text-danger font-black uppercase tracking-widest text-[11px] hover:underline bg-transparent border-none cursor-pointer"
+              >
                 Delete Event
               </button>
             </div>
           </div>
         )}
 
-        {activeTab !== "general" && (
+        {activeTab === "events" && (
+          <div>
+             <div className="flex justify-between items-center mb-8">
+              <div>
+                <h3 className="text-2xl font-black text-dark-text m-0 tracking-tight">My Events</h3>
+                <p className="text-gray-text font-medium mt-1">Manage all your created events.</p>
+              </div>
+              <Link href="/dashboard?new=true" className="btn btn-primary py-2 px-6 rounded-lg font-bold text-sm">
+                <i className="fa-solid fa-plus mr-2"></i> New Event
+              </Link>
+            </div>
+
+            {events.length > 0 ? (
+              <div className="grid grid-cols-1 gap-4">
+                {events.map((event) => (
+                  <div key={event.id} className="bg-white p-6 rounded-2xl border border-border-color shadow-sm flex justify-between items-center group hover:border-primary-lilac transition-all">
+                    <div className="flex gap-5 items-center">
+                      <div className="w-14 h-14 bg-light-lavender rounded-xl flex items-center justify-center text-primary-lilac">
+                        <i className="fa-solid fa-calendar-check text-2xl"></i>
+                      </div>
+                      <div>
+                        <h4 className="text-[18px] font-bold text-dark-text m-0">{event.name}</h4>
+                        <div className="flex items-center gap-3 mt-1">
+                          <span className="text-[12px] text-gray-text font-medium">/guest/{event.slug}</span>
+                          <span className="w-1 h-1 rounded-full bg-gray-300"></span>
+                          <span className="text-[12px] text-gray-text font-medium">
+                            {event.date ? new Date(event.date).toLocaleDateString() : "No date set"}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <button 
+                        onClick={() => {
+                          setSelectedEventId(event.id);
+                          setActiveTab("general");
+                        }}
+                        className="p-3 rounded-xl bg-bg-light text-dark-text hover:bg-primary-lilac hover:text-white transition-all border-none cursor-pointer"
+                        title="Edit Settings"
+                      >
+                        <i className="fa-solid fa-gear"></i>
+                      </button>
+                      <button 
+                        onClick={() => handleDelete(event.id)}
+                        className="p-3 rounded-xl bg-bg-light text-danger hover:bg-danger hover:text-white transition-all border-none cursor-pointer"
+                        title="Delete Event"
+                      >
+                        <i className="fa-solid fa-trash-can"></i>
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="py-20 text-center bg-bg-light rounded-[2rem] border-2 border-dashed border-border-color">
+                <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                  <i className="fa-solid fa-calendar-plus text-3xl text-primary-lilac/30"></i>
+                </div>
+                <h3 className="text-xl font-bold text-dark-text">No events yet</h3>
+                <p className="text-gray-text mb-6">Create your first event to start collecting photos!</p>
+                <Link 
+                  href="/dashboard?new=true"
+                  className="btn btn-primary py-3 px-8 rounded-xl font-bold inline-block"
+                >
+                  Create My First Event
+                </Link>
+              </div>
+            )}
+          </div>
+        )}
+
+        {activeTab !== "general" && activeTab !== "events" && (
           <div className="py-20 text-center">
             <div className="w-20 h-20 rounded-full bg-light-lavender flex items-center justify-center mx-auto mb-6">
               <i className={`${tabs.find(t => t.id === activeTab)?.icon} text-3xl text-primary-lilac`}></i>

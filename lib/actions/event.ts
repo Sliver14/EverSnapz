@@ -55,3 +55,22 @@ export async function getEventBySlug(slug: string) {
     where: eq(events.slug, slug),
   });
 }
+
+export async function deleteEvent(eventId: string) {
+  const session = await getServerSession(authOptions);
+  if (!session?.user?.id) throw new Error("Unauthorized");
+
+  // Verify ownership
+  const event = await db.query.events.findFirst({
+    where: eq(events.id, eventId),
+  });
+
+  if (!event || event.hostId !== session.user.id) {
+    throw new Error("Unauthorized or event not found");
+  }
+
+  await db.delete(events).where(eq(events.id, eventId));
+
+  revalidatePath("/dashboard");
+  return { success: true };
+}
