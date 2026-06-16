@@ -10,7 +10,8 @@ export default function GuestUploadPage() {
   const params = useParams();
   const router = useRouter();
   const eventSlug = params.eventId as string;
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const galleryInputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
   
   const [event, setEvent] = useState<any>(null);
   const [guestName, setGuestName] = useState<string | null>(null);
@@ -44,8 +45,12 @@ export default function GuestUploadPage() {
     loadData();
   }, [eventSlug, router]);
 
-  const handleUploadClick = () => {
-    fileInputRef.current?.click();
+  const handleGalleryClick = () => {
+    galleryInputRef.current?.click();
+  };
+
+  const handleCameraClick = () => {
+    cameraInputRef.current?.click();
   };
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -122,49 +127,72 @@ export default function GuestUploadPage() {
           </div>
 
           {/* Upload Card Area */}
-          <div className="w-full">
-            <label 
-              onClick={!uploading ? handleUploadClick : undefined}
-              className={`relative w-full aspect-square max-w-[320px] mx-auto flex flex-col items-center justify-center cursor-pointer group transition-all ${uploading ? 'opacity-50 pointer-events-none' : ''}`}
-            >
-              {/* Animated Circles behind the icon */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className={`w-48 h-48 bg-primary-lilac/5 rounded-full scale-110 ${uploading ? 'animate-spin border-4 border-dashed border-primary-lilac/20' : 'animate-pulse'}`}></div>
-                <div className="absolute w-36 h-36 bg-primary-lilac/10 rounded-full scale-105"></div>
-              </div>
-
-              {/* Icon Container */}
-              <div className="relative z-10 w-24 h-24 bg-primary-lilac/20 text-primary-lilac rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-500">
-                {uploading ? (
-                   <svg className="animate-spin h-10 w-10 text-primary-lilac" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <div className="w-full max-w-[400px] mx-auto space-y-6">
+            
+            {uploading ? (
+              <div className="relative aspect-square w-full max-w-[320px] mx-auto flex flex-col items-center justify-center">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-48 h-48 bg-primary-lilac/5 rounded-full scale-110 animate-spin border-4 border-dashed border-primary-lilac/20"></div>
+                  <div className="absolute w-36 h-36 bg-primary-lilac/10 rounded-full scale-105"></div>
+                </div>
+                <div className="relative z-10 w-24 h-24 bg-primary-lilac/20 text-primary-lilac rounded-full flex items-center justify-center shadow-xl">
+                  <svg className="animate-spin h-10 w-10 text-primary-lilac" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
-                ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-plus">
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5v14"></path>
-                  </svg>
-                )}
+                </div>
+                <div className="mt-10 relative z-10">
+                  <div className="text-2xl font-black text-dark-text mb-1">Uploading...</div>
+                  <div className="text-gray-text font-bold opacity-60">Please wait while we process your memories</div>
+                </div>
               </div>
+            ) : (
+              <div className="grid grid-cols-1 gap-4 w-full">
+                {/* Camera Option */}
+                <button 
+                  onClick={handleCameraClick}
+                  className="flex items-center gap-6 p-6 bg-white rounded-[2rem] shadow-xl shadow-primary-lilac/5 border border-border-color hover:border-primary-lilac transition-all group"
+                >
+                  <div className="w-16 h-16 bg-primary-lilac/10 text-primary-lilac rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
+                  </div>
+                  <div className="text-left">
+                    <div className="text-xl font-black text-dark-text">Take Photo</div>
+                    <div className="text-sm text-gray-text font-bold opacity-60">Open your camera</div>
+                  </div>
+                </button>
 
-              {/* Labels */}
-              <div className="mt-10 relative z-10">
-                <div className="text-2xl font-black text-dark-text mb-1">
-                  {uploading ? "Uploading..." : "Pick Photos & Videos"}
-                </div>
-                <div className="text-gray-text font-bold opacity-60">
-                  {uploading ? "Please wait while we process your memories" : "Tap to select files"}
-                </div>
+                {/* Gallery Option */}
+                <button 
+                  onClick={handleGalleryClick}
+                  className="flex items-center gap-6 p-6 bg-white rounded-[2rem] shadow-xl shadow-primary-lilac/5 border border-border-color hover:border-primary-lilac transition-all group"
+                >
+                  <div className="w-16 h-16 bg-primary-lilac/10 text-primary-lilac rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path></svg>
+                  </div>
+                  <div className="text-left">
+                    <div className="text-xl font-black text-dark-text">Choose from Library</div>
+                    <div className="text-sm text-gray-text font-bold opacity-60">Pick from your gallery</div>
+                  </div>
+                </button>
               </div>
-            </label>
+            )}
 
             <input 
               type="file" 
-              ref={fileInputRef}
+              ref={galleryInputRef}
               onChange={handleFileChange}
               accept="image/*,video/*"
               multiple
+              className="hidden"
+            />
+
+            <input 
+              type="file" 
+              ref={cameraInputRef}
+              onChange={handleFileChange}
+              accept="image/*"
+              capture="environment"
               className="hidden"
             />
 
