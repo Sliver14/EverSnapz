@@ -1,4 +1,4 @@
-import NextAuth, { NextAuthOptions } from 'next-auth';
+﻿import NextAuth, { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { db } from '@/lib/db';
@@ -60,18 +60,25 @@ export const authOptions: NextAuthOptions = {
 
       return true;
     },
-    async session({ session }) {
-      if (session.user?.email) {
-        const dbUser = await db.query.users.findFirst({
-          where: eq(users.email, session.user.email),
-        });
-
-        if (dbUser) {
-          session.user.id = dbUser.id;
-        }
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.id as string;
       }
       return session;
     },
+    async redirect({ url, baseUrl }) {
+      // Allows relative callback URLs
+      if (url.startsWith("/")) return `${baseUrl}${url}`
+      // Allows callback URLs on the same origin
+      else if (new URL(url).origin === baseUrl) return url
+      return baseUrl
+    }
   },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
