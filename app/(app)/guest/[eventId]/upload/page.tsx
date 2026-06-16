@@ -3,33 +3,70 @@
 import { useState, useRef, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import { getEventBySlug } from "@/lib/actions/event";
+import { uploadMedia } from "@/lib/actions/media";
 
 export default function GuestUploadPage() {
   const params = useParams();
   const router = useRouter();
-  const eventId = params.eventId as string;
+  const eventSlug = params.eventId as string;
   const fileInputRef = useRef<HTMLInputElement>(null);
+  
+  const [event, setEvent] = useState<any>(null);
   const [guestName, setGuestName] = useState<string | null>(null);
-
-  useEffect(() => {
-    const name = localStorage.getItem(`guestName_${eventId}`);
-    if (name) {
-      setGuestName(name);
-    }
-  }, [eventId]);
-
+  const [loading, setLoading] = useState(true);
+  const [uploading, setUploading] = useState(false);
   const [isTextModalOpen, setIsTextModalOpen] = useState(false);
   const [textPost, setTextPost] = useState("");
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const eventData = await getEventBySlug(eventSlug);
+        if (!eventData) {
+          router.push("/404");
+          return;
+        }
+        setEvent(eventData);
+
+        const name = localStorage.getItem(`guestName_${eventData.id}`);
+        if (!name) {
+          router.push(`/guest/welcome/${eventSlug}`);
+        } else {
+          setGuestName(name);
+        }
+      } catch (error) {
+        console.error("Failed to load data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
+  }, [eventSlug, router]);
 
   const handleUploadClick = () => {
     fileInputRef.current?.click();
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    if (files && files.length > 0) {
-      console.log("Selected files:", files);
-      alert(`Selected ${files.length} items to upload!`);
+    if (!files || files.length === 0 || !event || !guestName) return;
+
+    setUploading(true);
+    try {
+      for (let i = 0; i < files.length; i++) {
+        const formData = new FormData();
+        formData.append("file", files[i]);
+        formData.append("eventId", event.id);
+        formData.append("guestName", guestName);
+        await uploadMedia(formData);
+      }
+      router.push(`/guest/${eventSlug}`);
+    } catch (error) {
+      console.error("Upload failed:", error);
+      alert("Failed to upload media. Please try again.");
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -41,8 +78,11 @@ export default function GuestUploadPage() {
     }
   };
 
-  // Format event ID for display
-  const eventNameDisplay = eventId ? eventId.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ") : "John & Rachel Wedding";
+  if (loading) {
+    return <div className="min-h-screen bg-white flex items-center justify-center">Loading...</div>;
+  }
+
+  if (!event) return null;
 
   return (
     <div className="min-h-screen bg-white font-sans text-dark-text overflow-hidden flex flex-col">
@@ -54,7 +94,7 @@ export default function GuestUploadPage() {
         {/* Header / Back Button */}
         <div className="p-6 max-w-[600px] mx-auto w-full">
           <Link 
-            href={`/guest/${eventId}`}
+            href={`/guest/${eventSlug}`}
             className="inline-flex items-center gap-2 text-primary-lilac font-bold hover:opacity-80 transition-all"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-left">
@@ -69,40 +109,53 @@ export default function GuestUploadPage() {
           
           {/* Event Header */}
           <div className="mb-12 flex flex-col items-center gap-4">
-            <img 
-              src="https://firebasestorage.googleapis.com/v0/b/kululushapp.appspot.com/o/event_L8TlHAXcAjMRwaxpPQ02%2Fgeneral%2Flogo_2024-07-28_16-56-33_jdwvfd.png?alt=media&token=e1636085-633d-4814-a680-87e6e8027e4a" 
-              className="w-20 h-20 object-contain rounded-full bg-white p-2 shadow-lg border-2 border-white" 
-              alt="event logo" 
-            />
+            <div className="w-20 h-20 bg-white p-1 rounded-full shadow-lg border-2 border-white overflow-hidden">
+               <img 
+                src={event.coverPhotoUrl || "https://firebasestorage.googleapis.com/v0/b/kululushapp.appspot.com/o/event_L8TlHAXcAjMRwaxpPQ02%2Fgeneral%2Flogo_2024-07-28_16-56-33_jdwvfd.png?alt=media&token=e1636085-633d-4814-a680-87e6e8027e4a"} 
+                className="w-full h-full object-cover" 
+                alt="event logo" 
+              />
+            </div>
             <div className="text-2xl md:text-3xl font-black text-dark-text tracking-tight">
-              {eventNameDisplay}
+              {event.name}
             </div>
           </div>
 
           {/* Upload Card Area */}
           <div className="w-full">
             <label 
-              onClick={handleUploadClick}
-              className="relative w-full aspect-square max-w-[320px] mx-auto flex flex-col items-center justify-center cursor-pointer group transition-all"
+              onClick={!uploading ? handleUploadClick : undefined}
+              className={`relative w-full aspect-square max-w-[320px] mx-auto flex flex-col items-center justify-center cursor-pointer group transition-all ${uploading ? 'opacity-50 pointer-events-none' : ''}`}
             >
               {/* Animated Circles behind the icon */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-48 h-48 bg-primary-lilac/5 rounded-full scale-110 animate-pulse"></div>
+                <div className={`w-48 h-48 bg-primary-lilac/5 rounded-full scale-110 ${uploading ? 'animate-spin border-4 border-dashed border-primary-lilac/20' : 'animate-pulse'}`}></div>
                 <div className="absolute w-36 h-36 bg-primary-lilac/10 rounded-full scale-105"></div>
               </div>
 
               {/* Icon Container */}
               <div className="relative z-10 w-24 h-24 bg-primary-lilac/20 text-primary-lilac rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-500">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-plus">
-                  <path d="M5 12h14"></path>
-                  <path d="M12 5v14"></path>
-                </svg>
+                {uploading ? (
+                   <svg className="animate-spin h-10 w-10 text-primary-lilac" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-plus">
+                    <path d="M5 12h14"></path>
+                    <path d="M12 5v14"></path>
+                  </svg>
+                )}
               </div>
 
               {/* Labels */}
               <div className="mt-10 relative z-10">
-                <div className="text-2xl font-black text-dark-text mb-1">Pick Photos & Videos</div>
-                <div className="text-gray-text font-bold opacity-60">Tap to select files</div>
+                <div className="text-2xl font-black text-dark-text mb-1">
+                  {uploading ? "Uploading..." : "Pick Photos & Videos"}
+                </div>
+                <div className="text-gray-text font-bold opacity-60">
+                  {uploading ? "Please wait while we process your memories" : "Tap to select files"}
+                </div>
               </div>
             </label>
 

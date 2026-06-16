@@ -107,7 +107,7 @@ export default function Login() {
 
         <div>
           <button
-            onClick={() => signIn("google", { callbackUrl: '/dashboard' })}
+            onClick={() => signIn("google", { callbackUrl: `${window.location.origin}/dashboard` })}
             className="group relative w-full flex justify-center items-center gap-3 py-4 px-4 border border-gray-200 text-sm font-bold rounded-xl text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-lilac transition-all active:scale-95 shadow-sm"
           >
             <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="h-5 w-5" alt="Google logo" />

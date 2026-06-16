@@ -3,17 +3,19 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { getEventBySlug } from "@/lib/actions/event";
-import { getPhotos } from "@/lib/actions/media";
+import { getPhotos, uploadMedia } from "@/lib/actions/media";
 
 export default function GuestPage() {
   const params = useParams();
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const eventSlug = params.eventId as string;
+  
   const [event, setEvent] = useState<any>(null);
   const [photos, setPhotos] = useState<any[]>([]);
   const [guestName, setGuestName] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [uploading, setUploading] = useState(false);
   const [bgImageIndex, setBgImageIndex] = useState(0);
 
   useEffect(() => {
@@ -48,22 +50,34 @@ export default function GuestPage() {
     router.push(`/guest/${eventSlug}/upload`);
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    if (files && files.length > 0) {
-      console.log("Selected files:", files);
-      // In a real app, you would start the upload process here
-      alert(`Ready to upload ${files.length} items!`);
+    if (!files || files.length === 0 || !event || !guestName) return;
+
+    setUploading(true);
+    try {
+      for (let i = 0; i < files.length; i++) {
+        const formData = new FormData();
+        formData.append("file", files[i]);
+        formData.append("eventId", event.id);
+        formData.append("guestName", guestName);
+        await uploadMedia(formData);
+      }
+      // Refresh photos after upload
+      const photosData = await getPhotos(event.id);
+      setPhotos(photosData);
+    } catch (error) {
+      console.error("Upload failed:", error);
+      alert("Failed to upload media. Please try again.");
+    } finally {
+      setUploading(false);
     }
   };
 
-  const galleryImages = photos.length > 0 ? photos.map(p => p.url) : [
-    "https://firebasestorage.googleapis.com/v0/b/kululushapp.appspot.com/o/event_L8TlHAXcAjMRwaxpPQ02%2Fmedia_dokg6q_AC6I1318_websize.jpg?alt=media&token=b4812c8f-1790-4e64-b40d-d60e766d9f68",
-    "https://firebasestorage.googleapis.com/v0/b/kululushapp.appspot.com/o/event_L8TlHAXcAjMRwaxpPQ02%2Fmedia_i3aang_179A8178_websize.jpg?alt=media&token=0eda7d0a-1094-438a-8cb6-52ed0608277c"
-  ];
+  const galleryImages = photos.length > 0 ? photos.map(p => p.url) : [];
 
   useEffect(() => {
-    if (galleryImages.length > 0) {
+    if (galleryImages.length > 1) {
       const interval = setInterval(() => {
         setBgImageIndex((prev) => (prev + 1) % galleryImages.length);
       }, 5000);
@@ -90,13 +104,17 @@ export default function GuestPage() {
               className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out opacity-40`}
               style={{ backgroundImage: `url("${event.coverPhotoUrl}")` }}
             />
-          ) : galleryImages.map((src, idx) => (
-            <div 
-              key={src}
-              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${idx === bgImageIndex ? 'opacity-40' : 'opacity-0'}`}
-              style={{ backgroundImage: `url("${src}")` }}
-            />
-          ))}
+          ) : galleryImages.length > 0 ? (
+            galleryImages.map((src, idx) => (
+              <div 
+                key={src}
+                className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${idx === bgImageIndex ? 'opacity-40' : 'opacity-0'}`}
+                style={{ backgroundImage: `url("${src}")` }}
+              />
+            ))
+          ) : (
+             <div className="absolute inset-0 bg-primary-lilac/5"></div>
+          )}
 
           {/* Blur Overlays */}
           <div 
@@ -131,11 +149,13 @@ export default function GuestPage() {
               {/* Logo */}
               <div className="relative mb-6">
                 <div className="absolute inset-0 bg-primary-lilac/10 blur-2xl rounded-full scale-150"></div>
-                <img 
-                  src={event.coverPhotoUrl || "https://firebasestorage.googleapis.com/v0/b/kululushapp.appspot.com/o/event_L8TlHAXcAjMRwaxpPQ02%2Fgeneral%2Flogo_2024-07-28_16-56-33_jdwvfd.png?alt=media&token=e1636085-633d-4814-a680-87e6e8027e4a"} 
-                  className="relative w-24 h-24 md:w-32 md:h-32 object-cover rounded-full bg-white p-1 shadow-2xl border-4 border-white" 
-                  alt="event logo" 
-                />
+                <div className="relative w-24 h-24 md:w-32 md:h-32 bg-white p-1 rounded-full shadow-2xl border-4 border-white overflow-hidden">
+                   <img 
+                    src={event.coverPhotoUrl || (photos.length > 0 ? photos[0].url : "https://firebasestorage.googleapis.com/v0/b/kululushapp.appspot.com/o/event_L8TlHAXcAjMRwaxpPQ02%2Fgeneral%2Flogo_2024-07-28_16-56-33_jdwvfd.png?alt=media&token=e1636085-633d-4814-a680-87e6e8027e4a")} 
+                    className="w-full h-full object-cover" 
+                    alt="event logo" 
+                  />
+                </div>
               </div>
               
               {/* Event Title */}
@@ -159,13 +179,21 @@ export default function GuestPage() {
               
               {/* Add to Album Button - Visible within 100vh */}
               <button 
+                disabled={uploading}
                 onClick={handleUploadClick}
-                className="group flex items-center gap-3 px-10 py-5 bg-primary-lilac text-white rounded-3xl font-black text-xl shadow-2xl shadow-primary-lilac/30 hover:scale-105 active:scale-95 transition-all mb-6 uppercase tracking-wider"
+                className="group flex items-center gap-3 px-10 py-5 bg-primary-lilac text-white rounded-3xl font-black text-xl shadow-2xl shadow-primary-lilac/30 hover:scale-105 active:scale-95 transition-all mb-6 uppercase tracking-wider disabled:opacity-50"
               >
-                <svg viewBox="64 64 896 896" width="24" height="24" fill="currentColor" className="group-hover:rotate-90 transition-transform duration-500">
-                  <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm192 472c0 4.4-3.6 8-8 8H544v152c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V544H328c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h152V328c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v152h152c4.4 0 8 3.6 8 8v48z"></path>
-                </svg>
-                <span>Add to album</span>
+                {uploading ? (
+                   <svg className="animate-spin h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                ) : (
+                  <svg viewBox="64 64 896 896" width="24" height="24" fill="currentColor" className="group-hover:rotate-90 transition-transform duration-500">
+                    <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm192 472c0 4.4-3.6 8-8 8H544v152c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V544H328c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h152V328c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v152h152c4.4 0 8 3.6 8 8v48z"></path>
+                  </svg>
+                )}
+                <span>{uploading ? "Sharing..." : "Add to album"}</span>
               </button>
 
               {/* Hidden File Input */}
@@ -180,13 +208,15 @@ export default function GuestPage() {
               
               {/* Photo Counter */}
               <div className="px-6 py-2 bg-bg-light rounded-full border border-border-color shadow-sm inline-flex items-center gap-2">
-                <div className="flex -space-x-2">
-                  {photos.slice(0, 3).map((p, i) => (
-                    <div key={p.id} className="w-6 h-6 rounded-full border-2 border-white bg-gray-200 overflow-hidden">
-                      <img src={p.url} alt="avatar" />
-                    </div>
-                  ))}
-                </div>
+                {photos.length > 0 && (
+                  <div className="flex -space-x-2">
+                    {photos.slice(0, 3).map((p, i) => (
+                      <div key={p.id} className="w-6 h-6 rounded-full border-2 border-white bg-gray-200 overflow-hidden">
+                        <img src={p.url} className="w-full h-full object-cover" alt="avatar" />
+                      </div>
+                    ))}
+                  </div>
+                )}
                 <span className="text-sm text-gray-text font-bold uppercase tracking-tight">
                   <span className="text-primary-lilac">{photos.length}</span> photos & videos shared
                 </span>
@@ -227,7 +257,10 @@ export default function GuestPage() {
         </div>
 
         {/* Back Top Button */}
-        <div className="fixed bottom-10 right-10 z-50 p-4 bg-white/80 backdrop-blur-md rounded-2xl shadow-2xl cursor-pointer hover:bg-white transition-all hover:scale-110 active:scale-95 border border-border-color">
+        <div 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed bottom-10 right-10 z-50 p-4 bg-white/80 backdrop-blur-md rounded-2xl shadow-2xl cursor-pointer hover:bg-white transition-all hover:scale-110 active:scale-95 border border-border-color"
+        >
           <svg viewBox="64 64 896 896" width="24" height="24" className="text-primary-lilac fill-current">
             <path d="M868 545.5L536.1 163a31.96 31.96 0 00-48.3 0L156 545.5a7.97 7.97 0 006 13.2h81c4.6 0 9-2 12.1-5.5L474 300.9V864c0 4.4 3.6 8 8 8h60c4.4 0 8-3.6 8-8V300.9l218.9 252.3c3 3.5 7.4 5.5 12.1 5.5h81c6.8 0 10.5-8 6-13.2z"></path>
           </svg>
