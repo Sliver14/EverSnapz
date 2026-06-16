@@ -2,10 +2,12 @@
 
 import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { getEvents } from "@/lib/actions/event";
 import { getPhotos } from "@/lib/actions/media";
 
 function MediaContent() {
+  const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState("moderation");
   const [events, setEvents] = useState<any[]>([]);
   const [photos, setPhotos] = useState<any[]>([]);
@@ -23,8 +25,13 @@ function MediaContent() {
         const eventsData = await getEvents();
         setEvents(eventsData);
         
-        if (eventsData.length > 0) {
-          const photosData = await getPhotos(eventsData[0].id);
+        const eventId = searchParams.get("eventId");
+        const activeEvent = eventId 
+          ? eventsData.find(e => e.id === eventId) 
+          : eventsData[0];
+
+        if (activeEvent) {
+          const photosData = await getPhotos(activeEvent.id);
           setPhotos(photosData);
         }
       } catch (error) {
@@ -34,9 +41,12 @@ function MediaContent() {
       }
     }
     loadData();
-  }, []);
+  }, [searchParams]);
 
-  const activeEvent = events[0];
+  const eventId = searchParams.get("eventId");
+  const activeEvent = eventId 
+    ? events.find(e => e.id === eventId) 
+    : events[0];
 
   return (
     <div className="max-w-[1200px] mx-auto">

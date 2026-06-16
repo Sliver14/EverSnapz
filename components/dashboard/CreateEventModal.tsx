@@ -41,13 +41,14 @@ export default function CreateEventModal({ isOpen, onClose }: CreateEventModalPr
         formData.append("coverPhoto", coverPhoto);
       }
 
-      await createEvent(formData);
+      const newEvent = await createEvent(formData);
       
       setEventName("");
       setEventDate("");
       setCoverPhoto(null);
       setPreviewUrl(null);
       onClose();
+      router.push(`/dashboard?eventId=${newEvent.id}`);
       router.refresh();
     } catch (error) {
       console.error("Failed to create event:", error);

@@ -33,7 +33,10 @@ function DashboardContent() {
     }
   }, [searchParams, router]);
 
-  const activeEvent = events[0];
+  const eventId = searchParams.get("eventId");
+  const activeEvent = eventId 
+    ? events.find(e => e.id === eventId) 
+    : events[0];
 
   return (
     <div className="max-w-[1200px] mx-auto">

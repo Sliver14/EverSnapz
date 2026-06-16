@@ -1,8 +1,10 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
+import { getEvents } from "@/lib/actions/event";
 
 interface SidebarProps {
   onUpgradeClick?: () => void;
@@ -10,7 +12,37 @@ interface SidebarProps {
 
 export default function Sidebar({ onUpgradeClick }: SidebarProps) {
   const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const { data: session } = useSession();
+  const [events, setEvents] = useState<any[]>([]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [activeEvent, setActiveEvent] = useState<any>(null);
+
+  useEffect(() => {
+    async function loadEvents() {
+      const data = await getEvents();
+      setEvents(data);
+      
+      const eventId = searchParams.get("eventId");
+      if (eventId) {
+        const found = data.find(e => e.id === eventId);
+        if (found) setActiveEvent(found);
+      } else if (data.length > 0) {
+        setActiveEvent(data[0]);
+      }
+    }
+    loadEvents();
+  }, [searchParams]);
+
+  const handleEventSelect = (event: any) => {
+    setActiveEvent(event);
+    setIsDropdownOpen(false);
+    
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("eventId", event.id);
+    router.push(`${pathname}?${params.toString()}`);
+  };
 
   const navItems = [
     { name: "Home", icon: "fa-solid fa-house", href: "/dashboard" },
@@ -28,18 +60,57 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
         </Link>
       </div>
       
-      <div className="px-6 py-4">
+      <div className="px-6 py-4 relative">
         <div className="flex justify-between items-center mb-2">
           <span className="text-[11px] font-bold text-gray-text/60 uppercase tracking-widest">Current Event</span>
-          <button className="text-[11px] font-bold text-primary-lilac hover:underline uppercase tracking-widest bg-transparent border-none cursor-pointer">
+          <Link href="/dashboard/events" className="text-[11px] font-bold text-primary-lilac hover:underline uppercase tracking-widest bg-transparent border-none cursor-pointer">
             View All
-          </button>
+          </Link>
         </div>
         
-        <button className="w-full flex justify-between items-center px-4 py-3 rounded-xl border border-border-color bg-white hover:border-primary-lilac transition-all text-left mb-4 group shadow-sm">
-          <span className="font-bold text-dark-text truncate">Active Event</span>
-          <i className="fa-solid fa-chevron-down text-[10px] text-gray-text group-hover:text-primary-lilac"></i>
-        </button>
+        <div className="relative">
+          <button 
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            className="w-full flex justify-between items-center px-4 py-3 rounded-xl border border-border-color bg-white hover:border-primary-lilac transition-all text-left mb-4 group shadow-sm"
+          >
+            <span className="font-bold text-dark-text truncate">
+              {activeEvent ? activeEvent.name : "Select Event"}
+            </span>
+            <i className={`fa-solid fa-chevron-down text-[10px] text-gray-text group-hover:text-primary-lilac transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}></i>
+          </button>
+
+          {isDropdownOpen && (
+            <div className="absolute top-full left-0 w-full bg-white border border-border-color rounded-xl shadow-xl z-[110] max-h-[300px] overflow-auto animate-in fade-in slide-in-from-top-2 duration-200">
+              <div className="p-2">
+                {events.length > 0 ? (
+                  events.map((event) => (
+                    <button
+                      key={event.id}
+                      onClick={() => handleEventSelect(event)}
+                      className={`w-full flex flex-col items-start px-4 py-3 rounded-lg transition-all text-left mb-1 last:mb-0 ${
+                        activeEvent?.id === event.id 
+                          ? "bg-primary-lilac text-white" 
+                          : "hover:bg-bg-light text-dark-text"
+                      }`}
+                    >
+                      <span className="font-bold text-sm truncate w-full">{event.name}</span>
+                      <span className={`text-[10px] truncate w-full ${activeEvent?.id === event.id ? "text-white/70" : "text-gray-text"}`}>
+                        /guest/{event.slug}
+                      </span>
+                    </button>
+                  ))
+                ) : (
+                  <div className="px-4 py-6 text-center">
+                    <p className="text-xs text-gray-text font-bold mb-3">No events found</p>
+                    <Link href="/dashboard?new=true" className="text-xs text-primary-lilac font-black uppercase tracking-widest hover:underline">
+                      Create Event
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
 
         <button 
           onClick={onUpgradeClick}
@@ -55,10 +126,12 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
       <nav className="flex-1 px-4 py-6 flex flex-col gap-1">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
+          const href = activeEvent ? `${item.href}?eventId=${activeEvent.id}` : item.href;
+          
           return (
             <Link
               key={item.name}
-              href={item.href}
+              href={href}
               className={`flex items-center gap-3.5 px-4 py-3.5 rounded-xl no-underline transition-all ${
                 isActive 
                   ? "bg-primary-lilac text-white font-bold shadow-lg shadow-primary-lilac/20" 
