@@ -96,8 +96,8 @@ export default function GuestPage() {
       {/* Full Screen Desktop Container */}
       <div className="relative w-full min-h-screen flex flex-col bg-white">
         
-        {/* Dynamic Background Section - Now limited to 100vh max and contains the hero */}
-        <div className="relative h-[100dvh] w-full overflow-hidden flex flex-col">
+        {/* Dynamic Background Section - Now limited to 80vh and contains the hero */}
+        <div className="relative h-[80vh] w-full overflow-hidden flex flex-col">
           {/* Animated Background Layers */}
           {event.coverPhotoUrl ? (
              <div 
@@ -125,21 +125,23 @@ export default function GuestPage() {
             }}
           ></div>
           
-          {/* Top Bar - Hamburger on the right for ALL views */}
-          <div className="absolute top-6 left-6 right-6 z-30 flex justify-between items-center max-w-[1400px] mx-auto w-full">
-            {/* Guest Info on the left */}
-            {guestName ? (
-              <div className="px-4 py-2 bg-white/40 backdrop-blur-lg rounded-2xl border border-white/20 shadow-lg">
-                <div className="text-[10px] font-black uppercase tracking-widest text-primary-lilac opacity-80">Guest Access</div>
-                <div className="text-sm font-bold text-dark-text">{guestName}</div>
-              </div>
-            ) : <div />}
+          {/* Top Bar - Responsive Positioning */}
+          <div className="absolute top-6 left-6 right-6 z-30 flex justify-center">
+            <div className="w-full max-w-[1400px] flex justify-between items-center">
+              {/* Guest Info on the left */}
+              {guestName ? (
+                <div className="px-3 py-2 md:px-4 md:py-2 bg-white/40 backdrop-blur-lg rounded-2xl border border-white/20 shadow-lg">
+                  <div className="text-[8px] md:text-[10px] font-black uppercase tracking-widest text-primary-lilac opacity-80">Guest Access</div>
+                  <div className="text-xs md:text-sm font-bold text-dark-text truncate max-w-[100px] md:max-w-none">{guestName}</div>
+                </div>
+              ) : <div />}
 
-            {/* Hamburger Icon on the right */}
-            <div className="w-12 h-12 flex items-center justify-center bg-white/40 backdrop-blur-lg rounded-2xl cursor-pointer hover:bg-white/60 transition-all shadow-lg border border-white/20">
-              <svg viewBox="64 64 896 896" width="24" height="24" fill="currentColor">
-                <path d="M904 160H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0 624H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0-312H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8z"></path>
-              </svg>
+              {/* Hamburger Icon on the right */}
+              <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-white/40 backdrop-blur-lg rounded-2xl cursor-pointer hover:bg-white/60 transition-all shadow-lg border border-white/20">
+                <svg viewBox="64 64 896 896" width="20" height="20" md-width="24" md-height="24" fill="currentColor">
+                  <path d="M904 160H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0 624H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0-312H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8z"></path>
+                </svg>
+              </div>
             </div>
           </div>
 
