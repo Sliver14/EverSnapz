@@ -175,14 +175,29 @@ function DashboardContent() {
               </button>
             </div>
 
-            <div>
+            <div className="relative group">
               <Link 
                 href={activeEvent ? `/live-wall/${activeEvent.slug}` : "#"}
-                className="h-[200px] bg-[#f0f0f0] rounded-xl flex flex-col items-center justify-center gap-4 text-dark-text border border-border-color relative overflow-hidden group hover:bg-[#e8e8e8] transition-all"
+                target="_blank"
+                className="block h-[200px] bg-black rounded-xl overflow-hidden border border-border-color relative shadow-inner group-hover:shadow-2xl transition-all duration-500"
               >
-                <i className="fa-solid fa-tv text-6xl opacity-10 group-hover:scale-110 transition-transform"></i>
-                <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Launch Live Wall</span>
+                {/* Live Wall Iframe Preview */}
+                <iframe 
+                  src={activeEvent ? `/live-wall/${activeEvent.slug}` : ""} 
+                  className="w-full h-full border-none pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity"
+                  title="Live Wall Preview"
+                  style={{ transform: 'scale(0.5)', transformOrigin: 'center', width: '200%', height: '200%', position: 'absolute', top: '-50%', left: '-50%' }}
+                />
+                
+                {/* Overlay UI */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col items-center justify-center gap-3">
+                  <div className="w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20 group-hover:scale-110 transition-transform">
+                    <i className="fa-solid fa-play text-xl ml-1"></i>
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60">Preview Mode • Click to Launch</span>
+                </div>
               </Link>
+              
               <div className="flex items-center gap-5 mt-6 py-3 px-5 bg-bg-light rounded-lg border border-border-color">
                 <span className="text-[10px] text-gray-text font-bold uppercase tracking-widest opacity-50">Display on:</span>
                 <div className="flex gap-5">
