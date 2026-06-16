@@ -99,13 +99,13 @@ function DashboardContent() {
               </button>
             </div>
 
-            <div className="flex flex-col md:flex-row gap-8 items-start mt-8">
-              <div className="w-full md:w-[150px] text-center shrink-0">
+            <div className="flex items-center gap-6 mt-8">
+              <div className="w-[140px] text-center shrink-0">
                 <div className="aspect-square border border-border-color rounded-xl flex items-center justify-center bg-white mb-3 shadow-sm p-2">
                   {activeEvent && (
                     <QRCodeSVG 
                       value={`${typeof window !== 'undefined' ? window.location.origin : ''}/guest/${activeEvent.slug}`} 
-                      size={130}
+                      size={120}
                     />
                   )}
                 </div>
@@ -120,34 +120,27 @@ function DashboardContent() {
                       link.click();
                     }
                   }}
-                  className="btn btn-outline w-full text-xs py-2 rounded-lg font-bold"
+                  className="btn btn-outline w-full text-[10px] py-1.5 rounded-lg font-bold"
                 >
                   <i className="fa-solid fa-download mr-1"></i> Download QR
                 </button>
               </div>
 
-              {/* LIVE MOBILE PREVIEW - Always Visible */}
-              <div className="flex-1 w-full flex justify-center md:justify-end pr-0 md:pr-4">
-                <div className="relative w-[280px] h-[500px] bg-dark-text rounded-[40px] p-2.5 shadow-2xl border-[2px] border-white/10 scale-90 md:scale-100 origin-top">
-                  {/* Notch */}
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-5 bg-dark-text rounded-b-2xl z-20 flex items-center justify-center gap-1.5">
-                    <div className="w-6 h-1 bg-white/10 rounded-full"></div>
-                    <div className="w-1.5 h-1.5 bg-white/10 rounded-full"></div>
-                  </div>
-                  
-                  {/* Screen Container */}
-                  <div className="w-full h-full bg-white rounded-[32px] overflow-hidden relative border border-white/5">
-                    <iframe 
-                      src={`/guest/${activeEvent?.slug}`} 
-                      className="w-full h-full border-none pointer-events-none select-none"
-                      title="Guest View Preview"
-                    />
-                  </div>
-
-                  {/* Device Decoration */}
-                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] font-black uppercase tracking-widest text-gray-text opacity-40">
-                    Live Guest Preview
-                  </div>
+              {/* LIVE MOBILE PREVIEW - Compact Version */}
+              <div className="relative w-[180px] h-[340px] bg-dark-text rounded-[36px] p-2 shadow-xl border border-white/10 shrink-0 hidden sm:block">
+                {/* Notch */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-4 bg-dark-text rounded-b-2xl z-20 flex items-center justify-center gap-1">
+                  <div className="w-5 h-0.5 bg-white/10 rounded-full"></div>
+                </div>
+                
+                {/* Screen Container */}
+                <div className="w-full h-full bg-white rounded-[28px] overflow-hidden relative border border-white/5">
+                  <iframe 
+                    src={`/guest/${activeEvent?.slug}`} 
+                    className="w-full h-full border-none pointer-events-none select-none scale-[0.9] origin-top"
+                    style={{ height: '111.11%', width: '111.11%', transform: 'scale(0.9)', transformOrigin: 'top left' }}
+                    title="Guest View Preview"
+                  />
                 </div>
               </div>
             </div>
