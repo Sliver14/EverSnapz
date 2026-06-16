@@ -11,7 +11,6 @@ function DashboardContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [events, setEvents] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -99,7 +98,7 @@ function DashboardContent() {
               </button>
             </div>
 
-            <div className="flex items-center gap-6 mt-8">
+            <div className="flex flex-wrap items-center gap-6 mt-8">
               <div className="w-[140px] text-center shrink-0">
                 <div className="aspect-square border border-border-color rounded-xl flex items-center justify-center bg-white mb-3 shadow-sm p-2">
                   {activeEvent && (
@@ -126,19 +125,27 @@ function DashboardContent() {
                 </button>
               </div>
 
-              {/* LIVE MOBILE PREVIEW - Compact Version */}
-              <div className="relative w-[180px] h-[340px] bg-dark-text rounded-[36px] p-2 shadow-xl border border-white/10 shrink-0 hidden sm:block">
+              {/* LIVE MOBILE PREVIEW - Integrated Portrait Mockup */}
+              <div className="relative w-[190px] h-[380px] bg-dark-text rounded-[40px] p-1.5 shadow-2xl border border-white/10 shrink-0">
                 {/* Notch */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-4 bg-dark-text rounded-b-2xl z-20 flex items-center justify-center gap-1">
-                  <div className="w-5 h-0.5 bg-white/10 rounded-full"></div>
+                  <div className="w-6 h-0.5 bg-white/10 rounded-full"></div>
                 </div>
                 
                 {/* Screen Container */}
-                <div className="w-full h-full bg-white rounded-[28px] overflow-hidden relative border border-white/5">
+                <div className="w-full h-full bg-white rounded-[32px] overflow-hidden relative border border-white/5">
                   <iframe 
                     src={`/guest/${activeEvent?.slug}`} 
-                    className="w-full h-full border-none pointer-events-none select-none scale-[0.9] origin-top"
-                    style={{ height: '111.11%', width: '111.11%', transform: 'scale(0.9)', transformOrigin: 'top left' }}
+                    className="border-none pointer-events-none select-none"
+                    style={{ 
+                      width: '375px', 
+                      height: '750px', 
+                      transform: `scale(${178 / 375})`, 
+                      transformOrigin: 'top left',
+                      position: 'absolute',
+                      top: '0',
+                      left: '0'
+                    }}
                     title="Guest View Preview"
                   />
                 </div>
@@ -184,50 +191,6 @@ function DashboardContent() {
                   <i className="fa-solid fa-laptop text-gray-text/30 hover:text-primary-lilac transition-all cursor-help text-lg" title="Computer"></i>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* MOBILE PREVIEW MODAL */}
-      {isPreviewOpen && activeEvent && (
-        <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-dark-text/60 backdrop-blur-md" onClick={() => setIsPreviewOpen(false)} />
-          
-          <div className="relative z-10 animate-in zoom-in-95 duration-500 flex flex-col items-center">
-            {/* Close Button */}
-            <button 
-              onClick={() => setIsPreviewOpen(false)}
-              className="absolute -top-12 right-0 md:-right-12 w-10 h-10 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-all z-50"
-            >
-              <i className="fa-solid fa-xmark text-xl"></i>
-            </button>
-
-            {/* Mobile Device Mockup */}
-            <div className="relative w-[320px] h-[650px] md:w-[375px] md:h-[760px] bg-dark-text rounded-[55px] p-3 shadow-2xl border-[2px] border-white/10">
-              {/* Device Buttons */}
-              <div className="absolute -left-[2px] top-24 w-[3px] h-12 bg-white/10 rounded-r-lg"></div>
-              <div className="absolute -left-[2px] top-40 w-[3px] h-12 bg-white/10 rounded-r-lg"></div>
-              <div className="absolute -right-[2px] top-32 w-[3px] h-16 bg-white/10 rounded-l-lg"></div>
-
-              {/* Screen Container */}
-              <div className="w-full h-full bg-white rounded-[44px] overflow-hidden relative border border-white/5">
-                {/* Notch */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-36 h-7 bg-dark-text rounded-b-3xl z-20 flex items-center justify-center gap-2">
-                  <div className="w-8 h-1 bg-white/10 rounded-full"></div>
-                  <div className="w-2 h-2 bg-white/10 rounded-full"></div>
-                </div>
-                
-                <iframe 
-                  src={`/guest/${activeEvent.slug}`} 
-                  className="w-full h-full border-none"
-                  title="Guest View Preview"
-                />
-              </div>
-            </div>
-
-            <div className="mt-6 px-6 py-2 bg-white/10 backdrop-blur-lg rounded-full text-white/60 text-xs font-bold uppercase tracking-widest">
-              Live Preview Mode
             </div>
           </div>
         </div>
