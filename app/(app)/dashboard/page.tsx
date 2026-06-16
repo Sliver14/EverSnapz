@@ -134,20 +134,22 @@ function DashboardContent() {
                 
                 {/* Screen Container */}
                 <div className="w-full h-full bg-white rounded-[32px] overflow-hidden relative border border-white/5">
-                  <iframe 
-                    src={`/guest/${activeEvent?.slug}`} 
-                    className="border-none pointer-events-none select-none"
-                    style={{ 
-                      width: '375px', 
-                      height: '750px', 
-                      transform: `scale(${178 / 375})`, 
-                      transformOrigin: 'top left',
-                      position: 'absolute',
-                      top: '0',
-                      left: '0'
-                    }}
-                    title="Guest View Preview"
-                  />
+                  {activeEvent && (
+                    <iframe 
+                      src={`/guest/${activeEvent.slug}`} 
+                      className="border-none pointer-events-none select-none"
+                      style={{ 
+                        width: '375px', 
+                        height: '750px', 
+                        transform: `scale(${178 / 375})`, 
+                        transformOrigin: 'top left',
+                        position: 'absolute',
+                        top: '0',
+                        left: '0'
+                      }}
+                      title="Guest View Preview"
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -182,12 +184,14 @@ function DashboardContent() {
                 className="block h-[260px] bg-black rounded-xl overflow-hidden border border-border-color relative shadow-inner group-hover:shadow-2xl transition-all duration-500"
               >
                 {/* Live Wall Iframe Preview */}
-                <iframe 
-                  src={activeEvent ? `/live-wall/${activeEvent.slug}` : ""} 
-                  className="w-full h-full border-none pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity"
-                  title="Live Wall Preview"
-                  style={{ transform: 'scale(0.5)', transformOrigin: 'center', width: '200%', height: '200%', position: 'absolute', top: '-50%', left: '-50%' }}
-                />
+                {activeEvent && (
+                  <iframe 
+                    src={`/live-wall/${activeEvent.slug}`} 
+                    className="w-full h-full border-none pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity"
+                    title="Live Wall Preview"
+                    style={{ transform: 'scale(0.5)', transformOrigin: 'center', width: '200%', height: '200%', position: 'absolute', top: '-50%', left: '-50%' }}
+                  />
+                )}
               </Link>
               
               <div className="flex items-center gap-5 mt-6 py-3 px-5 bg-bg-light rounded-lg border border-border-color">
