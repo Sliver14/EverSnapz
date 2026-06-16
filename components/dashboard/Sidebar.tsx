@@ -165,10 +165,10 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
           );
         })}
         
-        <div className="mt-auto border-t border-border-color pt-4 relative" ref={accountRef}>
+        <div className="mt-auto border-t border-border-color pt-4 relative">
           <div 
-            onClick={() => setIsAccountMenuOpen(!isAccountMenuOpen)}
-            className={`px-4 py-4 rounded-xl flex items-center gap-3.5 hover:bg-bg-light transition-all cursor-pointer group ${isAccountMenuOpen ? 'bg-bg-light' : ''}`}
+            onClick={() => setIsAccountMenuOpen(true)}
+            className={`px-4 py-4 rounded-xl flex items-center gap-3.5 hover:bg-bg-light transition-all cursor-pointer group`}
           >
             <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 group-hover:bg-primary-lilac/10 group-hover:text-primary-lilac transition-colors overflow-hidden shrink-0">
               {session?.user?.image ? (
@@ -183,32 +183,63 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
             </div>
           </div>
 
+          {/* Account Modal / Popover */}
           {isAccountMenuOpen && (
-            <div className="absolute bottom-full left-4 right-4 bg-white border border-border-color rounded-2xl shadow-2xl z-[110] mb-2 p-2 animate-in fade-in slide-in-from-bottom-2 duration-200">
-              <Link 
-                href="/dashboard/settings" 
-                className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-bg-light text-dark-text no-underline transition-colors"
+            <div className="fixed inset-0 z-[200] flex items-end md:items-start md:justify-start">
+              {/* Backdrop */}
+              <div 
+                className="absolute inset-0 bg-black/5 backdrop-blur-[1px]" 
                 onClick={() => setIsAccountMenuOpen(false)}
+              />
+              
+              {/* Modal Content */}
+              <div 
+                ref={accountRef}
+                className="relative bg-white w-full md:w-[240px] border-t md:border border-border-color rounded-t-[2rem] md:rounded-2xl shadow-2xl mb-20 md:mb-0 md:ml-[280px] md:mt-[calc(100vh-280px)] p-2 animate-in fade-in slide-in-from-bottom-4 md:slide-in-from-left-2 duration-300 z-[210]"
               >
-                <i className="fa-solid fa-user-gear text-sm opacity-40"></i>
-                <span className="text-sm font-bold">Manage Account</span>
-              </Link>
-              <Link 
-                href="/dashboard/events" 
-                className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-bg-light text-dark-text no-underline transition-colors"
-                onClick={() => setIsAccountMenuOpen(false)}
-              >
-                <i className="fa-solid fa-calendar-days text-sm opacity-40"></i>
-                <span className="text-sm font-bold">View My Events</span>
-              </Link>
-              <div className="h-px bg-border-color my-1 mx-2"></div>
-              <button 
-                onClick={() => signOut({ callbackUrl: '/' })}
-                className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-red-50 text-red-500 transition-colors text-left border-none bg-transparent cursor-pointer"
-              >
-                <i className="fa-solid fa-right-from-bracket text-sm"></i>
-                <span className="text-sm font-bold">Sign Out</span>
-              </button>
+                <div className="p-4 md:hidden">
+                  <div className="w-12 h-1.5 bg-gray-200 rounded-full mx-auto mb-6"></div>
+                  <div className="font-black text-xl text-dark-text mb-1">My Account</div>
+                  <div className="text-sm text-gray-text font-medium mb-6">{session?.user?.email}</div>
+                </div>
+
+                <Link 
+                  href="/dashboard/settings" 
+                  className="flex items-center gap-3 px-4 py-3.5 rounded-xl hover:bg-bg-light text-dark-text no-underline transition-colors"
+                  onClick={() => setIsAccountMenuOpen(false)}
+                >
+                  <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-400">
+                    <i className="fa-solid fa-user-gear text-sm"></i>
+                  </div>
+                  <span className="text-sm font-bold">Manage Account</span>
+                </Link>
+
+                <Link 
+                  href="/dashboard/events" 
+                  className="flex items-center gap-3 px-4 py-3.5 rounded-xl hover:bg-bg-light text-dark-text no-underline transition-colors"
+                  onClick={() => setIsAccountMenuOpen(false)}
+                >
+                   <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-400">
+                    <i className="fa-solid fa-calendar-days text-sm"></i>
+                  </div>
+                  <span className="text-sm font-bold">View My Events</span>
+                </Link>
+
+                <div className="h-px bg-border-color my-2 mx-2"></div>
+
+                <button 
+                  onClick={() => {
+                    setIsAccountMenuOpen(false);
+                    signOut({ callbackUrl: '/' });
+                  }}
+                  className="w-full flex items-center gap-3 px-4 py-3.5 rounded-xl hover:bg-red-50 text-red-500 transition-colors text-left border-none bg-transparent cursor-pointer"
+                >
+                  <div className="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center">
+                    <i className="fa-solid fa-right-from-bracket text-sm"></i>
+                  </div>
+                  <span className="text-sm font-bold">Sign Out</span>
+                </button>
+              </div>
             </div>
           )}
         </div>
