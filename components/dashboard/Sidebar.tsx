@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
@@ -18,6 +18,22 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
   const [events, setEvents] = useState<any[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [activeEvent, setActiveEvent] = useState<any>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    }
+
+    if (isDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isDropdownOpen]);
 
   useEffect(() => {
     async function loadEvents() {
@@ -60,7 +76,7 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
         </Link>
       </div>
       
-      <div className="px-6 py-4 relative">
+      <div className="px-6 py-4 relative" ref={dropdownRef}>
         <div className="flex justify-between items-center mb-2">
           <span className="text-[11px] font-bold text-gray-text/60 uppercase tracking-widest">Current Event</span>
           <Link href="/dashboard/events" className="text-[11px] font-bold text-primary-lilac hover:underline uppercase tracking-widest bg-transparent border-none cursor-pointer">
