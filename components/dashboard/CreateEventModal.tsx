@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { createEvent } from "@/lib/actions/event";
 import { useRouter } from "next/navigation";
 
@@ -12,10 +12,21 @@ interface CreateEventModalProps {
 export default function CreateEventModal({ isOpen, onClose }: CreateEventModalProps) {
   const [eventName, setEventName] = useState("");
   const [eventDate, setEventDate] = useState("");
+  const [coverPhoto, setCoverPhoto] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
   if (!isOpen) return null;
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setCoverPhoto(file);
+      setPreviewUrl(URL.createObjectURL(file));
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,9 +34,19 @@ export default function CreateEventModal({ isOpen, onClose }: CreateEventModalPr
 
     setLoading(true);
     try {
-      await createEvent({ name: eventName, date: eventDate });
+      const formData = new FormData();
+      formData.append("name", eventName);
+      formData.append("date", eventDate);
+      if (coverPhoto) {
+        formData.append("coverPhoto", coverPhoto);
+      }
+
+      await createEvent(formData);
+      
       setEventName("");
       setEventDate("");
+      setCoverPhoto(null);
+      setPreviewUrl(null);
       onClose();
       router.refresh();
     } catch (error) {
@@ -79,6 +100,31 @@ export default function CreateEventModal({ isOpen, onClose }: CreateEventModalPr
                 value={eventDate}
                 onChange={(e) => setEventDate(e.target.value)}
                 required 
+              />
+            </div>
+
+            {/* Cover Photo Upload */}
+            <div>
+              <label className="form-label text-[14px]">Cover Photo (Optional)</label>
+              <div 
+                onClick={() => fileInputRef.current?.click()}
+                className="mt-2 w-full aspect-video rounded-xl border-2 border-dashed border-border-color bg-bg-light flex flex-col items-center justify-center cursor-pointer hover:border-primary-lilac transition-all overflow-hidden relative"
+              >
+                {previewUrl ? (
+                  <img src={previewUrl} className="w-full h-full object-cover" alt="Preview" />
+                ) : (
+                  <>
+                    <i className="fa-solid fa-image text-3xl text-gray-text/20 mb-2"></i>
+                    <span className="text-xs text-gray-text font-bold uppercase tracking-widest opacity-60">Upload Cover Image</span>
+                  </>
+                )}
+              </div>
+              <input 
+                type="file" 
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                accept="image/*"
+                className="hidden" 
               />
             </div>
 

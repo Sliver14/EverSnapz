@@ -157,7 +157,7 @@ export default function GuestUploadPage() {
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
                   </div>
                   <div className="text-left">
-                    <div className="text-xl font-black text-dark-text">Take Photo</div>
+                    <div className="text-xl font-black text-dark-text">Camera</div>
                     <div className="text-sm text-gray-text font-bold opacity-60">Open your camera</div>
                   </div>
                 </button>
@@ -191,7 +191,7 @@ export default function GuestUploadPage() {
               type="file" 
               ref={cameraInputRef}
               onChange={handleFileChange}
-              accept="image/*"
+              accept="image/*,video/*"
               capture="environment"
               className="hidden"
             />

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { getEvents, deleteEvent } from "@/lib/actions/event";
+import { useState, useEffect, useRef } from "react";
+import { getEvents, deleteEvent, updateEventCoverPhoto } from "@/lib/actions/event";
 import Link from "next/link";
 
 export default function SettingsPage() {
@@ -9,6 +9,8 @@ export default function SettingsPage() {
   const [events, setEvents] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedEventId, setSelectedEventId] = useState<string>("");
+  const [updatingCover, setUpdatingCover] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     async function loadData() {
@@ -23,6 +25,33 @@ export default function SettingsPage() {
   }, []);
 
   const selectedEvent = events.find(e => e.id === selectedEventId);
+
+  const handleCoverPhotoChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !selectedEventId) return;
+
+    setUpdatingCover(true);
+    try {
+      const formData = new FormData();
+      formData.append("eventId", selectedEventId);
+      formData.append("coverPhoto", file);
+
+      const result = await updateEventCoverPhoto(formData);
+      if (result.success) {
+        // Update local state
+        setEvents(prev => prev.map(ev => 
+          ev.id === selectedEventId 
+            ? { ...ev, coverPhotoUrl: result.url } 
+            : ev
+        ));
+      }
+    } catch (error) {
+      console.error("Failed to update cover photo:", error);
+      alert("Failed to update cover photo.");
+    } finally {
+      setUpdatingCover(false);
+    }
+  };
 
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this event? This action cannot be undone.")) return;
@@ -97,6 +126,44 @@ export default function SettingsPage() {
                   <option key={e.id} value={e.id}>{e.name}</option>
                 ))}
               </select>
+            </div>
+
+            {/* Cover Photo */}
+            <div>
+              <div className="mb-4">
+                <h4 className="text-[16px] font-bold text-dark-text mb-1">Cover Photo</h4>
+                <p className="text-[14px] text-gray-text">This will be the main background for your event.</p>
+              </div>
+              <div 
+                onClick={() => !updatingCover && fileInputRef.current?.click()}
+                className={`w-full max-w-[450px] aspect-video rounded-2xl border-2 border-dashed border-border-color bg-bg-light flex flex-col items-center justify-center cursor-pointer hover:border-primary-lilac transition-all overflow-hidden relative group ${updatingCover ? 'opacity-50 cursor-wait' : ''}`}
+              >
+                {selectedEvent.coverPhotoUrl ? (
+                  <>
+                    <img src={selectedEvent.coverPhotoUrl} className="w-full h-full object-cover" alt="Cover" />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">Change Cover Photo</span>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <i className="fa-solid fa-image text-4xl text-gray-text/20 mb-3"></i>
+                    <span className="text-xs text-gray-text font-bold uppercase tracking-widest opacity-60">Upload Cover Image</span>
+                  </>
+                )}
+                {updatingCover && (
+                  <div className="absolute inset-0 bg-white/60 flex items-center justify-center">
+                    <i className="fa-solid fa-spinner fa-spin text-primary-lilac text-2xl"></i>
+                  </div>
+                )}
+              </div>
+              <input 
+                type="file" 
+                ref={fileInputRef}
+                onChange={handleCoverPhotoChange}
+                accept="image/*"
+                className="hidden" 
+              />
             </div>
 
             {/* Event Name */}
@@ -179,8 +246,12 @@ export default function SettingsPage() {
                 {events.map((event) => (
                   <div key={event.id} className="bg-white p-6 rounded-2xl border border-border-color shadow-sm flex justify-between items-center group hover:border-primary-lilac transition-all">
                     <div className="flex gap-5 items-center">
-                      <div className="w-14 h-14 bg-light-lavender rounded-xl flex items-center justify-center text-primary-lilac">
-                        <i className="fa-solid fa-calendar-check text-2xl"></i>
+                      <div className="w-14 h-14 bg-light-lavender rounded-xl flex items-center justify-center text-primary-lilac overflow-hidden">
+                        {event.coverPhotoUrl ? (
+                          <img src={event.coverPhotoUrl} className="w-full h-full object-cover" alt="Cover" />
+                        ) : (
+                          <i className="fa-solid fa-calendar-check text-2xl"></i>
+                        )}
                       </div>
                       <div>
                         <h4 className="text-[18px] font-bold text-dark-text m-0">{event.name}</h4>
