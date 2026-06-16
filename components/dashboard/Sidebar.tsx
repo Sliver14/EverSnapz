@@ -18,22 +18,26 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
   const [events, setEvents] = useState<any[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [activeEvent, setActiveEvent] = useState<any>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
+  const accountRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsDropdownOpen(false);
       }
+      if (accountRef.current && !accountRef.current.contains(event.target as Node)) {
+        setIsAccountMenuOpen(false);
+      }
     }
 
-    if (isDropdownOpen) {
+    if (isDropdownOpen || isAccountMenuOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isDropdownOpen]);
+  }, [isDropdownOpen, isAccountMenuOpen]);
 
   useEffect(() => {
     async function loadEvents() {
@@ -160,9 +164,12 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
           );
         })}
         
-        <div className="mt-auto border-t border-border-color pt-4 flex flex-col gap-2">
-          <div className="px-4 py-4 rounded-xl flex items-center gap-3.5 hover:bg-bg-light transition-all cursor-pointer group">
-            <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 group-hover:bg-primary-lilac/10 group-hover:text-primary-lilac transition-colors overflow-hidden">
+        <div className="mt-auto border-t border-border-color pt-4 relative" ref={accountRef}>
+          <div 
+            onClick={() => setIsAccountMenuOpen(!isAccountMenuOpen)}
+            className={`px-4 py-4 rounded-xl flex items-center gap-3.5 hover:bg-bg-light transition-all cursor-pointer group ${isAccountMenuOpen ? 'bg-bg-light' : ''}`}
+          >
+            <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 group-hover:bg-primary-lilac/10 group-hover:text-primary-lilac transition-colors overflow-hidden shrink-0">
               {session?.user?.image ? (
                 <img src={session.user.image} alt={session.user.name || "User"} className="w-full h-full object-cover" />
               ) : (
@@ -170,18 +177,39 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
               )}
             </div>
             <div className="flex flex-col min-w-0">
-              <span className="text-[14px] font-bold text-dark-text truncate">{session?.user?.name || "My Account"}</span>
+              <span className="text-[14px] font-bold text-dark-text truncate">My Profile</span>
               <span className="text-[11px] text-gray-text/60 truncate font-medium">{session?.user?.email}</span>
             </div>
           </div>
-          
-          <button 
-            onClick={() => signOut({ callbackUrl: '/' })}
-            className="flex items-center gap-3.5 px-4 py-3 text-red-500 hover:bg-red-50 rounded-xl transition-all font-bold text-[14px]"
-          >
-            <i className="fa-solid fa-right-from-bracket w-5 text-center"></i>
-            <span>Sign Out</span>
-          </button>
+
+          {isAccountMenuOpen && (
+            <div className="absolute bottom-full left-4 right-4 bg-white border border-border-color rounded-2xl shadow-2xl z-[110] mb-2 p-2 animate-in fade-in slide-in-from-bottom-2 duration-200">
+              <Link 
+                href="/dashboard/settings" 
+                className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-bg-light text-dark-text no-underline transition-colors"
+                onClick={() => setIsAccountMenuOpen(false)}
+              >
+                <i className="fa-solid fa-user-gear text-sm opacity-40"></i>
+                <span className="text-sm font-bold">Manage Account</span>
+              </Link>
+              <Link 
+                href="/dashboard/events" 
+                className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-bg-light text-dark-text no-underline transition-colors"
+                onClick={() => setIsAccountMenuOpen(false)}
+              >
+                <i className="fa-solid fa-calendar-days text-sm opacity-40"></i>
+                <span className="text-sm font-bold">View My Events</span>
+              </Link>
+              <div className="h-px bg-border-color my-1 mx-2"></div>
+              <button 
+                onClick={() => signOut({ callbackUrl: '/' })}
+                className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-red-50 text-red-500 transition-colors text-left border-none bg-transparent cursor-pointer"
+              >
+                <i className="fa-solid fa-right-from-bracket text-sm"></i>
+                <span className="text-sm font-bold">Sign Out</span>
+              </button>
+            </div>
+          )}
         </div>
       </nav>
     </aside>
