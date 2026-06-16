@@ -5,6 +5,7 @@ export const planEnum = pgEnum("plan", ["FREE", "PRO", "PREMIUM"]);
 export const users = pgTable("users", {
   id: uuid("id").primaryKey().defaultRandom(),
   email: text("email").notNull().unique(),
+  password: text("password"),
   name: text("name"),
   image: text("image"),
   googleId: text("google_id").unique(),

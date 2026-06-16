@@ -1,53 +1,128 @@
 "use client";
 
-import { signIn, signOut, useSession } from "next-auth/react";
+import { useState } from "react";
+import { signIn, useSession } from "next-auth/react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const { data: session } = useSession();
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   if (session) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-        <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-2xl shadow-xl text-center">
-          <h2 className="text-3xl font-extrabold text-gray-900">Signed in as</h2>
-          <p className="mt-2 text-sm text-gray-600 font-medium">{session.user?.email}</p>
-          <div className="mt-8">
-            <button
-              onClick={() => signOut({ callbackUrl: '/' })}
-              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-bold rounded-xl text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all active:scale-95"
-            >
-              Sign out
-            </button>
-          </div>
-        </div>
-      </div>
-    );
+    router.push("/dashboard");
+    return null;
   }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (res?.error) {
+        setError("Invalid email or password");
+      } else {
+        router.push("/dashboard");
+      }
+    } catch (err) {
+      setError("An unexpected error occurred");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-2xl shadow-xl">
         <div className="text-center">
-          <div className="mx-auto h-16 w-16 bg-primary-lilac rounded-full flex items-center justify-center text-white text-3xl font-black shadow-lg shadow-primary-lilac/20">
-            E
-          </div>
+          <Link href="/">
+            <div className="mx-auto h-16 w-16 bg-primary-lilac rounded-full flex items-center justify-center text-white text-3xl font-black shadow-lg shadow-primary-lilac/20 cursor-pointer">
+              E
+            </div>
+          </Link>
           <h2 className="mt-6 text-3xl font-extrabold text-gray-900 tracking-tight">Welcome back</h2>
           <p className="mt-2 text-sm text-gray-600">Sign in to manage your events and live walls.</p>
         </div>
         
-        <div className="mt-8">
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+          {error && (
+            <div className="bg-red-50 text-red-500 p-4 rounded-xl text-sm font-medium border border-red-100">
+              {error}
+            </div>
+          )}
+          
+          <div className="space-y-4">
+            <div>
+              <label className="block text-xs font-black uppercase tracking-widest text-gray-text mb-2">Email Address</label>
+              <input 
+                required
+                type="email" 
+                placeholder="name@example.com"
+                className="w-full px-5 py-4 bg-bg-light border border-border-color rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-lilac/20 focus:border-primary-lilac transition-all text-dark-text font-medium"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-black uppercase tracking-widest text-gray-text mb-2">Password</label>
+              <input 
+                required
+                type="password" 
+                placeholder="••••••••"
+                className="w-full px-5 py-4 bg-bg-light border border-border-color rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-lilac/20 focus:border-primary-lilac transition-all text-dark-text font-medium"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+          </div>
+
+          <button
+            disabled={loading}
+            type="submit"
+            className="group relative w-full flex justify-center py-4 px-4 border border-transparent text-sm font-bold rounded-xl text-white bg-primary-lilac hover:bg-dark-lilac focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-lilac transition-all active:scale-95 disabled:opacity-50"
+          >
+            {loading ? "Signing in..." : "Sign in"}
+          </button>
+        </form>
+
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-200"></div>
+          </div>
+          <div className="relative flex justify-center text-sm">
+            <span className="px-2 bg-white text-gray-400 font-medium">Or continue with</span>
+          </div>
+        </div>
+
+        <div>
           <button
             onClick={() => signIn("google", { callbackUrl: '/dashboard' })}
             className="group relative w-full flex justify-center items-center gap-3 py-4 px-4 border border-gray-200 text-sm font-bold rounded-xl text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-lilac transition-all active:scale-95 shadow-sm"
           >
             <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="h-5 w-5" alt="Google logo" />
-            Continue with Google
+            Google
           </button>
         </div>
 
-        <p className="mt-8 text-center text-xs text-gray-400">
-          By signing in, you agree to our Terms of Service and Privacy Policy.
-        </p>
+        <div className="text-center">
+          <p className="text-sm text-gray-600 font-medium">
+            Don't have an account?{" "}
+            <Link href="/signup" className="text-primary-lilac hover:underline">
+              Sign up for free
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
