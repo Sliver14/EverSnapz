@@ -20,6 +20,7 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
   const [activeEvent, setActiveEvent] = useState<any>(null);
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
   const accountRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
