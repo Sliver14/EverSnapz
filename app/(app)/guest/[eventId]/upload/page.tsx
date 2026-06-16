@@ -11,7 +11,8 @@ export default function GuestUploadPage() {
   const router = useRouter();
   const eventSlug = params.eventId as string;
   const galleryInputRef = useRef<HTMLInputElement>(null);
-  const cameraInputRef = useRef<HTMLInputElement>(null);
+  const photoInputRef = useRef<HTMLInputElement>(null);
+  const videoInputRef = useRef<HTMLInputElement>(null);
   
   const [event, setEvent] = useState<any>(null);
   const [guestName, setGuestName] = useState<string | null>(null);
@@ -49,8 +50,12 @@ export default function GuestUploadPage() {
     galleryInputRef.current?.click();
   };
 
-  const handleCameraClick = () => {
-    cameraInputRef.current?.click();
+  const handlePhotoClick = () => {
+    photoInputRef.current?.click();
+  };
+
+  const handleVideoClick = () => {
+    videoInputRef.current?.click();
   };
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -148,17 +153,31 @@ export default function GuestUploadPage() {
               </div>
             ) : (
               <div className="grid grid-cols-1 gap-4 w-full">
-                {/* Camera Option */}
+                {/* Photo Option */}
                 <button 
-                  onClick={handleCameraClick}
+                  onClick={handlePhotoClick}
                   className="flex items-center gap-6 p-6 bg-white rounded-[2rem] shadow-xl shadow-primary-lilac/5 border border-border-color hover:border-primary-lilac transition-all group"
                 >
                   <div className="w-16 h-16 bg-primary-lilac/10 text-primary-lilac rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
                   </div>
                   <div className="text-left">
-                    <div className="text-xl font-black text-dark-text">Camera</div>
+                    <div className="text-xl font-black text-dark-text">Take Photo</div>
                     <div className="text-sm text-gray-text font-bold opacity-60">Open your camera</div>
+                  </div>
+                </button>
+
+                {/* Video Option */}
+                <button 
+                  onClick={handleVideoClick}
+                  className="flex items-center gap-6 p-6 bg-white rounded-[2rem] shadow-xl shadow-primary-lilac/5 border border-border-color hover:border-primary-lilac transition-all group"
+                >
+                  <div className="w-16 h-16 bg-primary-lilac/10 text-primary-lilac rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m22 8-6 4 6 4V8Z"></path><rect width="14" height="12" x="2" y="6" rx="2" ry="2"></rect></svg>
+                  </div>
+                  <div className="text-left">
+                    <div className="text-xl font-black text-dark-text">Record Video</div>
+                    <div className="text-sm text-gray-text font-bold opacity-60">Capture a moment</div>
                   </div>
                 </button>
 
@@ -189,9 +208,18 @@ export default function GuestUploadPage() {
 
             <input 
               type="file" 
-              ref={cameraInputRef}
+              ref={photoInputRef}
               onChange={handleFileChange}
-              accept="image/*,video/*"
+              accept="image/*"
+              capture="environment"
+              className="hidden"
+            />
+
+            <input 
+              type="file" 
+              ref={videoInputRef}
+              onChange={handleFileChange}
+              accept="video/*"
               capture="environment"
               className="hidden"
             />
