@@ -1,0 +1,2328 @@
+<html lang="en" class="fontawesome-i2svg-active fontawesome-i2svg-complete"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EverSnapz - Easily Collect Photos From Every Guest</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script><style type="text/css">:host,:root{--fa-font-solid:normal 900 1em/1 "Font Awesome 6 Solid";--fa-font-regular:normal 400 1em/1 "Font Awesome 6 Regular";--fa-font-light:normal 300 1em/1 "Font Awesome 6 Light";--fa-font-thin:normal 100 1em/1 "Font Awesome 6 Thin";--fa-font-duotone:normal 900 1em/1 "Font Awesome 6 Duotone";--fa-font-sharp-solid:normal 900 1em/1 "Font Awesome 6 Sharp";--fa-font-sharp-regular:normal 400 1em/1 "Font Awesome 6 Sharp";--fa-font-sharp-light:normal 300 1em/1 "Font Awesome 6 Sharp";--fa-font-brands:normal 400 1em/1 "Font Awesome 6 Brands"}svg:not(:host).svg-inline--fa,svg:not(:root).svg-inline--fa{overflow:visible;box-sizing:content-box}.svg-inline--fa{display:var(--fa-display,inline-block);height:1em;overflow:visible;vertical-align:-.125em}.svg-inline--fa.fa-2xs{vertical-align:.1em}.svg-inline--fa.fa-xs{vertical-align:0}.svg-inline--fa.fa-sm{vertical-align:-.0714285705em}.svg-inline--fa.fa-lg{vertical-align:-.2em}.svg-inline--fa.fa-xl{vertical-align:-.25em}.svg-inline--fa.fa-2xl{vertical-align:-.3125em}.svg-inline--fa.fa-pull-left{margin-right:var(--fa-pull-margin,.3em);width:auto}.svg-inline--fa.fa-pull-right{margin-left:var(--fa-pull-margin,.3em);width:auto}.svg-inline--fa.fa-li{width:var(--fa-li-width,2em);top:.25em}.svg-inline--fa.fa-fw{width:var(--fa-fw-width,1.25em)}.fa-layers svg.svg-inline--fa{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0}.fa-layers-counter,.fa-layers-text{display:inline-block;position:absolute;text-align:center}.fa-layers{display:inline-block;height:1em;position:relative;text-align:center;vertical-align:-.125em;width:1em}.fa-layers svg.svg-inline--fa{-webkit-transform-origin:center center;transform-origin:center center}.fa-layers-text{left:50%;top:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);-webkit-transform-origin:center center;transform-origin:center center}.fa-layers-counter{background-color:var(--fa-counter-background-color,#ff253a);border-radius:var(--fa-counter-border-radius,1em);box-sizing:border-box;color:var(--fa-inverse,#fff);line-height:var(--fa-counter-line-height,1);max-width:var(--fa-counter-max-width,5em);min-width:var(--fa-counter-min-width,1.5em);overflow:hidden;padding:var(--fa-counter-padding,.25em .5em);right:var(--fa-right,0);text-overflow:ellipsis;top:var(--fa-top,0);-webkit-transform:scale(var(--fa-counter-scale,.25));transform:scale(var(--fa-counter-scale,.25));-webkit-transform-origin:top right;transform-origin:top right}.fa-layers-bottom-right{bottom:var(--fa-bottom,0);right:var(--fa-right,0);top:auto;-webkit-transform:scale(var(--fa-layers-scale,.25));transform:scale(var(--fa-layers-scale,.25));-webkit-transform-origin:bottom right;transform-origin:bottom right}.fa-layers-bottom-left{bottom:var(--fa-bottom,0);left:var(--fa-left,0);right:auto;top:auto;-webkit-transform:scale(var(--fa-layers-scale,.25));transform:scale(var(--fa-layers-scale,.25));-webkit-transform-origin:bottom left;transform-origin:bottom left}.fa-layers-top-right{top:var(--fa-top,0);right:var(--fa-right,0);-webkit-transform:scale(var(--fa-layers-scale,.25));transform:scale(var(--fa-layers-scale,.25));-webkit-transform-origin:top right;transform-origin:top right}.fa-layers-top-left{left:var(--fa-left,0);right:auto;top:var(--fa-top,0);-webkit-transform:scale(var(--fa-layers-scale,.25));transform:scale(var(--fa-layers-scale,.25));-webkit-transform-origin:top left;transform-origin:top left}.fa-1x{font-size:1em}.fa-2x{font-size:2em}.fa-3x{font-size:3em}.fa-4x{font-size:4em}.fa-5x{font-size:5em}.fa-6x{font-size:6em}.fa-7x{font-size:7em}.fa-8x{font-size:8em}.fa-9x{font-size:9em}.fa-10x{font-size:10em}.fa-2xs{font-size:.625em;line-height:.1em;vertical-align:.225em}.fa-xs{font-size:.75em;line-height:.0833333337em;vertical-align:.125em}.fa-sm{font-size:.875em;line-height:.0714285718em;vertical-align:.0535714295em}.fa-lg{font-size:1.25em;line-height:.05em;vertical-align:-.075em}.fa-xl{font-size:1.5em;line-height:.0416666682em;vertical-align:-.125em}.fa-2xl{font-size:2em;line-height:.03125em;vertical-align:-.1875em}.fa-fw{text-align:center;width:1.25em}.fa-ul{list-style-type:none;margin-left:var(--fa-li-margin,2.5em);padding-left:0}.fa-ul>li{position:relative}.fa-li{left:calc(var(--fa-li-width,2em) * -1);position:absolute;text-align:center;width:var(--fa-li-width,2em);line-height:inherit}.fa-border{border-color:var(--fa-border-color,#eee);border-radius:var(--fa-border-radius,.1em);border-style:var(--fa-border-style,solid);border-width:var(--fa-border-width,.08em);padding:var(--fa-border-padding,.2em .25em .15em)}.fa-pull-left{float:left;margin-right:var(--fa-pull-margin,.3em)}.fa-pull-right{float:right;margin-left:var(--fa-pull-margin,.3em)}.fa-beat{-webkit-animation-name:fa-beat;animation-name:fa-beat;-webkit-animation-delay:var(--fa-animation-delay,0s);animation-delay:var(--fa-animation-delay,0s);-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,ease-in-out);animation-timing-function:var(--fa-animation-timing,ease-in-out)}.fa-bounce{-webkit-animation-name:fa-bounce;animation-name:fa-bounce;-webkit-animation-delay:var(--fa-animation-delay,0s);animation-delay:var(--fa-animation-delay,0s);-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,cubic-bezier(.28,.84,.42,1));animation-timing-function:var(--fa-animation-timing,cubic-bezier(.28,.84,.42,1))}.fa-fade{-webkit-animation-name:fa-fade;animation-name:fa-fade;-webkit-animation-delay:var(--fa-animation-delay,0s);animation-delay:var(--fa-animation-delay,0s);-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,cubic-bezier(.4,0,.6,1));animation-timing-function:var(--fa-animation-timing,cubic-bezier(.4,0,.6,1))}.fa-beat-fade{-webkit-animation-name:fa-beat-fade;animation-name:fa-beat-fade;-webkit-animation-delay:var(--fa-animation-delay,0s);animation-delay:var(--fa-animation-delay,0s);-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,cubic-bezier(.4,0,.6,1));animation-timing-function:var(--fa-animation-timing,cubic-bezier(.4,0,.6,1))}.fa-flip{-webkit-animation-name:fa-flip;animation-name:fa-flip;-webkit-animation-delay:var(--fa-animation-delay,0s);animation-delay:var(--fa-animation-delay,0s);-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,ease-in-out);animation-timing-function:var(--fa-animation-timing,ease-in-out)}.fa-shake{-webkit-animation-name:fa-shake;animation-name:fa-shake;-webkit-animation-delay:var(--fa-animation-delay,0s);animation-delay:var(--fa-animation-delay,0s);-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,linear);animation-timing-function:var(--fa-animation-timing,linear)}.fa-spin{-webkit-animation-name:fa-spin;animation-name:fa-spin;-webkit-animation-delay:var(--fa-animation-delay,0s);animation-delay:var(--fa-animation-delay,0s);-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,2s);animation-duration:var(--fa-animation-duration,2s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,linear);animation-timing-function:var(--fa-animation-timing,linear)}.fa-spin-reverse{--fa-animation-direction:reverse}.fa-pulse,.fa-spin-pulse{-webkit-animation-name:fa-spin;animation-name:fa-spin;-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,steps(8));animation-timing-function:var(--fa-animation-timing,steps(8))}@media (prefers-reduced-motion:reduce){.fa-beat,.fa-beat-fade,.fa-bounce,.fa-fade,.fa-flip,.fa-pulse,.fa-shake,.fa-spin,.fa-spin-pulse{-webkit-animation-delay:-1ms;animation-delay:-1ms;-webkit-animation-duration:1ms;animation-duration:1ms;-webkit-animation-iteration-count:1;animation-iteration-count:1;-webkit-transition-delay:0s;transition-delay:0s;-webkit-transition-duration:0s;transition-duration:0s}}@-webkit-keyframes fa-beat{0%,90%{-webkit-transform:scale(1);transform:scale(1)}45%{-webkit-transform:scale(var(--fa-beat-scale,1.25));transform:scale(var(--fa-beat-scale,1.25))}}@keyframes fa-beat{0%,90%{-webkit-transform:scale(1);transform:scale(1)}45%{-webkit-transform:scale(var(--fa-beat-scale,1.25));transform:scale(var(--fa-beat-scale,1.25))}}@-webkit-keyframes fa-bounce{0%{-webkit-transform:scale(1,1) translateY(0);transform:scale(1,1) translateY(0)}10%{-webkit-transform:scale(var(--fa-bounce-start-scale-x,1.1),var(--fa-bounce-start-scale-y,.9)) translateY(0);transform:scale(var(--fa-bounce-start-scale-x,1.1),var(--fa-bounce-start-scale-y,.9)) translateY(0)}30%{-webkit-transform:scale(var(--fa-bounce-jump-scale-x,.9),var(--fa-bounce-jump-scale-y,1.1)) translateY(var(--fa-bounce-height,-.5em));transform:scale(var(--fa-bounce-jump-scale-x,.9),var(--fa-bounce-jump-scale-y,1.1)) translateY(var(--fa-bounce-height,-.5em))}50%{-webkit-transform:scale(var(--fa-bounce-land-scale-x,1.05),var(--fa-bounce-land-scale-y,.95)) translateY(0);transform:scale(var(--fa-bounce-land-scale-x,1.05),var(--fa-bounce-land-scale-y,.95)) translateY(0)}57%{-webkit-transform:scale(1,1) translateY(var(--fa-bounce-rebound,-.125em));transform:scale(1,1) translateY(var(--fa-bounce-rebound,-.125em))}64%{-webkit-transform:scale(1,1) translateY(0);transform:scale(1,1) translateY(0)}100%{-webkit-transform:scale(1,1) translateY(0);transform:scale(1,1) translateY(0)}}@keyframes fa-bounce{0%{-webkit-transform:scale(1,1) translateY(0);transform:scale(1,1) translateY(0)}10%{-webkit-transform:scale(var(--fa-bounce-start-scale-x,1.1),var(--fa-bounce-start-scale-y,.9)) translateY(0);transform:scale(var(--fa-bounce-start-scale-x,1.1),var(--fa-bounce-start-scale-y,.9)) translateY(0)}30%{-webkit-transform:scale(var(--fa-bounce-jump-scale-x,.9),var(--fa-bounce-jump-scale-y,1.1)) translateY(var(--fa-bounce-height,-.5em));transform:scale(var(--fa-bounce-jump-scale-x,.9),var(--fa-bounce-jump-scale-y,1.1)) translateY(var(--fa-bounce-height,-.5em))}50%{-webkit-transform:scale(var(--fa-bounce-land-scale-x,1.05),var(--fa-bounce-land-scale-y,.95)) translateY(0);transform:scale(var(--fa-bounce-land-scale-x,1.05),var(--fa-bounce-land-scale-y,.95)) translateY(0)}57%{-webkit-transform:scale(1,1) translateY(var(--fa-bounce-rebound,-.125em));transform:scale(1,1) translateY(var(--fa-bounce-rebound,-.125em))}64%{-webkit-transform:scale(1,1) translateY(0);transform:scale(1,1) translateY(0)}100%{-webkit-transform:scale(1,1) translateY(0);transform:scale(1,1) translateY(0)}}@-webkit-keyframes fa-fade{50%{opacity:var(--fa-fade-opacity,.4)}}@keyframes fa-fade{50%{opacity:var(--fa-fade-opacity,.4)}}@-webkit-keyframes fa-beat-fade{0%,100%{opacity:var(--fa-beat-fade-opacity,.4);-webkit-transform:scale(1);transform:scale(1)}50%{opacity:1;-webkit-transform:scale(var(--fa-beat-fade-scale,1.125));transform:scale(var(--fa-beat-fade-scale,1.125))}}@keyframes fa-beat-fade{0%,100%{opacity:var(--fa-beat-fade-opacity,.4);-webkit-transform:scale(1);transform:scale(1)}50%{opacity:1;-webkit-transform:scale(var(--fa-beat-fade-scale,1.125));transform:scale(var(--fa-beat-fade-scale,1.125))}}@-webkit-keyframes fa-flip{50%{-webkit-transform:rotate3d(var(--fa-flip-x,0),var(--fa-flip-y,1),var(--fa-flip-z,0),var(--fa-flip-angle,-180deg));transform:rotate3d(var(--fa-flip-x,0),var(--fa-flip-y,1),var(--fa-flip-z,0),var(--fa-flip-angle,-180deg))}}@keyframes fa-flip{50%{-webkit-transform:rotate3d(var(--fa-flip-x,0),var(--fa-flip-y,1),var(--fa-flip-z,0),var(--fa-flip-angle,-180deg));transform:rotate3d(var(--fa-flip-x,0),var(--fa-flip-y,1),var(--fa-flip-z,0),var(--fa-flip-angle,-180deg))}}@-webkit-keyframes fa-shake{0%{-webkit-transform:rotate(-15deg);transform:rotate(-15deg)}4%{-webkit-transform:rotate(15deg);transform:rotate(15deg)}24%,8%{-webkit-transform:rotate(-18deg);transform:rotate(-18deg)}12%,28%{-webkit-transform:rotate(18deg);transform:rotate(18deg)}16%{-webkit-transform:rotate(-22deg);transform:rotate(-22deg)}20%{-webkit-transform:rotate(22deg);transform:rotate(22deg)}32%{-webkit-transform:rotate(-12deg);transform:rotate(-12deg)}36%{-webkit-transform:rotate(12deg);transform:rotate(12deg)}100%,40%{-webkit-transform:rotate(0);transform:rotate(0)}}@keyframes fa-shake{0%{-webkit-transform:rotate(-15deg);transform:rotate(-15deg)}4%{-webkit-transform:rotate(15deg);transform:rotate(15deg)}24%,8%{-webkit-transform:rotate(-18deg);transform:rotate(-18deg)}12%,28%{-webkit-transform:rotate(18deg);transform:rotate(18deg)}16%{-webkit-transform:rotate(-22deg);transform:rotate(-22deg)}20%{-webkit-transform:rotate(22deg);transform:rotate(22deg)}32%{-webkit-transform:rotate(-12deg);transform:rotate(-12deg)}36%{-webkit-transform:rotate(12deg);transform:rotate(12deg)}100%,40%{-webkit-transform:rotate(0);transform:rotate(0)}}@-webkit-keyframes fa-spin{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes fa-spin{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}.fa-rotate-90{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.fa-rotate-180{-webkit-transform:rotate(180deg);transform:rotate(180deg)}.fa-rotate-270{-webkit-transform:rotate(270deg);transform:rotate(270deg)}.fa-flip-horizontal{-webkit-transform:scale(-1,1);transform:scale(-1,1)}.fa-flip-vertical{-webkit-transform:scale(1,-1);transform:scale(1,-1)}.fa-flip-both,.fa-flip-horizontal.fa-flip-vertical{-webkit-transform:scale(-1,-1);transform:scale(-1,-1)}.fa-rotate-by{-webkit-transform:rotate(var(--fa-rotate-angle,none));transform:rotate(var(--fa-rotate-angle,none))}.fa-stack{display:inline-block;vertical-align:middle;height:2em;position:relative;width:2.5em}.fa-stack-1x,.fa-stack-2x{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0;z-index:var(--fa-stack-z-index,auto)}.svg-inline--fa.fa-stack-1x{height:1em;width:1.25em}.svg-inline--fa.fa-stack-2x{height:2em;width:2.5em}.fa-inverse{color:var(--fa-inverse,#fff)}.fa-sr-only,.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}.fa-sr-only-focusable:not(:focus),.sr-only-focusable:not(:focus){position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}.svg-inline--fa .fa-primary{fill:var(--fa-primary-color,currentColor);opacity:var(--fa-primary-opacity,1)}.svg-inline--fa .fa-secondary{fill:var(--fa-secondary-color,currentColor);opacity:var(--fa-secondary-opacity,.4)}.svg-inline--fa.fa-swap-opacity .fa-primary{opacity:var(--fa-secondary-opacity,.4)}.svg-inline--fa.fa-swap-opacity .fa-secondary{opacity:var(--fa-primary-opacity,1)}.svg-inline--fa mask .fa-primary,.svg-inline--fa mask .fa-secondary{fill:#000}.fa-duotone.fa-inverse,.fad.fa-inverse{color:var(--fa-inverse,#fff)}</style><style data-tippy-stylesheet="">.tippy-box[data-animation=fade][data-state=hidden]{opacity:0}[data-tippy-root]{max-width:calc(100vw - 10px)}.tippy-box{position:relative;background-color:#333;color:#fff;border-radius:4px;font-size:14px;line-height:1.4;white-space:normal;outline:0;transition-property:transform,visibility,opacity}.tippy-box[data-placement^=top]>.tippy-arrow{bottom:0}.tippy-box[data-placement^=top]>.tippy-arrow:before{bottom:-7px;left:0;border-width:8px 8px 0;border-top-color:initial;transform-origin:center top}.tippy-box[data-placement^=bottom]>.tippy-arrow{top:0}.tippy-box[data-placement^=bottom]>.tippy-arrow:before{top:-7px;left:0;border-width:0 8px 8px;border-bottom-color:initial;transform-origin:center bottom}.tippy-box[data-placement^=left]>.tippy-arrow{right:0}.tippy-box[data-placement^=left]>.tippy-arrow:before{border-width:8px 0 8px 8px;border-left-color:initial;right:-7px;transform-origin:center left}.tippy-box[data-placement^=right]>.tippy-arrow{left:0}.tippy-box[data-placement^=right]>.tippy-arrow:before{left:-7px;border-width:8px 8px 8px 0;border-right-color:initial;transform-origin:center right}.tippy-box[data-inertia][data-state=visible]{transition-timing-function:cubic-bezier(.54,1.5,.38,1.11)}.tippy-arrow{width:16px;height:16px;color:#333}.tippy-arrow:before{content:"";position:absolute;border-color:transparent;border-style:solid}.tippy-content{position:relative;padding:5px 9px;z-index:1}</style>
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/material.css">
+    
+    <style>
+        :root {
+            --primary-lilac: #9161f2;
+            --dark-lilac: #6a36cf;
+            --light-lavender: #f6f2ff;
+            --dark-text: #1d1929;
+            --gray-text: #665e75;
+            --border-color: #e6e1f0;
+            --bg-light: #faf9fc;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--dark-text);
+            line-height: 1.6;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Pure CSS Routing Engine */
+        .page-view {
+            display: none !important;
+            min-height: calc(100vh - 73px);
+        }
+        
+        .page-view.active { 
+            display: block !important; 
+        }
+
+        #view-live-wall.active {
+            display: flex !important;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Utility Classes */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-lilac);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--dark-lilac);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--dark-text);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary-lilac);
+            background: var(--light-lavender);
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-live { background: #dcfce7; color: #166534; }
+        .badge-upcoming { background: #fef9c3; color: #854d0e; }
+        .badge-past { background: #f1f5f9; color: #475569; }
+
+        /* Navbar Layout */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 40px;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--dark-text);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-dot {
+            color: var(--primary-lilac);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--gray-text);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-lilac);
+        }
+
+        /* Dropdown Navigation Menu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            color: var(--gray-text);
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: white;
+            min-width: 280px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(111, 66, 193, 0.08);
+            padding: 12px;
+            display: none;
+            grid-template-columns: 1fr;
+            gap: 4px;
+            z-index: 1010;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: grid;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--dark-text);
+            transition: background 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background: var(--light-lavender);
+        }
+
+        .dropdown-icon {
+            font-size: 18px;
+            padding-top: 2px;
+        }
+
+        .dropdown-info h5 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .dropdown-info p {
+            font-size: 12px;
+            color: var(--gray-text);
+            line-height: 1.3;
+        }
+
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn-login {
+            text-decoration: none;
+            color: var(--gray-text);
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .btn-start {
+            background-color: var(--primary-lilac);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+
+        .btn-start:hover {
+            background-color: var(--dark-lilac);
+        }
+
+        /* Hero Section Component */
+        .hero-section {
+            padding: 80px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h2 {
+            font-size: 3.5rem;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+        }
+
+        .hero-text h2 span {
+            color: var(--primary-lilac);
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: var(--gray-text);
+            margin-bottom: 36px;
+            max-width: 520px;
+        }
+
+        .hero-image {
+            flex: 1.1;
+        }
+
+        .live-dashboard-preview {
+            background: #191524;
+            width: 100%;
+            height: 380px;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 20px 40px rgba(111, 66, 193, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mockup Process Grid View */
+        .features-mockup {
+            padding: 80px 0;
+            background-color: var(--bg-light);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray-text);
+            margin-bottom: 60px;
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mockup-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+        }
+
+        .mockup-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .feature-item-mini {
+            background: white;
+            padding: 24px;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+            border-left: 4px solid var(--primary-lilac);
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .feature-item-mini h4 {
+            color: var(--dark-text);
+            font-size: 17px;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .feature-item-mini p {
+            font-size: 14px;
+            color: var(--gray-text);
+        }
+
+        .phone-center {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+        }
+
+        .phone-frame {
+            border: 12px solid #191524;
+            border-radius: 40px;
+            padding: 24px 16px;
+            background: white;
+            width: 280px;
+            height: 480px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 25px 50px rgba(111, 66, 193, 0.15);
+        }
+
+        .phone-notch {
+            background: #191524;
+            height: 22px;
+            width: 130px;
+            margin: -24px auto 0;
+            border-bottom-left-radius: 14px;
+            border-bottom-right-radius: 14px;
+        }
+
+        .phone-upload-area {
+            border: 2px dashed var(--primary-lilac);
+            padding: 50px 16px;
+            border-radius: 12px;
+            color: var(--dark-lilac);
+            font-weight: 700;
+            text-align: center;
+            background: var(--light-lavender);
+            cursor: pointer;
+        }
+
+        .phone-pill {
+            background: var(--primary-lilac);
+            height: 40px;
+            border-radius: 20px;
+            width: 100%;
+        }
+
+        /* How it works Detail Block (Alternating) */
+        .how-it-works {
+            padding: 100px 0;
+        }
+
+        .step-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 80px;
+            margin-bottom: 120px;
+        }
+
+        .step-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .step-text {
+            flex: 1;
+        }
+
+        .step-text .step-number {
+            color: var(--primary-lilac);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .step-text h3 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .step-text p {
+            color: var(--gray-text);
+            font-size: 1.05rem;
+            margin-bottom: 24px;
+        }
+
+        .step-text ul {
+            list-style: none;
+        }
+
+        .step-text ul li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 28px;
+            font-size: 15px;
+        }
+
+        .step-text ul li::before {
+            content: "✓";
+            color: var(--primary-lilac);
+            position: absolute;
+            left: 0;
+            font-weight: 800;
+        }
+
+        .step-image {
+            flex: 1;
+        }
+
+        .step-placeholder-box {
+            background: var(--light-lavender);
+            height: 320px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-lilac);
+            font-weight: 600;
+            border: 1px dashed var(--border-color);
+        }
+
+        /* Pricing Area Framework */
+        .pricing-section {
+            padding: 100px 0 60px;
+        }
+
+        .pricing-hero {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .guarantee-banner {
+            background-color: var(--light-lavender);
+            border: 1px solid var(--border-color);
+            padding: 12px 24px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .guarantee-banner a {
+            color: var(--dark-lilac);
+            font-weight: 600;
+        }
+
+        .promo-tag {
+            background: linear-gradient(135deg, var(--primary-lilac), var(--dark-lilac));
+            color: white;
+            font-weight: 700;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 48px 0;
+        }
+
+        .pricing-card {
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: left;
+        }
+
+        .pricing-card.popular {
+            border-color: var(--primary-lilac);
+            box-shadow: 0 10px 40px rgba(145, 97, 242, 0.08);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -14px;
+            right: 32px;
+            background: var(--primary-lilac);
+            color: white;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .plan-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .plan-price {
+            font-size: 42px;
+            font-weight: 800;
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+
+        .plan-price sup {
+            font-size: 22px;
+            top: -12px;
+        }
+
+        .old-price {
+            font-size: 20px;
+            text-decoration: line-through;
+            color: #b3a9c9;
+            margin-left: 8px;
+            font-weight: 400;
+        }
+
+        .plan-fee-type {
+            font-size: 13px;
+            color: var(--gray-text);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .plan-desc {
+            font-size: 14px;
+            color: var(--gray-text);
+            margin-bottom: 24px;
+            min-height: 44px;
+        }
+
+        .plan-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 32px;
+            flex-grow: 1;
+        }
+
+        .plan-features li {
+            font-size: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .pricing-bolded {
+            font-weight: 600;
+            border-bottom: 1px dotted var(--primary-lilac);
+            cursor: help;
+        }
+
+        .btn-plan {
+            width: 100%;
+            text-align: center;
+            padding: 12px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            border: 1px solid var(--border-color);
+            color: var(--dark-text);
+            transition: all 0.2s;
+        }
+
+        .pricing-card.popular .btn-plan {
+            background-color: var(--primary-lilac);
+            color: white;
+            border-color: var(--primary-lilac);
+        }
+
+        .pricing-card.popular .btn-plan:hover {
+            background-color: var(--dark-lilac);
+        }
+
+        .pricing-card:not(.popular) .btn-plan:hover {
+            background: var(--light-lavender);
+            border-color: var(--primary-lilac);
+        }
+
+        /* Professionals Notice Bar */
+        .pro-notice {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 64px;
+            text-align: left;
+        }
+
+        .pro-notice h4 {
+            font-size: 16px;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        .pro-notice p {
+            font-size: 14px;
+            color: var(--gray-text);
+        }
+
+        .btn-pro {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-pro:hover {
+            border-color: var(--primary-lilac);
+            background: var(--light-lavender);
+        }
+
+        /* Shared Feature Inclusions Section */
+        .features-include {
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .features-include h3 {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 40px;
+            font-weight: 800;
+        }
+
+        .include-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .include-card {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .include-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .include-icon {
+            font-size: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--light-lavender);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .include-header h4 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .include-card p {
+            font-size: 14px;
+            color: var(--gray-text);
+            line-height: 1.5;
+        }
+
+        /* Wall of Love Testimonial Architecture */
+        .wall-of-love {
+            background-color: var(--bg-light);
+            padding: 100px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .rating-badge-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 48px;
+        }
+
+        .rating-stars {
+            color: #ffb100;
+            font-size: 20px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .rating-text {
+            font-size: 15px;
+            color: var(--gray-text);
+            font-weight: 500;
+        }
+
+        .rating-text a {
+            color: var(--primary-lilac);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .rating-text a:hover {
+            text-decoration: underline;
+        }
+
+        .wol-grid {
+            column-count: 3;
+            column-gap: 24px;
+            margin-top: 40px;
+        }
+
+        .wol-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            break-inside: avoid;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+            text-align: left;
+        }
+
+        .wol-card p {
+            font-size: 14px;
+            color: var(--dark-text);
+            margin-bottom: 16px;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .wol-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+        }
+
+        .wol-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light-lavender);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--dark-lilac);
+            font-size: 14px;
+        }
+
+        .wol-info h5 {
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .wol-info span {
+            font-size: 12px;
+            color: var(--gray-text);
+            display: block;
+        }
+
+        /* FAQ Accordion Module */
+        .faq-section {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: white;
+            overflow: hidden;
+        }
+
+        .faq-trigger {
+            width: 100%;
+            padding: 20px 24px;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--dark-text);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .faq-trigger:hover {
+            color: var(--primary-lilac);
+        }
+
+        .faq-icon-box {
+            font-size: 14px;
+            transition: transform 0.3s;
+        }
+
+        .faq-content {
+            padding: 0 24px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            font-size: 14px;
+            color: var(--gray-text);
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .faq-item.open .faq-content {
+            padding-bottom: 20px;
+            max-height: 1000px; 
+        }
+
+        .faq-item.open .faq-icon-box {
+            transform: rotate(180deg);
+        }
+
+        /* Standalone Sub-page Navigation Back-bar */
+        .view-back-bar {
+            background: var(--bg-light);
+            border-bottom: 1px solid var(--border-color);
+            padding: 14px 0;
+        }
+
+        .back-link {
+            color: var(--gray-text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            color: var(--primary-lilac);
+        }
+
+        /* Footer Container Layout */
+        footer {
+            background: #120e1a;
+            color: #b3a9c9;
+            padding: 80px 40px 30px;
+            font-size: 14px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #b3a9c9;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            border-top: 1px solid #231b30;
+            padding-top: 24px;
+            font-size: 13px;
+        }
+
+        /* Dashboard Layout Components */
+        .dashboard-layout {
+            display: flex;
+            min-height: 100vh;
+            background: #f5f5f5;
+        }
+
+        .dashboard-sider {
+            width: 280px;
+            background: #fff;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            z-index: 100;
+        }
+
+        .dashboard-content-layout {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dashboard-header {
+            background: #fff;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .dashboard-main {
+            padding: 24px;
+            flex: 1;
+        }
+
+        .navbar-logo {
+            padding: 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar-event-selector {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-items-container {
+            padding: 16px 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--gray-text);
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover, .nav-item.selected {
+            background: var(--light-lavender);
+            color: var(--primary-lilac);
+        }
+
+        .nav-item i {
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .alert-banner {
+            background: #fffbe6;
+            border: 1px solid #ffe58f;
+            padding: 8px 16px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin: 12px 24px;
+        }
+
+        .home-page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .event-title-big {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--dark-text);
+        }
+
+        .plan-badge {
+            background: #f5f5f5;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .alert-balloon {
+            background: #fff;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .guide-box-header {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--dark-text);
+        }
+
+        .copy-input-group {
+            display: flex;
+            gap: 0;
+            margin: 16px 0;
+        }
+
+        .copy-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px 0 0 8px;
+            background: #f9f9f9;
+            color: var(--gray-text);
+            font-family: monospace;
+            outline: none;
+        }
+
+        .copy-btn {
+            padding: 12px 20px;
+            background: var(--primary-lilac);
+            color: #fff;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .guide-illustration {
+            display: flex;
+            gap: 24px;
+            margin-top: 24px;
+            align-items: center;
+        }
+
+        .qr-container {
+            flex: 0 0 150px;
+            text-align: center;
+        }
+
+        .qr-box {
+            width: 150px;
+            height: 150px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            background: #fff;
+        }
+
+        .mockup-preview {
+            flex: 1;
+            height: 200px;
+            background: #f0f0f0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .mockup-preview iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border-top: 1px solid var(--border-color);
+            height: 64px;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 200;
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            color: var(--gray-text);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .bottom-nav-item.selected {
+            color: var(--primary-lilac);
+        }
+
+        @media (max-width: 968px) {
+            .dashboard-sider { display: none; }
+            .bottom-nav { display: flex; }
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .alert-banner { margin: 12px 0; }
+            .dashboard-header { height: auto; padding: 12px; }
+        }
+
+        /* Screen Framework Responsiveness */
+        .app-tab {
+            display: none;
+        }
+
+        .app-tab.active {
+            display: block;
+        }
+
+        .sub-tab {
+            padding: 16px 32px;
+            font-weight: 600;
+            color: var(--gray-text);
+            cursor: pointer;
+            transition: all 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .sub-tab.active {
+            color: var(--primary-lilac);
+            border-bottom-color: var(--primary-lilac);
+            font-weight: 700;
+        }
+
+        .sub-tab-content {
+            display: none;
+        }
+
+        .sub-tab-content.active {
+            display: block;
+        }
+
+        .photo-card-mock {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ccc;
+        }
+
+        .photo-actions-mock {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            right: 8px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .btn-success-mini {
+            flex: 1;
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 6px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .btn-danger-mini {
+            flex: 1;
+            background: var(--danger);
+            color: white;
+            border: none;
+            padding: 6px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        @media (max-width: 968px) {
+            .hero-section, .mockup-container, .step-row, .pricing-grid, .include-grid, .wol-grid {
+                grid-template-columns: 1fr;
+                flex-direction: column;
+                column-count: 1;
+                text-align: center;
+            }
+            .step-row:nth-child(even) {
+                flex-direction: column;
+            }
+            nav { display: none; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-text h2 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="">
+        <a href="#" class="logo-group" onclick="showView('landing-view')">
+            <span class="logo-text">EverSnapz<span class="logo-dot">.</span></span>
+        </a>
+        
+        <nav id="main-nav">
+            <div class="dropdown">
+                <div class="dropdown-toggle">Use Cases <svg class="svg-inline--fa fa-chevron-down" style="font-size: 10px;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path></svg><!-- <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i> Font Awesome fontawesome.com --></div>
+                <div class="dropdown-menu">
+                    <a href="#use-cases" class="dropdown-item" onclick="showView('landing-view')">
+                        <span class="dropdown-icon">💍</span>
+                        <div class="dropdown-info"><h5>Weddings</h5><p>Capture every photo &amp; video of your big day.</p></div>
+                    </a>
+                    <a href="#use-cases" class="dropdown-item" onclick="showView('landing-view')">
+                        <span class="dropdown-icon">🎈</span>
+                        <div class="dropdown-info"><h5>Birthdays</h5><p>Celebrate every moment of your birthday.</p></div>
+                    </a>
+                    <a href="#use-cases" class="dropdown-item" onclick="showView('landing-view')">
+                        <span class="dropdown-icon">🎉</span>
+                        <div class="dropdown-info"><h5>Parties</h5><p>Take your party to the next level seamlessly.</p></div>
+                    </a>
+                    <a href="#use-cases" class="dropdown-item" onclick="showView('landing-view')">
+                        <span class="dropdown-icon">🎙️</span>
+                        <div class="dropdown-info"><h5>Conferences</h5><p>Level up conference and attendee engagement.</p></div>
+                    </a>
+                </div>
+            </div>
+            <a href="#view-pricing" class="nav-link" onclick="showView('view-pricing')">Pricing</a>
+            <a href="#view-reviews" class="nav-link" onclick="showView('view-reviews')">Wall of Love</a>
+        </nav>
+
+        <div class="auth-buttons">
+            <a href="#view-login" class="btn btn-outline" onclick="showView('view-login')">Log in</a>
+            <a href="#view-signup" class="btn btn-primary" onclick="showView('view-signup')">Get Started</a>
+        </div>
+    </header>
+
+    <main id="landing-view" class="page-view active">
+        <section class="container hero-section">
+            <div class="hero-text">
+                <h2>Easily Collect Photos From Every Guest At Your <span>Event</span></h2>
+                <p>Never miss a memory</p>
+                <a href="#view-signup" class="btn btn-primary" style="padding: 14px 32px; font-size: 16px;" onclick="showView('view-signup')">Create Your Event</a>
+            </div>
+            <div class="hero-image">
+                <div class="live-dashboard-preview">
+                    <svg class="svg-inline--fa fa-image" style="color: var(--primary-lilac); font-size: 3rem; margin-bottom: 16px;" aria-hidden="true" focusable="false" data-prefix="far" data-icon="image" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"></path></svg><!-- <i class="fa-regular fa-image" style="color: var(--primary-lilac); font-size: 3rem; margin-bottom: 16px;"></i> Font Awesome fontawesome.com -->
+                    <span style="font-size: 1.25rem; font-weight: 600;">Live Event Dashboard Stream</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section" style="padding: 60px 0; border-top: 1px solid var(--border-color); background: var(--bg-light);">
+            <div class="container" style="display: flex; justify-content: space-around; text-align: center; gap: 20px; flex-wrap: wrap;">
+                <div>
+                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--primary-lilac);">1.2M+</div>
+                    <div style="color: var(--gray-text); font-weight: 600;">Events Hosted</div>
+                </div>
+                <div>
+                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--primary-lilac);">37M+</div>
+                    <div style="color: var(--gray-text); font-weight: 600;">EverSnapz Captured</div>
+                </div>
+                <div>
+                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--primary-lilac);">150+</div>
+                    <div style="color: var(--gray-text); font-weight: 600;">Countries</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="social-proof" style="padding: 40px 0; text-align: center; border-bottom: 1px solid var(--border-color);">
+            <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 11px; font-weight: 700; color: var(--gray-text); margin-bottom: 30px; opacity: 0.8;">As seen on and trusted by</p>
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center; opacity: 0.4; filter: grayscale(100%); flex-wrap: wrap; gap: 30px;">
+                <span style="font-size: 1.4rem; font-weight: 900; letter-spacing: -1px;">FORBES</span>
+                <span style="font-size: 1.4rem; font-weight: 900; letter-spacing: -1px;">VOGUE</span>
+                <span style="font-size: 1.4rem; font-weight: 900; letter-spacing: -1px;">TechCrunch</span>
+                <span style="font-size: 1.4rem; font-weight: 900; letter-spacing: -1px;">The Verge</span>
+                <span style="font-size: 1.4rem; font-weight: 900; letter-spacing: -1px;">WIRED</span>
+            </div>
+        </section>
+
+        <section class="features-mockup">
+            <div class="container">
+                <h3 class="section-title">Event Photo Sharing Made Easy</h3>
+                <p class="section-subtitle">No app installs required. Simple, fast, and completely modern.</p>
+                
+                <div class="mockup-container">
+                    <div class="mockup-side">
+                        <div class="feature-item-mini">
+                            <h4>1. Scan QR Code</h4>
+                            <p>Guests simple scan a personalized QR code at your venue setup.</p>
+                        </div>
+                        <div class="feature-item-mini">
+                            <h4>2. Upload Instantly</h4>
+                            <p>They pick pictures right out of their phone gallery or take new snapshots.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="phone-center">
+                        <div class="phone-frame">
+                            <div class="phone-notch"></div>
+                            <div class="phone-upload-area">
+                                <svg class="svg-inline--fa fa-cloud-arrow-up" style="font-size: 2.5rem; margin-bottom: 12px; color: var(--primary-lilac);" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="cloud-arrow-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-217c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l39-39V392c0 13.3 10.7 24 24 24s24-10.7 24-24V257.9l39 39c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0l-80 80z"></path></svg><!-- <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2.5rem; margin-bottom: 12px; color: var(--primary-lilac);"></i> Font Awesome fontawesome.com -->
+                                <br>Tap to Upload Media
+                            </div>
+                            <div class="phone-pill"></div>
+                        </div>
+                    </div>
+
+                    <div class="mockup-side">
+                        <div class="feature-item-mini">
+                            <h4>3. Live Stream View</h4>
+                            <p>Watch incoming photos display dynamically on big screens real time.</p>
+                        </div>
+                        <div class="feature-item-mini">
+                            <h4>4. Download All</h4>
+                            <p>Get a neat high-quality ZIP folder archive post-event with one click.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container how-it-works">
+            <div class="step-row">
+                <div class="step-text">
+                    <span class="step-number">Step 01</span>
+                    <h3>Create your digital album setup</h3>
+                    <p>Customize your custom web app page interface settings. Brand it to match your special wedding, birthday celebration or corporate summit theme design perfectly.</p>
+                    <a href="#view-pricing" class="btn-start">Get Started Now</a>
+                </div>
+                <div class="step-image">
+                    <div class="step-placeholder-box">Dashboard Setup Console Matrix</div>
+                </div>
+            </div>
+
+            <div class="step-row">
+                <div class="step-text">
+                    <span class="step-number">Step 02</span>
+                    <h3>Share it directly with your guests</h3>
+                    <p>Print cards out containing your specific unique room QR code or share direct system links. Guests point their native camera setups to begin connecting access points.</p>
+                    <ul>
+                        <li>No app store marketplace downloads needed ever</li>
+                        <li>Supports any modern iOS or Android smart device browser</li>
+                        <li>Fast instant connection canvas speeds</li>
+                    </ul>
+                </div>
+                <div class="step-image">
+                    <div class="step-placeholder-box">QR Card System Graphic Mockup</div>
+                </div>
+            </div>
+
+            <div class="step-row">
+                <div class="step-text">
+                    <span class="step-number">Step 03</span>
+                    <h3>Display memories live at the venue</h3>
+                    <p>Project incoming uploads onto a digital wall setup or projection configuration screen during event progress dynamically keeping attendees highly engaged continuously.</p>
+                </div>
+                <div class="step-image">
+                    <div class="step-placeholder-box">Live TV Stream Simulation Display</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" id="use-cases" style="padding: 60px 0 100px;">
+            <h3 class="section-title">Built for Any Occasion</h3>
+            <p class="section-subtitle">Tailored spaces built to host every special celebration type beautifully.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px;">
+                <div style="border: 1px solid var(--border-color); padding: 24px; border-radius: 12px; text-align: center;">
+                    <span style="font-size: 2rem;">💍</span><h4 style="margin: 12px 0 8px;">Weddings</h4><p style="font-size:14px; color:var(--gray-text);">Capture every raw, beautiful candid moment missed by cameras.</p>
+                </div>
+                <div style="border: 1px solid var(--border-color); padding: 24px; border-radius: 12px; text-align: center;">
+                    <span style="font-size: 2rem;">🎈</span><h4 style="margin: 12px 0 8px;">Birthdays</h4><p style="font-size:14px; color:var(--gray-text);">Celebrate every smile with friends and family seamlessly.</p>
+                </div>
+                <div style="border: 1px solid var(--border-color); padding: 24px; border-radius: 12px; text-align: center;">
+                    <span style="font-size: 2rem;">🎉</span><h4 style="margin: 12px 0 8px;">Parties</h4><p style="font-size:14px; color:var(--gray-text);">Turn parties into interactive projection galleries live.</p>
+                </div>
+                <div style="border: 1px solid var(--border-color); padding: 24px; border-radius: 12px; text-align: center;">
+                    <span style="font-size: 2rem;">🎙️</span><h4 style="margin: 12px 0 8px;">Conferences</h4><p style="font-size:14px; color:var(--gray-text);">Boost attendee interactions and crowd networking metrics.</p>
+                </div>
+            </div>
+        <section class="container" style="padding: 100px 0; border-top: 1px solid var(--border-color);">
+            <div class="container">
+                <h3 class="section-title">Why choose EverSnapz?</h3>
+                <p class="section-subtitle">A better way to collect photos than WhatsApp or shared folders.</p>
+                <div style="overflow-x: auto; margin-top: 40px;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left; background: white; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color);">
+                        <thead>
+                            <tr style="background: var(--bg-light);">
+                                <th style="padding: 24px; font-size: 18px; border-bottom: 2px solid var(--border-color);">Feature</th>
+                                <th style="padding: 24px; font-size: 18px; color: var(--primary-lilac); border-bottom: 2px solid var(--border-color);">EverSnapz</th>
+                                <th style="padding: 24px; font-size: 18px; color: var(--gray-text); border-bottom: 2px solid var(--border-color);">WhatsApp</th>
+                                <th style="padding: 24px; font-size: 18px; color: var(--gray-text); border-bottom: 2px solid var(--border-color);">Google Photos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="padding: 20px; font-weight: 600;">No App Required</td>
+                                <td style="padding: 20px; color: var(--success); font-size: 20px;"><svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"></path></svg><!-- <i class="fa-solid fa-circle-check"></i> Font Awesome fontawesome.com --></td>
+                                <td style="padding: 20px; color: var(--danger); font-size: 20px;"><svg class="svg-inline--fa fa-circle-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"></path></svg><!-- <i class="fa-solid fa-circle-xmark"></i> Font Awesome fontawesome.com --></td>
+                                <td style="padding: 20px; color: var(--danger); font-size: 20px;"><svg class="svg-inline--fa fa-circle-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"></path></svg><!-- <i class="fa-solid fa-circle-xmark"></i> Font Awesome fontawesome.com --></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="padding: 20px; font-weight: 600;">Live Slideshow</td>
+                                <td style="padding: 20px; color: var(--success); font-size: 20px;"><svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"></path></svg><!-- <i class="fa-solid fa-circle-check"></i> Font Awesome fontawesome.com --></td>
+                                <td style="padding: 20px; color: var(--danger); font-size: 20px;"><svg class="svg-inline--fa fa-circle-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"></path></svg><!-- <i class="fa-solid fa-circle-xmark"></i> Font Awesome fontawesome.com --></td>
+                                <td style="padding: 20px; color: var(--danger); font-size: 20px;"><svg class="svg-inline--fa fa-circle-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"></path></svg><!-- <i class="fa-solid fa-circle-xmark"></i> Font Awesome fontawesome.com --></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="padding: 20px; font-weight: 600;">Privacy Controls</td>
+                                <td style="padding: 20px; color: var(--success); font-size: 20px;"><svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"></path></svg><!-- <i class="fa-solid fa-circle-check"></i> Font Awesome fontawesome.com --></td>
+                                <td style="padding: 20px; color: var(--warning); font-weight: 600;">Limited</td>
+                                <td style="padding: 20px; color: var(--warning); font-weight: 600;">Public Link</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 20px; font-weight: 600;">High-Res Downloads</td>
+                                <td style="padding: 20px; color: var(--success); font-size: 20px;"><svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"></path></svg><!-- <i class="fa-solid fa-circle-check"></i> Font Awesome fontawesome.com --></td>
+                                <td style="padding: 20px; color: var(--danger); font-weight: 600;">Compressed</td>
+                                <td style="padding: 20px; color: var(--success); font-size: 20px;"><svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"></path></svg><!-- <i class="fa-solid fa-circle-check"></i> Font Awesome fontawesome.com --></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section style="background: var(--dark-text); padding: 100px 0; color: white; text-align: center;">
+            <div class="container">
+                <h3 style="font-size: 3rem; font-weight: 800; margin-bottom: 24px; letter-spacing: -1.5px;">Ready to capture every <span style="color: var(--primary-lilac);">moment</span>?</h3>
+                <p style="font-size: 1.25rem; opacity: 0.7; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Join 12,000+ hosts who have transformed their events with EverSnapz. Setup takes less than 2 minutes.</p>
+                <div style="display: flex; gap: 20px; justify-content: center;">
+                    <a href="#view-signup" class="btn btn-primary" style="padding: 16px 40px; font-size: 18px;" onclick="showView('view-signup')">Create Your Event</a>
+                    <a href="#view-guest-flow" class="btn btn-outline" style="padding: 16px 40px; font-size: 18px; color: white; border-color: rgba(255,255,255,0.2);" onclick="showView('view-guest-flow')">Try Demo View</a>
+                </div>
+            </div>
+        </section>
+
+    </section></main>
+
+    <div id="view-login" class="page-view" style="background: var(--bg-light);">
+        <div style="min-height: calc(100vh - 73px); display: flex; align-items: center; justify-content: center; padding: 40px 20px;">
+            <div style="width: 100%; max-width: 400px; padding: 40px; background: white; border-radius: 20px; border: 1px solid var(--border-color); box-shadow: 0 10px 40px rgba(0,0,0,0.03);">
+                <div style="text-align: center; margin-bottom: 32px;">
+                    <h3 style="font-size: 26px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px;">Welcome back!</h3>
+                    <p style="color: var(--gray-text);">Log in to manage your events.</p>
+                </div>
+
+                <button class="btn btn-outline" style="width: 100%; padding: 12px; margin-bottom: 20px; font-weight: 600; font-size: 14px; display: flex; justify-content: center; gap: 10px; border-color: #ddd;" onclick="showView('app-view')">
+                    <img src="https://www.google.com/favicon.ico" style="width: 18px; height: 18px;"> Continue with Google
+                </button>
+
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <div style="flex: 1; height: 1px; background: var(--border-color);"></div>
+                    <span style="font-size: 12px; color: #b3a9c9; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">or email</span>
+                    <div style="flex: 1; height: 1px; background: var(--border-color);"></div>
+                </div>
+
+                <form onsubmit="event.preventDefault(); showView('app-view');" style="display: flex; flex-direction: column; gap: 18px;">
+                    <div>
+                        <label style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--dark-text);">Email Address</label>
+                        <input type="email" placeholder="name@example.com" style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd; outline: none; font-size: 14px;" required="">
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--dark-text);">Password</label>
+                        <input type="password" placeholder="••••••••" style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd; outline: none; font-size: 14px;" required="">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="padding: 14px; border-radius: 10px; margin-top: 10px;">Sign In</button>
+                </form>
+                <div style="text-align: center; margin-top: 24px; font-size: 14px;">
+                    <span style="color: var(--gray-text);">Don't have an account?</span>
+                    <a href="#view-signup" onclick="showView('view-signup')" style="color: var(--primary-lilac); font-weight: 700; text-decoration: none;">Sign up free</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-signup" class="page-view" style="background: var(--bg-light);">
+        <div style="min-height: calc(100vh - 73px); display: flex; align-items: center; justify-content: center; padding: 40px 20px;">
+            <div style="width: 100%; max-width: 440px; padding: 40px; background: white; border-radius: 20px; border: 1px solid var(--border-color); box-shadow: 0 10px 40px rgba(0,0,0,0.03);">
+                <div style="text-align: center; margin-bottom: 32px;">
+                    <h3 style="font-size: 26px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px;">Join EverSnapz today</h3>
+                    <p style="color: var(--gray-text);">Never miss a memory</p>
+                </div>
+
+                <button class="btn btn-outline" style="width: 100%; padding: 12px; margin-bottom: 20px; font-weight: 600; font-size: 14px; display: flex; justify-content: center; gap: 10px; border-color: #ddd;" onclick="showView('app-view')">
+                    <img src="https://www.google.com/favicon.ico" style="width: 18px; height: 18px;"> Continue with Google
+                </button>
+
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <div style="flex: 1; height: 1px; background: var(--border-color);"></div>
+                    <span style="font-size: 12px; color: #b3a9c9; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">or email</span>
+                    <div style="flex: 1; height: 1px; background: var(--border-color);"></div>
+                </div>
+
+                <form onsubmit="event.preventDefault(); showView('app-view'); switchTab('tab-home');" style="display: flex; flex-direction: column; gap: 18px;">
+                    <div>
+                        <label style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--dark-text);">Full Name</label>
+                        <input type="text" placeholder="John Doe" style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd; outline: none; font-size: 14px;" required="">
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--dark-text);">Email Address</label>
+                        <input type="email" placeholder="name@example.com" style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd; outline: none; font-size: 14px;" required="">
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--dark-text);">Password</label>
+                        <input type="password" placeholder="••••••••" style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd; outline: none; font-size: 14px;" required="">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="padding: 14px; border-radius: 10px; margin-top: 10px;">Create My Account</button>
+                </form>
+                <div style="text-align: center; margin-top: 24px; font-size: 14px;">
+                    <span style="color: var(--gray-text);">Already have an account?</span>
+                    <a href="#view-login" onclick="showView('view-login')" style="color: var(--primary-lilac); font-weight: 700; text-decoration: none;">Log in</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="app-view" class="page-view" style="background: #f5f5f5; padding: 0;">
+        <div class="dashboard-layout">
+            <!-- Sidebar (Persistent) -->
+            <aside class="dashboard-sider">
+                <div class="navbar-logo">
+                    <a href="#" onclick="showView('landing-view')" style="text-decoration: none;">
+                        <span class="logo-text">EverSnapz<span class="logo-dot">.</span></span>
+                    </a>
+                </div>
+                
+                <div class="navbar-event-selector">
+                    <div style="font-size: 12px; color: var(--gray-text); margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Current Event</div>
+                    <button class="btn btn-outline" style="width: 100%; justify-content: space-between; padding: 10px 16px; border-radius: 8px;">
+                        <span style="font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">J&amp;S Wedding</span>
+                        <svg class="svg-inline--fa fa-chevron-down" style="font-size: 10px;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path></svg><!-- <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i> Font Awesome fontawesome.com -->
+                    </button>
+                    <div style="margin-top: 12px;">
+                        <button class="btn btn-primary" style="width: 100%; border-radius: 8px; font-size: 13px; background: linear-gradient(135deg, #ff0091, #ff5e00); border: none;">
+                            <svg class="svg-inline--fa fa-star" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg><!-- <i class="fa-solid fa-star"></i> Font Awesome fontawesome.com --> Upgrade Event
+                        </button>
+                    </div>
+                </div>
+
+                <div class="nav-items-container">
+                    <a href="javascript:void(0)" class="nav-item tab-link active" data-tab="tab-home" onclick="switchTab('tab-home')">
+                        <svg class="svg-inline--fa fa-house" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="house" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"></path></svg><!-- <i class="fa-solid fa-house"></i> Font Awesome fontawesome.com --> <span>Home</span>
+                    </a>
+                    <a href="javascript:void(0)" class="nav-item tab-link" data-tab="tab-media" onclick="switchTab('tab-media')">
+                        <svg class="svg-inline--fa fa-images" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="images" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M160 32c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H160zM396 138.7l96 144c4.9 7.4 5.4 16.8 1.2 24.6S480.9 320 472 320H328 280 200c-9.2 0-17.6-5.3-21.6-13.6s-2.9-18.2 2.9-25.4l64-80c4.6-5.7 11.4-9 18.7-9s14.2 3.3 18.7 9l17.3 21.6 56-84C360.5 132 368 128 376 128s15.5 4 20 10.7zM192 128a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM48 120c0-13.3-10.7-24-24-24S0 106.7 0 120V344c0 75.1 60.9 136 136 136H456c13.3 0 24-10.7 24-24s-10.7-24-24-24H136c-48.6 0-88-39.4-88-88V120z"></path></svg><!-- <i class="fa-solid fa-images"></i> Font Awesome fontawesome.com --> <span>Photos &amp; Videos</span>
+                    </a>
+                    <a href="javascript:void(0)" class="nav-item tab-link" data-tab="tab-settings" onclick="switchTab('tab-settings')">
+                        <svg class="svg-inline--fa fa-gear" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="gear" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"></path></svg><!-- <i class="fa-solid fa-gear"></i> Font Awesome fontawesome.com --> <span>Event Settings</span>
+                    </a>
+                    <div style="margin-top: auto; border-top: 1px solid var(--border-color); padding-top: 16px;">
+                        <a href="#" class="nav-item">
+                            <svg class="svg-inline--fa fa-user" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"></path></svg><!-- <i class="fa-solid fa-user"></i> Font Awesome fontawesome.com -->
+                            <div style="display: flex; flex-direction: column;">
+                                <span style="font-size: 14px; font-weight: 700;">My Account</span>
+                                <span style="font-size: 11px; color: var(--gray-text);">silverchristopher12@gmail.com</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <div class="dashboard-content-layout">
+                <header class="dashboard-header">
+                    <div class="alert-banner">
+                        <div style="display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500;">
+                            <svg class="svg-inline--fa fa-circle-exclamation" style="color: var(--warning);" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-exclamation" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"></path></svg><!-- <i class="fa-solid fa-circle-exclamation" style="color: var(--warning);"></i> Font Awesome fontawesome.com -->
+                            <span>You're currently using the limited free plan. Upgrade your event to unlock all features!</span>
+                        </div>
+                        <button class="btn btn-outline" style="padding: 6px 12px; font-size: 12px; border-radius: 6px;">Upgrade Plan</button>
+                    </div>
+                </header>
+
+                <main class="dashboard-main">
+                    <!-- Tab: Home -->
+                    <div id="tab-home" class="app-tab active">
+                        <div class="home-page-header">
+                            <div>
+                                <h2 class="event-title-big">J&amp;S Wedding</h2>
+                                <p style="color: var(--gray-text);">Here you'll find everything you need to manage your wedding.</p>
+                            </div>
+                            <div class="plan-badge">Plan: <b>Free</b></div>
+                        </div>
+
+                        <div class="dashboard-grid">
+                            <!-- Digital Album Guide -->
+                            <div class="alert-balloon">
+                                <div class="guide-box-header">Your Digital Album</div>
+                                <p style="font-size: 14px; color: var(--gray-text);">The digital album lets your guests upload new photos or view existing ones. Share it via a direct link or QR code.</p>
+                                
+                                <div class="copy-input-group">
+                                    <input readonly="" class="copy-input" type="text" value="app.EverSnapz.com/j-s-wedding">
+                                    <button class="copy-btn" onclick="alert('Link Copied!')">Copy</button>
+                                </div>
+
+                                <div class="guide-illustration">
+                                    <div class="qr-container">
+                                        <div class="qr-box">
+                                            <svg class="svg-inline--fa fa-qrcode" style="font-size: 100px; color: #333;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="qrcode" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M0 80C0 53.5 21.5 32 48 32h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80zM64 96v64h64V96H64zM0 336c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V336zm64 16v64h64V352H64zM304 32h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H304c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48zm80 64H320v64h64V96zM256 304c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s7.2-16 16-16s16 7.2 16 16v96c0 8.8-7.2 16-16 16H368c-8.8 0-16-7.2-16-16s-7.2-16-16-16s-16 7.2-16 16v64c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V304zM368 480a16 16 0 1 1 0-32 16 16 0 1 1 0 32zm64 0a16 16 0 1 1 0-32 16 16 0 1 1 0 32z"></path></svg><!-- <i class="fa-solid fa-qrcode" style="font-size: 100px; color: #333;"></i> Font Awesome fontawesome.com -->
+                                        </div>
+                                        <button class="btn btn-outline" style="width: 100%; font-size: 12px; padding: 8px;">Download QR</button>
+                                    </div>
+                                    <div class="mockup-preview">
+                                        <div style="padding: 12px; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background: var(--bg-light);">
+                                            <svg class="svg-inline--fa fa-mobile-screen" style="font-size: 48px; color: var(--primary-lilac); opacity: 0.2;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="mobile-screen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M16 64C16 28.7 44.7 0 80 0H304c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H80c-35.3 0-64-28.7-64-64V64zM144 448c0 8.8 7.2 16 16 16h64c8.8 0 16-7.2 16-16s-7.2-16-16-16H160c-8.8 0-16 7.2-16 16zM304 64H80V384H304V64z"></path></svg><!-- <i class="fa-solid fa-mobile-screen" style="font-size: 48px; color: var(--primary-lilac); opacity: 0.2;"></i> Font Awesome fontawesome.com -->
+                                            <span style="font-size: 12px; margin-top: 8px; color: var(--gray-text);">Live Album Preview</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Photo Wall Guide -->
+                            <div class="alert-balloon">
+                                <div class="guide-box-header">Your Photo Wall</div>
+                                <p style="font-size: 14px; color: var(--gray-text);">Every upload automatically appears on your Photo Wall. Connect it to projectors, TVs, or big screens.</p>
+                                
+                                <div class="copy-input-group">
+                                    <input readonly="" class="copy-input" type="text" value="app.EverSnapz.com/s/j-s-wedding">
+                                    <button class="copy-btn" onclick="alert('Link Copied!')">Copy</button>
+                                </div>
+
+                                <div style="margin-top: 24px;">
+                                    <div class="mockup-preview" style="height: 150px; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; gap: 12px;">
+                                        <svg class="svg-inline--fa fa-tv" style="font-size: 40px; opacity: 0.3;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tv" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M64 64V352H576V64H64zM0 64C0 28.7 28.7 0 64 0H576c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM128 448H512c17.7 0 32 14.3 32 32s-14.3 32-32 32H128c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg><!-- <i class="fa-solid fa-tv" style="font-size: 40px; opacity: 0.3;"></i> Font Awesome fontawesome.com -->
+                                        <span style="font-size: 14px; font-weight: 700;">Live Wall Preview</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 12px; margin-top: 16px; font-size: 13px; color: var(--gray-text);">
+                                        <span>Display on:</span>
+                                        <svg class="svg-inline--fa fa-video" aria-labelledby="svg-inline--fa-title-psR6gTfg8K6c" data-prefix="fas" data-icon="video" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><title id="svg-inline--fa-title-psR6gTfg8K6c">Projector</title><path fill="currentColor" d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"></path></svg><!-- <i class="fa-solid fa-video" title="Projector"></i> Font Awesome fontawesome.com -->
+                                        <svg class="svg-inline--fa fa-tv" aria-labelledby="svg-inline--fa-title-6fqn7stv9jZD" data-prefix="fas" data-icon="tv" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><title id="svg-inline--fa-title-6fqn7stv9jZD">Smart TV</title><path fill="currentColor" d="M64 64V352H576V64H64zM0 64C0 28.7 28.7 0 64 0H576c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM128 448H512c17.7 0 32 14.3 32 32s-14.3 32-32 32H128c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg><!-- <i class="fa-solid fa-tv" title="Smart TV"></i> Font Awesome fontawesome.com -->
+                                        <svg class="svg-inline--fa fa-laptop" aria-labelledby="svg-inline--fa-title-NEmoAQnef5Zy" data-prefix="fas" data-icon="laptop" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><title id="svg-inline--fa-title-NEmoAQnef5Zy">Computer</title><path fill="currentColor" d="M128 32C92.7 32 64 60.7 64 96V352h64V96H512V352h64V96c0-35.3-28.7-64-64-64H128zM19.2 384C8.6 384 0 392.6 0 403.2C0 445.6 34.4 480 76.8 480H563.2c42.4 0 76.8-34.4 76.8-76.8c0-10.6-8.6-19.2-19.2-19.2H19.2z"></path></svg><!-- <i class="fa-solid fa-laptop" title="Computer"></i> Font Awesome fontawesome.com -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Media -->
+                    <div id="tab-media" class="app-tab">
+                        <div style="margin-bottom: 32px; display: flex; justify-content: space-between; align-items: flex-end;">
+                            <div>
+                                <h2 style="font-size: 28px; font-weight: 800;">Photos &amp; Videos</h2>
+                                <p style="color: var(--gray-text);">Moderate and manage all media uploaded to your event.</p>
+                            </div>
+                            <div style="display: flex; gap: 12px;">
+                                <button class="btn btn-outline" onclick="showView('view-guest-flow')"><svg class="svg-inline--fa fa-eye" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="eye" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"></path></svg><!-- <i class="fa-solid fa-eye"></i> Font Awesome fontawesome.com --> Guest View</button>
+                                <button class="btn btn-primary" onclick="showView('view-live-wall')"><svg class="svg-inline--fa fa-tv" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tv" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M64 64V352H576V64H64zM0 64C0 28.7 28.7 0 64 0H576c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM128 448H512c17.7 0 32 14.3 32 32s-14.3 32-32 32H128c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg><!-- <i class="fa-solid fa-tv"></i> Font Awesome fontawesome.com --> Live Wall</button>
+                            </div>
+                        </div>
+
+                        <div style="background: white; border-radius: 16px; border: 1px solid var(--border-color); overflow: hidden;">
+                            <div style="display: flex; border-bottom: 1px solid var(--border-color); background: var(--bg-light);">
+                                <div class="sub-tab active" onclick="switchSubTab(this, 'mod-pending')">Moderation</div>
+                                <div class="sub-tab" onclick="switchSubTab(this, 'mod-qr')">QR &amp; Sharing</div>
+                                <div class="sub-tab" onclick="switchSubTab(this, 'mod-settings')">Settings</div>
+                            </div>
+                            
+                            <div style="padding: 32px;">
+                                <div id="mod-pending" class="sub-tab-content active">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                                        <h4 style="font-size: 18px; font-weight: 700;">Pending Photos (12)</h4>
+                                        <div style="display: flex; gap: 12px;">
+                                            <button class="btn btn-outline" style="font-size: 13px; padding: 6px 16px;">Reject All</button>
+                                            <button class="btn btn-primary" style="font-size: 13px; padding: 6px 16px;">Approve All</button>
+                                        </div>
+                                    </div>
+
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px;">
+                                        <!-- Mock Photos -->
+                                        <div class="photo-card-mock"><svg class="svg-inline--fa fa-image fa-2x" aria-hidden="true" focusable="false" data-prefix="far" data-icon="image" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"></path></svg><!-- <i class="fa-regular fa-image fa-2x"></i> Font Awesome fontawesome.com --><div class="photo-actions-mock"><button class="btn-success-mini"><svg class="svg-inline--fa fa-check" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path></svg><!-- <i class="fa-solid fa-check"></i> Font Awesome fontawesome.com --></button><button class="btn-danger-mini"><svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i class="fa-solid fa-xmark"></i> Font Awesome fontawesome.com --></button></div></div>
+                                        <div class="photo-card-mock"><svg class="svg-inline--fa fa-image fa-2x" aria-hidden="true" focusable="false" data-prefix="far" data-icon="image" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"></path></svg><!-- <i class="fa-regular fa-image fa-2x"></i> Font Awesome fontawesome.com --><div class="photo-actions-mock"><button class="btn-success-mini"><svg class="svg-inline--fa fa-check" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path></svg><!-- <i class="fa-solid fa-check"></i> Font Awesome fontawesome.com --></button><button class="btn-danger-mini"><svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i class="fa-solid fa-xmark"></i> Font Awesome fontawesome.com --></button></div></div>
+                                        <div class="photo-card-mock"><svg class="svg-inline--fa fa-image fa-2x" aria-hidden="true" focusable="false" data-prefix="far" data-icon="image" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"></path></svg><!-- <i class="fa-regular fa-image fa-2x"></i> Font Awesome fontawesome.com --><div class="photo-actions-mock"><button class="btn-success-mini"><svg class="svg-inline--fa fa-check" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path></svg><!-- <i class="fa-solid fa-check"></i> Font Awesome fontawesome.com --></button><button class="btn-danger-mini"><svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i class="fa-solid fa-xmark"></i> Font Awesome fontawesome.com --></button></div></div>
+                                    </div>
+                                </div>
+                                <div id="mod-qr" class="sub-tab-content">
+                                    <div style="text-align: center; padding: 40px;">
+                                        <svg class="svg-inline--fa fa-qrcode" style="font-size: 64px; color: var(--primary-lilac); margin-bottom: 20px;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="qrcode" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M0 80C0 53.5 21.5 32 48 32h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80zM64 96v64h64V96H64zM0 336c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V336zm64 16v64h64V352H64zM304 32h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H304c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48zm80 64H320v64h64V96zM256 304c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s7.2-16 16-16s16 7.2 16 16v96c0 8.8-7.2 16-16 16H368c-8.8 0-16-7.2-16-16s-7.2-16-16-16s-16 7.2-16 16v64c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V304zM368 480a16 16 0 1 1 0-32 16 16 0 1 1 0 32zm64 0a16 16 0 1 1 0-32 16 16 0 1 1 0 32z"></path></svg><!-- <i class="fa-solid fa-qrcode" style="font-size: 64px; color: var(--primary-lilac); margin-bottom: 20px;"></i> Font Awesome fontawesome.com -->
+                                        <h4>QR Code &amp; Print Materials</h4>
+                                        <p style="color: var(--gray-text);">Download high-resolution QR codes and printing templates for your tables.</p>
+                                        <button class="btn btn-primary" style="margin-top: 20px;">Generate Print Bundle</button>
+                                    </div>
+                                </div>
+                                <div id="mod-settings" class="sub-tab-content">
+                                    <div style="max-width: 500px;">
+                                        <div style="margin-bottom: 20px;">
+                                            <label style="display: block; font-size: 14px; font-weight: 700; margin-bottom: 8px;">Moderation Mode</label>
+                                            <select style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                                <option>Approve all automatically</option>
+                                                <option selected="">Manual approval (recommended)</option>
+                                            </select>
+                                        </div>
+                                        <button class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Settings -->
+                    <div id="tab-settings" class="app-tab">
+                        <div style="margin-bottom: 32px;">
+                            <h2 style="font-size: 28px; font-weight: 800;">Event Settings</h2>
+                            <p style="color: var(--gray-text);">Adjust your event details and account preferences.</p>
+                        </div>
+                        <div class="alert-balloon" style="max-width: 600px;">
+                            <form style="display: flex; flex-direction: column; gap: 20px;">
+                                <div>
+                                    <label style="display: block; font-size: 14px; font-weight: 700; margin-bottom: 8px;">Event Name</label>
+                                    <input type="text" value="J&amp;S Wedding" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                </div>
+                                <div>
+                                    <label style="display: block; font-size: 14px; font-weight: 700; margin-bottom: 8px;">Event Password (Optional)</label>
+                                    <input type="password" placeholder="Leave empty for public access" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                </div>
+                                <button type="button" class="btn btn-primary">Update Settings</button>
+                            </form>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- Mobile Bottom Nav (Persistent) -->
+        <div class="bottom-nav">
+            <a href="javascript:void(0)" class="bottom-nav-item tab-link active" data-tab="tab-home" onclick="switchTab('tab-home')">
+                <svg class="svg-inline--fa fa-house" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="house" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"></path></svg><!-- <i class="fa-solid fa-house"></i> Font Awesome fontawesome.com --> <span>Home</span>
+            </a>
+            <a href="javascript:void(0)" class="bottom-nav-item tab-link" data-tab="tab-media" onclick="switchTab('tab-media')">
+                <svg class="svg-inline--fa fa-images" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="images" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M160 32c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H160zM396 138.7l96 144c4.9 7.4 5.4 16.8 1.2 24.6S480.9 320 472 320H328 280 200c-9.2 0-17.6-5.3-21.6-13.6s-2.9-18.2 2.9-25.4l64-80c4.6-5.7 11.4-9 18.7-9s14.2 3.3 18.7 9l17.3 21.6 56-84C360.5 132 368 128 376 128s15.5 4 20 10.7zM192 128a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM48 120c0-13.3-10.7-24-24-24S0 106.7 0 120V344c0 75.1 60.9 136 136 136H456c13.3 0 24-10.7 24-24s-10.7-24-24-24H136c-48.6 0-88-39.4-88-88V120z"></path></svg><!-- <i class="fa-solid fa-images"></i> Font Awesome fontawesome.com --> <span>Media</span>
+            </a>
+            <a href="javascript:void(0)" class="bottom-nav-item tab-link" data-tab="tab-settings" onclick="switchTab('tab-settings')">
+                <svg class="svg-inline--fa fa-gear" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="gear" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"></path></svg><!-- <i class="fa-solid fa-gear"></i> Font Awesome fontawesome.com --> <span>Settings</span>
+            </a>
+            <a href="#" class="bottom-nav-item">
+                <svg class="svg-inline--fa fa-ellipsis" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"></path></svg><!-- <i class="fa-solid fa-ellipsis"></i> Font Awesome fontawesome.com --> <span>More</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="view-event-manage" class="page-view" style="background: var(--bg-light);">
+        <div class="container" style="padding: 40px 0;">
+            <div style="margin-bottom: 32px; display: flex; justify-content: space-between; align-items: flex-end;">
+                <div>
+                    <a href="#view-dashboard" onclick="showView('view-dashboard')" style="color: var(--primary-lilac); text-decoration: none; font-size: 14px; font-weight: 600; display: block; margin-bottom: 8px;"><svg class="svg-inline--fa fa-arrow-left" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg><!-- <i class="fa-solid fa-arrow-left"></i> Font Awesome fontawesome.com --> Back to Dashboard</a>
+                    <h2 style="font-size: 28px; font-weight: 800;">Sarah &amp; Mark's Wedding</h2>
+                </div>
+                <div style="display: flex; gap: 12px;">
+                    <button class="btn btn-outline" onclick="showView('view-guest-flow')"><svg class="svg-inline--fa fa-eye" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="eye" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"></path></svg><!-- <i class="fa-solid fa-eye"></i> Font Awesome fontawesome.com --> Guest View</button>
+                    <button class="btn btn-primary" onclick="showView('view-live-wall')"><svg class="svg-inline--fa fa-tv" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tv" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M64 64V352H576V64H64zM0 64C0 28.7 28.7 0 64 0H576c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM128 448H512c17.7 0 32 14.3 32 32s-14.3 32-32 32H128c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg><!-- <i class="fa-solid fa-tv"></i> Font Awesome fontawesome.com --> Live Wall</button>
+                </div>
+            </div>
+
+            <div style="background: white; border-radius: 16px; border: 1px solid var(--border-color); overflow: hidden;">
+                <div style="display: flex; border-bottom: 1px solid var(--border-color); background: var(--bg-light);">
+                    <div style="padding: 16px 32px; font-weight: 700; color: var(--primary-lilac); border-bottom: 2px solid var(--primary-lilac); cursor: pointer;">Moderation</div>
+                    <div style="padding: 16px 32px; font-weight: 600; color: var(--gray-text); cursor: pointer;">QR &amp; Sharing</div>
+                    <div style="padding: 16px 32px; font-weight: 600; color: var(--gray-text); cursor: pointer;">Settings</div>
+                </div>
+                
+                <div style="padding: 32px;">
+                    <!-- Moderation Tab Content -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                        <h4 style="font-size: 18px; font-weight: 700;">Pending Photos (12)</h4>
+                        <div style="display: flex; gap: 12px;">
+                            <button class="btn btn-outline" style="font-size: 13px; padding: 6px 16px;">Reject All</button>
+                            <button class="btn btn-primary" style="font-size: 13px; padding: 6px 16px;">Approve All</button>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px;">
+                        <!-- Mock Photo 1 -->
+                        <div style="position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color);">
+                            <div style="width: 100%; height: 100%; background: #eee; display: flex; align-items: center; justify-content: center; color: #ccc;"><svg class="svg-inline--fa fa-image fa-2x" aria-hidden="true" focusable="false" data-prefix="far" data-icon="image" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"></path></svg><!-- <i class="fa-regular fa-image fa-2x"></i> Font Awesome fontawesome.com --></div>
+                            <div style="position: absolute; bottom: 8px; left: 8px; right: 8px; display: flex; gap: 4px;">
+                                <button style="flex: 1; background: var(--success); color: white; border: none; padding: 4px; border-radius: 4px; cursor: pointer;"><svg class="svg-inline--fa fa-check" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path></svg><!-- <i class="fa-solid fa-check"></i> Font Awesome fontawesome.com --></button>
+                                <button style="flex: 1; background: var(--danger); color: white; border: none; padding: 4px; border-radius: 4px; cursor: pointer;"><svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i class="fa-solid fa-xmark"></i> Font Awesome fontawesome.com --></button>
+                            </div>
+                        </div>
+                        <!-- Mock Photo 2 -->
+                        <div style="position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color);">
+                            <div style="width: 100%; height: 100%; background: #eee; display: flex; align-items: center; justify-content: center; color: #ccc;"><svg class="svg-inline--fa fa-image fa-2x" aria-hidden="true" focusable="false" data-prefix="far" data-icon="image" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"></path></svg><!-- <i class="fa-regular fa-image fa-2x"></i> Font Awesome fontawesome.com --></div>
+                            <div style="position: absolute; bottom: 8px; left: 8px; right: 8px; display: flex; gap: 4px;">
+                                <button style="flex: 1; background: var(--success); color: white; border: none; padding: 4px; border-radius: 4px; cursor: pointer;"><svg class="svg-inline--fa fa-check" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path></svg><!-- <i class="fa-solid fa-check"></i> Font Awesome fontawesome.com --></button>
+                                <button style="flex: 1; background: var(--danger); color: white; border: none; padding: 4px; border-radius: 4px; cursor: pointer;"><svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i class="fa-solid fa-xmark"></i> Font Awesome fontawesome.com --></button>
+                            </div>
+                        </div>
+                        <!-- Mock Photo 3 -->
+                        <div style="position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color);">
+                            <div style="width: 100%; height: 100%; background: #eee; display: flex; align-items: center; justify-content: center; color: #ccc;"><svg class="svg-inline--fa fa-image fa-2x" aria-hidden="true" focusable="false" data-prefix="far" data-icon="image" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"></path></svg><!-- <i class="fa-regular fa-image fa-2x"></i> Font Awesome fontawesome.com --></div>
+                            <div style="position: absolute; bottom: 8px; left: 8px; right: 8px; display: flex; gap: 4px;">
+                                <button style="flex: 1; background: var(--success); color: white; border: none; padding: 4px; border-radius: 4px; cursor: pointer;"><svg class="svg-inline--fa fa-check" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path></svg><!-- <i class="fa-solid fa-check"></i> Font Awesome fontawesome.com --></button>
+                                <button style="flex: 1; background: var(--danger); color: white; border: none; padding: 4px; border-radius: 4px; cursor: pointer;"><svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i class="fa-solid fa-xmark"></i> Font Awesome fontawesome.com --></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-guest-flow" class="page-view" style="background: white;">
+        <!-- Mobile Header -->
+        <div style="padding: 16px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; position: sticky; top: 0; background: white; z-index: 10;">
+            <span style="font-weight: 800; font-size: 18px;">Sarah &amp; Mark's Wedding</span>
+        </div>
+
+        <div class="container" style="max-width: 500px; padding: 24px;">
+            <!-- Upload Trigger -->
+            <div style="border: 2px dashed var(--primary-lilac); background: var(--light-lavender); border-radius: 16px; padding: 40px 24px; text-align: center; margin-bottom: 32px; cursor: pointer;">
+                <svg class="svg-inline--fa fa-cloud-arrow-up" style="font-size: 40px; color: var(--primary-lilac); margin-bottom: 16px;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="cloud-arrow-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-217c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l39-39V392c0 13.3 10.7 24 24 24s24-10.7 24-24V257.9l39 39c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0l-80 80z"></path></svg><!-- <i class="fa-solid fa-cloud-arrow-up" style="font-size: 40px; color: var(--primary-lilac); margin-bottom: 16px;"></i> Font Awesome fontawesome.com -->
+                <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Share your moments</h4>
+                <p style="color: var(--gray-text); font-size: 14px;">Tap here to upload photos &amp; videos from your gallery.</p>
+            </div>
+
+            <!-- Guest Gallery -->
+            <div style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
+                <h4 style="font-size: 18px; font-weight: 800;">Event Gallery</h4>
+                <span style="font-size: 14px; color: var(--gray-text);">156 items</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+                <div style="aspect-ratio: 1; background: #f0f0f0; border-radius: 4px;"></div>
+                <div style="aspect-ratio: 1; background: #f0f0f0; border-radius: 4px;"></div>
+                <div style="aspect-ratio: 1; background: #f0f0f0; border-radius: 4px;"></div>
+                <div style="aspect-ratio: 1; background: #f0f0f0; border-radius: 4px;"></div>
+                <div style="aspect-ratio: 1; background: #f0f0f0; border-radius: 4px;"></div>
+                <div style="aspect-ratio: 1; background: #f0f0f0; border-radius: 4px;"></div>
+                <div style="aspect-ratio: 1; background: #f0f0f0; border-radius: 4px;"></div>
+                <div style="aspect-ratio: 1; background: #f0f0f0; border-radius: 4px;"></div>
+                <div style="aspect-ratio: 1; background: #f0f0f0; border-radius: 4px;"></div>
+            </div>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div style="position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; padding: 12px; z-index: 10;">
+            <div style="text-align: center; color: var(--primary-lilac);"><svg class="svg-inline--fa fa-house" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="house" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"></path></svg><!-- <i class="fa-solid fa-house"></i> Font Awesome fontawesome.com --><div style="font-size: 10px; font-weight: 700;">Home</div></div>
+            <div style="text-align: center; color: var(--gray-text);"><svg class="svg-inline--fa fa-magnifying-glass" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg><!-- <i class="fa-solid fa-magnifying-glass"></i> Font Awesome fontawesome.com --><div style="font-size: 10px; font-weight: 700;">Explore</div></div>
+            <div style="text-align: center; color: var(--gray-text);"><svg class="svg-inline--fa fa-user" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"></path></svg><!-- <i class="fa-solid fa-user"></i> Font Awesome fontawesome.com --><div style="font-size: 10px; font-weight: 700;">Me</div></div>
+        </div>
+    </div>
+
+    <div id="view-live-wall" class="page-view" style="background: #000; height: 100vh; color: white; overflow: hidden;">
+        <div style="position: absolute; top: 40px; left: 40px; display: flex; align-items: center; gap: 12px;">
+            <div style="width: 48px; height: 48px; background: var(--primary-lilac); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900;">K</div>
+            <div>
+                <h2 style="font-size: 24px; font-weight: 800; margin: 0;">Sarah &amp; Mark</h2>
+                <p style="font-size: 14px; opacity: 0.6; margin: 0;">#sarahandmark2026</p>
+            </div>
+        </div>
+
+        <div style="width: 80%; height: 75%; background: #111; border-radius: 24px; display: flex; align-items: center; justify-content: center; border: 1px solid #222; box-shadow: 0 0 100px rgba(145, 97, 242, 0.1); position: relative;">
+            <svg class="svg-inline--fa fa-image" style="font-size: 120px; opacity: 0.05;" aria-hidden="true" focusable="false" data-prefix="far" data-icon="image" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"></path></svg><!-- <i class="fa-regular fa-image" style="font-size: 120px; opacity: 0.05;"></i> Font Awesome fontawesome.com -->
+            
+            <!-- Overlay QR for engagement -->
+            <div style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); text-align: center; background: rgba(0,0,0,0.6); padding: 20px 40px; border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
+                <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 12px; white-space: nowrap;">Scan to share your photos!</h3>
+                <div style="width: 100px; height: 100px; background: white; margin: 0 auto; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                    <svg class="svg-inline--fa fa-qrcode" style="color: black; font-size: 80px;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="qrcode" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M0 80C0 53.5 21.5 32 48 32h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80zM64 96v64h64V96H64zM0 336c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V336zm64 16v64h64V352H64zM304 32h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H304c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48zm80 64H320v64h64V96zM256 304c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s7.2-16 16-16s16 7.2 16 16v96c0 8.8-7.2 16-16 16H368c-8.8 0-16-7.2-16-16s-7.2-16-16-16s-16 7.2-16 16v64c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V304zM368 480a16 16 0 1 1 0-32 16 16 0 1 1 0 32zm64 0a16 16 0 1 1 0-32 16 16 0 1 1 0 32z"></path></svg><!-- <i class="fa-solid fa-qrcode" style="color: black; font-size: 80px;"></i> Font Awesome fontawesome.com -->
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-outline" style="position: absolute; bottom: 40px; right: 40px; border-color: #333; color: white; z-index: 100;" onclick="showView('view-event-manage')">Exit Fullscreen</button>
+    </div>
+
+    <div id="view-pricing" class="page-view">
+        <div class="view-back-bar">
+            <div class="container">
+                <a href="#" class="back-link"><svg class="svg-inline--fa fa-arrow-left" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg><!-- <i class="fa-solid fa-arrow-left"></i> Font Awesome fontawesome.com --> Back to Home</a>
+            </div>
+        </div>
+        <section class="pricing-section">
+            <div class="container">
+                <div class="pricing-hero">
+                    <h3 class="section-title">Plans &amp; Pricing</h3>
+                    <p class="section-subtitle">Choose the plan that fits best to your event size and audience scope.</p>
+                    <div>
+                        <div class="guarantee-banner">
+                            <span>✅ <strong>Money Back Guarantee.</strong> If you don't use it, get a refund under our <a href="#">Fair Policy</a>.</span>
+                        </div>
+                    </div>
+                    <div class="promo-tag">🔥 50% OFF ON ALL PLANS FOR A LIMITED TIME!</div>
+                </div>
+
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="plan-name">Free</div>
+                        <div class="plan-price"><sup>$</sup>0</div>
+                        <div class="plan-fee-type">No credit card required</div>
+                        <div class="plan-desc">Great for birthdays, family gatherings and other small alternative celebrations.</div>
+                        <ul class="plan-features">
+                            <li>• Up to <span id="free-upload-limit" class="pricing-bolded tooltip" data-tippy-content="The amount of photos &amp; videos you and your guests can upload to the event.">100 uploads</span></li>
+                            <li>• Unlimited guests &amp; participants</li>
+                            <li>• Uploads are <span id="free-storage-limit" class="pricing-bolded tooltip" data-tippy-content="The time in which media assets remain accessible on our hosting systems.">saved for 7 days</span></li>
+                            <li>• <span class="pricing-bolded tooltip" data-tippy-content="Standard configuration and core alignment dashboards.">Basic customization</span> options</li>
+                            <li>• <span id="free-active-time" class="pricing-bolded tooltip" data-tippy-content="The active framework operational clock window duration configuration.">Active for 24 hours</span></li>
+                            <li>• All uploads are saved in good quality</li>
+                        </ul>
+                        <a href="https://app.EverSnapz.com/sign-up?plan=free" class="btn-plan">Create Free Event</a>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="plan-name">Plus</div>
+                        <div class="plan-price"><sup>$</sup><span id="plus-price">39</span><span class="old-price">$79</span></div>
+                        <div class="plan-fee-type">One-time flat setup fee</div>
+                        <div class="plan-desc">Perfect for small weddings, celebrations &amp; other mid-size structured events.</div>
+                        <ul class="plan-features">
+                            <li>• Up to <span id="plus-upload-limit" class="pricing-bolded tooltip" data-tippy-content="Extended limit pool space for file asset allocation logs.">500 uploads</span></li>
+                            <li>• Unlimited guests &amp; participants</li>
+                            <li>• Uploads are <span id="plus-storage-limit" class="pricing-bolded tooltip" data-tippy-content="Secure database archival timeline storage windows before cleanup execution.">saved for 3 months</span></li>
+                            <li>• <span class="pricing-bolded tooltip" data-tippy-content="Custom event logos, branding rules settings, banner graphics templates.">Better customization</span> features</li>
+                            <li>• <span id="plus-active-time" class="pricing-bolded tooltip" data-tippy-content="Timeline system runtime framework window extension setup attributes.">Active for 1 month</span></li>
+                            <li>• All uploads are saved in High-Quality</li>
+                            <li>• Download all photos &amp; videos at once</li>
+                        </ul>
+                        <a href="https://app.EverSnapz.com/sign-up?plan=plus" class="btn-plan">Select Plus Plan</a>
+                    </div>
+
+                    <div class="pricing-card popular">
+                        <div class="popular-badge">🔥 Most Popular</div>
+                        <div class="plan-name">Pro</div>
+                        <div class="plan-price"><sup>$</sup><span id="pro-price">99</span><span class="old-price">$199</span></div>
+                        <div class="plan-fee-type">One-time flat setup fee</div>
+                        <div class="plan-desc">Best for big weddings, conferences, concerts, festivals, and public gatherings.</div>
+                        <ul class="plan-features">
+                            <li>• <span class="pricing-bolded tooltip" data-tippy-content="No restrictions on collection capabilities based on fair use rules.">Unlimited uploads</span> of media files</li>
+                            <li>• Unlimited guests &amp; participants</li>
+                            <li>• Uploads are <span id="pro-storage-limit" class="pricing-bolded tooltip" data-tippy-content="Premium structural cloud asset backup lifespan allocation boundaries.">saved for 1 year</span></li>
+                            <li>• <span class="pricing-bolded tooltip" data-tippy-content="Complete white-label, customized CSS templates parameters management access.">Advanced customization</span></li>
+                            <li>• <span id="pro-active-time" class="pricing-bolded tooltip" data-tippy-content="The overall runtime span configuration window for storage link entries.">Active for 3 months</span></li>
+                            <li>• Original High-Quality processing profiles</li>
+                            <li>• Bulk ZIP content packaging asset downloads</li>
+                            <li>• <span class="pricing-bolded tooltip" data-tippy-content="Approve, reject, block, feature images from live video monitors immediately.">Real-time moderation tools</span></li>
+                        </ul>
+                        <a href="https://app.EverSnapz.com/sign-up?plan=pro" class="btn-plan">Select Pro Plan</a>
+                    </div>
+                </div>
+
+                <div class="pro-notice">
+                    <div>
+                        <h4>Running multiple events or managing clients professionally?</h4>
+                        <p>Explore volume packaging solutions customized explicitly for planners, agencies, and venues.</p>
+                    </div>
+                    <a href="#" class="btn-pro">View Pro Plans <svg class="svg-inline--fa fa-arrow-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg><!-- <i class="fa-solid fa-arrow-right"></i> Font Awesome fontawesome.com --></a>
+                </div>
+
+                <div class="features-include">
+                    <h3>Included in every single layout plan option:</h3>
+                    <div class="include-grid">
+                        <div class="include-card">
+                            <div class="include-header"><div class="include-icon">🎥</div><h4>Live Photo Wall</h4></div>
+                            <p>A beautiful slideshow of all incoming media frames projecting dynamic stream animations continuously live over screens.</p>
+                        </div>
+                        <div class="include-card">
+                            <div class="include-header"><div class="include-icon">🌅</div><h4>Digital Album</h4></div>
+                            <p>Clean modern galleries neatly categorizing every raw item asset into access-controlled portfolios instantly.</p>
+                        </div>
+                        <div class="include-card">
+                            <div class="include-header"><div class="include-icon">🤳</div><h4>No App Required</h4></div>
+                            <p>Zero software platform app downloads necessary. Native browser capture architectures work seamlessly everywhere.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="view-reviews" class="page-view">
+        <div class="view-back-bar">
+            <div class="container">
+                <a href="#" class="back-link"><svg class="svg-inline--fa fa-arrow-left" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg><!-- <i class="fa-solid fa-arrow-left"></i> Font Awesome fontawesome.com --> Back to Home</a>
+            </div>
+        </div>
+        <section class="wall-of-love">
+            <div class="container">
+                <h3 class="section-title">Don’t just take our word for it</h3>
+                <p class="section-subtitle">We are honored to help thousands of hosts worldwide to make their events more memorable.</p>
+                
+                <div class="rating-badge-container">
+                    <div class="rating-stars">
+                        <svg class="svg-inline--fa fa-star" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg><!-- <i class="fa-solid fa-star"></i> Font Awesome fontawesome.com --><svg class="svg-inline--fa fa-star" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg><!-- <i class="fa-solid fa-star"></i> Font Awesome fontawesome.com --><svg class="svg-inline--fa fa-star" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg><!-- <i class="fa-solid fa-star"></i> Font Awesome fontawesome.com --><svg class="svg-inline--fa fa-star" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg><!-- <i class="fa-solid fa-star"></i> Font Awesome fontawesome.com --><svg class="svg-inline--fa fa-star" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg><!-- <i class="fa-solid fa-star"></i> Font Awesome fontawesome.com -->
+                    </div>
+                    <div class="rating-text">Rated <strong>4.7</strong> based on 500+ reviews. <a href="#view-reviews">Read reviews</a></div>
+                </div>
+
+                <div class="wol-grid">
+                    <div class="wol-card">
+                        <p>"Your photographer can’t be everywhere - this gave us so many angles and candid photos we wouldn’t have gotten (500+)! And no waiting to see it"</p>
+                        <div class="wol-user">
+                            <div class="wol-avatar">SJ</div>
+                            <div class="wol-info">
+                                <h5>Stacy J.</h5>
+                                <span>🇺🇸 United States</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wol-card">
+                        <p>"We tested a few photo sharing apps for our upcoming company event and eventually went with EverSnapz. Everyone liked it and we got ton of good feedback from all our participants!"</p>
+                        <div class="wol-user">
+                            <div class="wol-avatar">DM</div>
+                            <div class="wol-info">
+                                <h5>Dana M.</h5>
+                                <span>🇨🇦 Canada</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wol-card">
+                        <p>"EverSnapz made our wedding an unforgettable experience! The photo slideshow was a hit among our guests, who loved being able to share their photos and videos."</p>
+                        <div class="wol-user">
+                            <div class="wol-avatar">RW</div>
+                            <div class="wol-info">
+                                <h5>Rushi's Wedding</h5>
+                                <span>🇸🇬 Singapore</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wol-card">
+                        <p>"The setup was extremely straightforward, and it kept guests engaged through the entire reception. Strongly recommended for any milestone event."</p>
+                        <div class="wol-user">
+                            <div class="wol-avatar">MK</div>
+                            <div class="wol-info">
+                                <h5>Marcus K.</h5>
+                                <span>🇬🇧 United Kingdom</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wol-card">
+                        <p>"No one wants to navigate app stores during a celebration. The browser framework upload is pure genius. Simple, accessible, and fast."</p>
+                        <div class="wol-user">
+                            <div class="wol-avatar">JL</div>
+                            <div class="wol-info">
+                                <h5>Jessica L.</h5>
+                                <span>🇦🇺 Australia</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wol-card">
+                        <p>"We downloaded a highly compressed ZIP folder structure with high-res assets immediately the morning after. Flawless execution pipeline."</p>
+                        <div class="wol-user">
+                            <div class="wol-avatar">CH</div>
+                            <div class="wol-info">
+                                <h5>Chris H.</h5>
+                                <span>🇩🇪 Germany</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="faq-section">
+        <div class="container">
+            <h3 class="section-title">Frequently Asked Questions</h3>
+            <p class="section-subtitle">Everything you need to know about setting up your custom media space.</p>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-trigger">Which plan should I choose? <span class="faq-icon-box"><svg class="svg-inline--fa fa-chevron-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path></svg><!-- <i class="fa-solid fa-chevron-down"></i> Font Awesome fontawesome.com --></span></button>
+                    <div class="faq-content">
+                        <p>It depends entirely on your guest count. The Free option works for tiny intimate spaces. Medium milestones running up to 100 people are best suited to the Plus configuration framework. Major weddings or corporate assemblies requiring moderation control systems should choose the Pro Plan setup directly.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger">Do my event guests need an app to submit images? <span class="faq-icon-box"><svg class="svg-inline--fa fa-chevron-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path></svg><!-- <i class="fa-solid fa-chevron-down"></i> Font Awesome fontawesome.com --></span></button>
+                    <div class="faq-content">
+                        <p>No downloads are ever needed. Guests scan the unique generated matrix barcode using standard smartphone camera devices and submit imagery directly from their browser windows quickly.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger">Can I setup albums early before the event kicks off? <span class="faq-icon-box"><svg class="svg-inline--fa fa-chevron-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path></svg><!-- <i class="fa-solid fa-chevron-down"></i> Font Awesome fontawesome.com --></span></button>
+                    <div class="faq-content">
+                        <p>Yes. The automated scheduling scripts wait for real-time customer log tracking activities before initializing the active hour metric timelines. Test content can be run in advance cleanly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="color:white; font-size:20px; font-weight:800;">EverSnapz<span style="color:var(--primary-lilac);">.</span></h4>
+                <p>Bringing event experiences alive through clean, real-time social media gathering tools.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#landing-view" class="active">Features</a></li>
+                    <li><a href="#landing-view" class="active">Live TV Streams</a></li>
+                    <li><a href="#view-pricing">Pricing Engine</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Use Cases</h4>
+                <ul>
+                    <li><a href="#landing-view" class="active">Weddings Hub</a></li>
+                    <li><a href="#landing-view" class="active">Corporate Galas</a></li>
+                    <li><a href="#landing-view" class="active">Birthday Systems</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Framework</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 EverSnapz Platform Systems Architecture. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showView(viewId) {
+            $('.page-view').removeClass('active');
+            $('#' + viewId).addClass('active');
+            
+            // Sync navigation active state
+            $('.nav-link').removeClass('active');
+            $('a[href="#' + viewId + '"]').addClass('active');
+
+            // Hide/Show header based on view (hide for app views)
+            const appViews = ['app-view', 'view-live-wall', 'view-guest-flow'];
+            if (appViews.includes(viewId)) {
+                $('header').addClass('hidden');
+            } else {
+                $('header').removeClass('hidden');
+            }
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+
+            // Update URL hash without jumping
+            if (history.pushState) {
+                history.pushState(null, null, '#' + viewId);
+            } else {
+                window.location.hash = '#' + viewId;
+            }
+        }
+
+        function switchTab(tabId) {
+            $('.app-tab').removeClass('active');
+            $('#' + tabId).addClass('active');
+            $('.tab-link').removeClass('active');
+            $(`.tab-link[data-tab="${tabId}"]`).addClass('active');
+        }
+
+        function switchSubTab(el, contentId) {
+            $(el).siblings().removeClass('active');
+            $(el).addClass('active');
+            $(el).parent().next().children('.sub-tab-content').removeClass('active');
+            $('#' + contentId).addClass('active');
+        }
+
+        $(document).ready(function() {
+            // Handle initial view based on hash
+            var initialHash = window.location.hash.substring(1);
+            if (initialHash && $('#' + initialHash).length) {
+                showView(initialHash);
+            } else {
+                showView('landing-view');
+            }
+
+            // Interactive Accordion Toggle actions
+            $('.faq-trigger').on('click', function() {
+                var item = $(this).closest('.faq-item');
+                item.toggleClass('open');
+                $('.faq-item').not(item).removeClass('open');
+            });
+
+            // Initialize Tooltip Engine Framework Components
+            tippy('.tooltip', {
+                theme: 'material',
+                arrow: true,
+                animation: 'fade',
+                maxWidth: 250
+            });
+        });
+
+        // Handle back/forward buttons
+        $(window).on('popstate', function() {
+            var hash = window.location.hash.substring(1);
+            if (hash && $('#' + hash).length) {
+                showView(hash);
+            } else {
+                showView('landing-view');
+            }
+        });
+    </script>
+
+</body></html>

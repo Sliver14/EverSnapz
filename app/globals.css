@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-lilac: #9161f2;
+  --color-dark-lilac: #6a36cf;
+  --color-light-lavender: #f6f2ff;
+  --color-dark-text: #1d1929;
+  --color-gray-text: #665e75;
+  --color-border-color: #e6e1f0;
+  --color-bg-light: #faf9fc;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-white: #ffffff;
+}
+
+:root {
+  --primary-lilac: #9161f2;
+  --dark-lilac: #6a36cf;
+  --light-lavender: #f6f2ff;
+  --dark-text: #1d1929;
+  --gray-text: #665e75;
+  --border-color: #e6e1f0;
+  --bg-light: #faf9fc;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --white: #ffffff;
+}
+
+/* Base resets */
+@layer base {
+  * {
+    @apply border-border-color;
+  }
+  body {
+    @apply bg-white text-dark-text antialiased;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .section-padding {
+    @apply py-20;
+  }
+  .section-padding-large {
+    @apply py-24 md:py-32;
+  }
+  .container {
+    @apply max-w-[1200px] mx-auto px-6;
+  }
+  .card {
+    @apply bg-white rounded-xl border border-border-color p-6 shadow-sm;
+  }
+}
+
+/* Base button styles to match prototype */
+.btn {
+  @apply inline-flex items-center justify-center px-5 py-2.5 rounded-full no-underline font-semibold text-[15px] transition-all cursor-pointer gap-2;
+}
+
+.btn-primary {
+  @apply bg-primary-lilac text-white hover:bg-dark-lilac shadow-lg shadow-primary-lilac/20;
+}
+
+.btn-outline {
+  @apply bg-transparent border border-border-color text-dark-text hover:border-primary-lilac hover:bg-light-lavender;
+}
+
+.page-wrapper {
+  @apply p-6;
+}
+
+.form-input {
+  @apply w-full p-3 rounded-xl border border-border-color outline-none text-sm transition-all focus:border-primary-lilac;
+}
