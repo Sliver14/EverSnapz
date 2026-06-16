@@ -20,6 +20,8 @@ export const events = pgTable("events", {
   name: text("name").notNull(),
   slug: text("slug").notNull().unique(),
   date: timestamp("date"),
+  coverPhotoUrl: text("cover_photo_url"),
+  coverPhotoPublicId: text("cover_photo_public_id"),
   qrCodeUrl: text("qr_code_url"),
   isPaid: boolean("is_paid").default(false),
   settings: jsonb("settings").default({}),

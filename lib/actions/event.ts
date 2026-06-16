@@ -28,6 +28,18 @@ export async function createEvent(formData: { name: string; date?: string }) {
   return newEvent;
 }
 
+export async function updateEventCoverPhoto(eventId: string, coverPhotoUrl: string, coverPhotoPublicId: string) {
+  const session = await getServerSession(authOptions);
+  if (!session?.user?.id) throw new Error("Unauthorized");
+
+  await db.update(events)
+    .set({ coverPhotoUrl, coverPhotoPublicId })
+    .where(eq(events.id, eventId));
+
+  revalidatePath("/dashboard");
+  return { success: true };
+}
+
 export async function getEvents() {
   const session = await getServerSession(authOptions);
   if (!session?.user?.id) return [];

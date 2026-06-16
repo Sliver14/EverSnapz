@@ -2,18 +2,50 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
+import { getEventBySlug } from "@/lib/actions/event";
+import { getPhotos } from "@/lib/actions/media";
 
 export default function GuestPage() {
   const params = useParams();
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const eventId = params.eventId as string;
+  const eventSlug = params.eventId as string;
+  const [event, setEvent] = useState<any>(null);
+  const [photos, setPhotos] = useState<any[]>([]);
   const [guestName, setGuestName] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [bgImageIndex, setBgImageIndex] = useState(0);
 
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const eventData = await getEventBySlug(eventSlug);
+        if (!eventData) {
+          router.push("/404");
+          return;
+        }
+        setEvent(eventData);
+
+        const photosData = await getPhotos(eventData.id);
+        setPhotos(photosData);
+
+        const name = localStorage.getItem(`guestName_${eventData.id}`);
+        if (!name) {
+          router.push(`/guest/welcome/${eventSlug}`);
+        } else {
+          setGuestName(name);
+        }
+      } catch (error) {
+        console.error("Failed to load guest data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
+  }, [eventSlug, router]);
+
   const handleUploadClick = () => {
-    router.push(`/guest/${eventId}/upload`);
+    router.push(`/guest/${eventSlug}/upload`);
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,37 +57,25 @@ export default function GuestPage() {
     }
   };
 
-  const galleryImages = [
+  const galleryImages = photos.length > 0 ? photos.map(p => p.url) : [
     "https://firebasestorage.googleapis.com/v0/b/kululushapp.appspot.com/o/event_L8TlHAXcAjMRwaxpPQ02%2Fmedia_dokg6q_AC6I1318_websize.jpg?alt=media&token=b4812c8f-1790-4e64-b40d-d60e766d9f68",
-    "https://firebasestorage.googleapis.com/v0/b/kululushapp.appspot.com/o/event_L8TlHAXcAjMRwaxpPQ02%2Fmedia_i3aang_179A8178_websize.jpg?alt=media&token=0eda7d0a-1094-438a-8cb6-52ed0608277c",
-    "https://firebasestorage.googleapis.com/v0/b/kululushapp.appspot.com/o/event_L8TlHAXcAjMRwaxpPQ02%2Fmedia_1q1sjk_179A7597_websize.jpg?alt=media&token=98fb98ca-03da-4d87-a950-93427a529b50",
-    "https://firebasestorage.googleapis.com/v0/b/kululushapp.appspot.com/o/event_L8TlHAXcAjMRwaxpPQ02%2Fmedia_48ym23_AC6I0690_websize.jpg?alt=media&token=48f00035-3208-4282-93b8-051db62034eb",
-    "https://firebasestorage.googleapis.com/v0/b/kululushapp.appspot.com/o/event_L8TlHAXcAjMRwaxpPQ02%2Fmedia_rkokkz_AC6I0110_websize.jpg?alt=media&token=0bfdf98d-2bf8-4811-a46a-63ba718c358f"
+    "https://firebasestorage.googleapis.com/v0/b/kululushapp.appspot.com/o/event_L8TlHAXcAjMRwaxpPQ02%2Fmedia_i3aang_179A8178_websize.jpg?alt=media&token=0eda7d0a-1094-438a-8cb6-52ed0608277c"
   ];
 
   useEffect(() => {
-    const name = localStorage.getItem(`guestName_${eventId}`);
-    if (!name) {
-      router.push(`/guest/welcome/${eventId}`);
-    } else {
-      setGuestName(name);
-      setLoading(false);
+    if (galleryImages.length > 0) {
+      const interval = setInterval(() => {
+        setBgImageIndex((prev) => (prev + 1) % galleryImages.length);
+      }, 5000);
+      return () => clearInterval(interval);
     }
-  }, [eventId, router]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setBgImageIndex((prev) => (prev + 1) % galleryImages.length);
-    }, 5000);
-    return () => clearInterval(interval);
   }, [galleryImages.length]);
 
   if (loading) {
-    return <div className="min-h-screen bg-white flex items-center justify-center">Loading...</div>;
+    return <div className="min-h-screen bg-white flex items-center justify-center">Loading event...</div>;
   }
 
-  // Format event ID for display
-  const eventNameDisplay = eventId ? eventId.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ") : "John & Rachel Wedding";
+  if (!event) return null;
 
   return (
     <div className="min-h-screen bg-white font-sans text-dark-text overflow-x-hidden">
@@ -65,7 +85,12 @@ export default function GuestPage() {
         {/* Dynamic Background Section - Now limited to 100vh max and contains the hero */}
         <div className="relative h-[100dvh] w-full overflow-hidden flex flex-col">
           {/* Animated Background Layers */}
-          {galleryImages.map((src, idx) => (
+          {event.coverPhotoUrl ? (
+             <div 
+              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out opacity-40`}
+              style={{ backgroundImage: `url("${event.coverPhotoUrl}")` }}
+            />
+          ) : galleryImages.map((src, idx) => (
             <div 
               key={src}
               className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${idx === bgImageIndex ? 'opacity-40' : 'opacity-0'}`}
@@ -107,19 +132,30 @@ export default function GuestPage() {
               <div className="relative mb-6">
                 <div className="absolute inset-0 bg-primary-lilac/10 blur-2xl rounded-full scale-150"></div>
                 <img 
-                  src="https://firebasestorage.googleapis.com/v0/b/kululushapp.appspot.com/o/event_L8TlHAXcAjMRwaxpPQ02%2Fgeneral%2Flogo_2024-07-28_16-56-33_jdwvfd.png?alt=media&token=e1636085-633d-4814-a680-87e6e8027e4a" 
-                  className="relative w-24 h-24 md:w-32 md:h-32 object-contain rounded-full bg-white p-2 shadow-2xl border-4 border-white" 
+                  src={event.coverPhotoUrl || "https://firebasestorage.googleapis.com/v0/b/kululushapp.appspot.com/o/event_L8TlHAXcAjMRwaxpPQ02%2Fgeneral%2Flogo_2024-07-28_16-56-33_jdwvfd.png?alt=media&token=e1636085-633d-4814-a680-87e6e8027e4a"} 
+                  className="relative w-24 h-24 md:w-32 md:h-32 object-cover rounded-full bg-white p-1 shadow-2xl border-4 border-white" 
                   alt="event logo" 
                 />
               </div>
               
               {/* Event Title */}
               <h1 
-                className="text-4xl md:text-6xl font-bold mb-6 text-dark-text drop-shadow-sm max-w-[800px]"
+                className="text-4xl md:text-6xl font-bold mb-3 text-dark-text drop-shadow-sm max-w-[800px]"
                 style={{ fontFamily: "'Abril Fatface', serif" }}
               >
-                {eventNameDisplay}
+                {event.name}
               </h1>
+
+              {/* Event Date */}
+              {event.date && (
+                <div className="text-lg md:text-xl font-medium text-gray-text/80 mb-8">
+                  {new Date(event.date).toLocaleDateString('en-US', { 
+                    month: 'long', 
+                    day: 'numeric', 
+                    year: 'numeric' 
+                  })}
+                </div>
+              )}
               
               {/* Add to Album Button - Visible within 100vh */}
               <button 
@@ -145,14 +181,14 @@ export default function GuestPage() {
               {/* Photo Counter */}
               <div className="px-6 py-2 bg-bg-light rounded-full border border-border-color shadow-sm inline-flex items-center gap-2">
                 <div className="flex -space-x-2">
-                  {[1, 2, 3].map(i => (
-                    <div key={i} className="w-6 h-6 rounded-full border-2 border-white bg-gray-200 overflow-hidden">
-                      <img src={`https://i.pravatar.cc/100?u=${i}`} alt="avatar" />
+                  {photos.slice(0, 3).map((p, i) => (
+                    <div key={p.id} className="w-6 h-6 rounded-full border-2 border-white bg-gray-200 overflow-hidden">
+                      <img src={p.url} alt="avatar" />
                     </div>
                   ))}
                 </div>
                 <span className="text-sm text-gray-text font-bold uppercase tracking-tight">
-                  <span className="text-primary-lilac">42</span> photos & videos shared
+                  <span className="text-primary-lilac">{photos.length}</span> photos & videos shared
                 </span>
               </div>
             </div>
@@ -163,55 +199,23 @@ export default function GuestPage() {
         <div className="px-2 md:px-8 py-8 flex-1 w-full">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2 md:gap-4">
             
-            {/* PINNED TEXT POST */}
-            <div className="relative aspect-square overflow-hidden bg-bg-light rounded-2xl md:rounded-[2rem] group shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
-              <div className="absolute top-4 left-4 z-10 text-primary-lilac">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M12 17v5"></path><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"></path></svg>
-              </div>
-              <div 
-                className="w-full h-full p-6 flex items-center justify-center text-center bg-cover bg-center"
-                style={{ backgroundImage: 'url("https://media.kululu.me/1_utils/textpost-backgrounds/wedding-bg.jpg")' }}
-              >
-                <p className="text-sm md:text-base font-black leading-tight text-dark-text">Test out this DEMO event 🤳 Your uploads will be deleted automatically after a while.</p>
-              </div>
-              <div className="absolute bottom-4 left-4 flex items-center gap-1.5 text-white drop-shadow-md bg-black/20 backdrop-blur-md px-2 py-1 rounded-full">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#f3433a" stroke="transparent"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
-                <span className="text-xs font-black">9</span>
-              </div>
-            </div>
-
-            {/* SECOND TEXT POST */}
-            <div className="relative aspect-square overflow-hidden bg-bg-light rounded-2xl md:rounded-[2rem] group shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
-              <div 
-                className="w-full h-full p-6 flex items-center justify-center text-center bg-cover bg-center"
-                style={{ backgroundImage: 'url("https://media.kululu.me/1_utils/textpost-backgrounds/emoji-bg.jpg")' }}
-              >
-                <p className="text-sm md:text-base font-black leading-tight text-dark-text">You can also upload text-only posts. How cool is that!</p>
-              </div>
-              <div className="absolute bottom-4 left-4 flex items-center gap-1.5 text-dark-text bg-white/40 backdrop-blur-md px-2 py-1 rounded-full">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#f3433a" stroke="transparent"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
-                <span className="text-xs font-black">10</span>
-              </div>
-            </div>
-
-            {/* IMAGE POSTS */}
-            {galleryImages.map((src, i) => (
-              <div key={i} className="relative aspect-square overflow-hidden bg-bg-light rounded-2xl md:rounded-[2rem] group shadow-sm hover:shadow-xl transition-all duration-700 hover:-translate-y-1">
+            {/* Real Image Posts */}
+            {photos.map((photo, i) => (
+              <div key={photo.id} className="relative aspect-square overflow-hidden bg-bg-light rounded-2xl md:rounded-[2rem] group shadow-sm hover:shadow-xl transition-all duration-700 hover:-translate-y-1">
                 <img 
-                  src={src} 
+                  src={photo.url} 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  alt="event media"
+                  alt={`Shared by ${photo.guestName}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute bottom-4 left-4 flex items-center gap-1.5 text-white drop-shadow-md translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#f3433a" stroke="transparent"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
-                  <span className="text-xs font-black">{Math.floor(Math.random() * 20) + 5}</span>
+                <div className="absolute bottom-4 left-4 flex flex-col gap-1 text-white drop-shadow-md translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <span className="text-[10px] font-black uppercase opacity-70">{photo.guestName}</span>
                 </div>
               </div>
             ))}
 
-            {/* FILLER CARDS */}
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(i => (
+            {/* FILLER CARDS IF EMPTY */}
+            {photos.length === 0 && [1, 2, 3, 4, 5, 6, 7, 8].map(i => (
               <div key={i} className="relative aspect-square overflow-hidden bg-bg-light rounded-2xl md:rounded-[2rem] group border border-border-color flex items-center justify-center">
                 <div className="text-border-color">
                   <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>

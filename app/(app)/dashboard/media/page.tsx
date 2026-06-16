@@ -1,10 +1,15 @@
 "use client";
 
-import { useState, Suspense } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
+import { getEvents } from "@/lib/actions/event";
+import { getPhotos } from "@/lib/actions/media";
 
 function MediaContent() {
   const [activeTab, setActiveTab] = useState("moderation");
+  const [events, setEvents] = useState<any[]>([]);
+  const [photos, setPhotos] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const tabs = [
     { id: "moderation", name: "Moderation", icon: "fa-solid fa-shield-check" },
@@ -12,18 +17,38 @@ function MediaContent() {
     { id: "settings", name: "Settings", icon: "fa-solid fa-gear" },
   ];
 
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const eventsData = await getEvents();
+        setEvents(eventsData);
+        
+        if (eventsData.length > 0) {
+          const photosData = await getPhotos(eventsData[0].id);
+          setPhotos(photosData);
+        }
+      } catch (error) {
+        console.error("Failed to load media data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
+  }, []);
+
+  const activeEvent = events[0];
+
   return (
     <div className="max-w-[1200px] mx-auto">
       <div className="flex justify-between items-center mb-8 flex-wrap gap-4">
         <div>
-          <h2 className="text-[32px] font-extrabold text-dark-text tracking-tighter m-0 leading-tight">Photos & Videos</h2>
+          <h2 className="text-[32px] font-extrabold text-dark-text tracking-tighter m-0 leading-tight">
+            {activeEvent ? `${activeEvent.name} Media` : "Photos & Videos"}
+          </h2>
           <p className="text-gray-text m-0 mt-1">Manage and moderate all media uploaded to your event.</p>
         </div>
         <div className="flex gap-3">
-          <Link href="/guest/j-s-wedding" className="btn btn-outline py-2 px-4 rounded-lg font-bold text-sm shadow-sm">
-            <i className="fa-solid fa-eye mr-2 opacity-40"></i> Guest View
-          </Link>
-          <Link href="/live-wall" className="btn btn-primary py-2 px-4 rounded-lg font-bold text-sm shadow-lg shadow-primary-lilac/10">
+          <Link href={activeEvent ? `/live-wall/${activeEvent.slug}` : "/live-wall"} className="btn btn-primary py-2 px-4 rounded-lg font-bold text-sm shadow-lg shadow-primary-lilac/10">
             <i className="fa-solid fa-tv mr-2"></i> Live Wall
           </Link>
         </div>
@@ -56,32 +81,56 @@ function MediaContent() {
             <div>
               <div className="flex justify-between items-center mb-8">
                 <div>
-                  <h4 className="text-[18px] font-black text-dark-text m-0 tracking-tight">Pending Approval</h4>
-                  <p className="text-[13px] text-gray-text font-medium mt-1">12 items waiting for your review</p>
+                  <h4 className="text-[18px] font-black text-dark-text m-0 tracking-tight">
+                    {photos.length > 0 ? "All Uploads" : "No Uploads Yet"}
+                  </h4>
+                  <p className="text-[13px] text-gray-text font-medium mt-1">{photos.length} items shared by guests</p>
                 </div>
-                <div className="flex gap-3">
-                  <button className="px-4 py-2 rounded-lg border border-border-color bg-white text-gray-600 font-bold text-[12px] hover:bg-bg-light transition-colors">Reject All</button>
-                  <button className="px-4 py-2 rounded-lg bg-primary-lilac text-white font-bold text-[12px] hover:bg-dark-lilac transition-colors shadow-lg shadow-primary-lilac/10">Approve All</button>
-                </div>
+                {photos.length > 0 && (
+                  <div className="flex gap-3">
+                    <button className="px-4 py-2 rounded-lg border border-border-color bg-white text-gray-600 font-bold text-[12px] hover:bg-bg-light transition-colors">Reject All</button>
+                    <button className="px-4 py-2 rounded-lg bg-primary-lilac text-white font-bold text-[12px] hover:bg-dark-lilac transition-colors shadow-lg shadow-primary-lilac/10">Approve All</button>
+                  </div>
+                )}
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((i) => (
-                  <div key={i} className="relative aspect-square rounded-xl overflow-hidden border border-border-color bg-bg-light flex items-center justify-center group cursor-pointer transition-all hover:border-primary-lilac">
-                    <i className="fa-regular fa-image text-3xl opacity-10 group-hover:scale-110 transition-transform"></i>
-                    
-                    {/* Action Overlay */}
-                    <div className="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex gap-1.5">
-                      <button className="flex-1 h-8 rounded-lg bg-success text-white border-none flex items-center justify-center hover:scale-[1.05] active:scale-95 transition-all">
-                        <i className="fa-solid fa-check text-xs"></i>
-                      </button>
-                      <button className="flex-1 h-8 rounded-lg bg-danger text-white border-none flex items-center justify-center hover:scale-[1.05] active:scale-95 transition-all">
-                        <i className="fa-solid fa-xmark text-xs"></i>
-                      </button>
+              {loading ? (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                  {[1, 2, 3, 4, 5, 6].map((i) => (
+                    <div key={i} className="relative aspect-square rounded-xl overflow-hidden border border-border-color bg-bg-light animate-pulse"></div>
+                  ))}
+                </div>
+              ) : photos.length > 0 ? (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                  {photos.map((photo) => (
+                    <div key={photo.id} className="relative aspect-square rounded-xl overflow-hidden border border-border-color bg-bg-light flex items-center justify-center group cursor-pointer transition-all hover:border-primary-lilac">
+                      <img src={photo.url} className="w-full h-full object-cover" alt={`By ${photo.guestName}`} />
+                      
+                      {/* Action Overlay */}
+                      <div className="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex gap-1.5">
+                        <button className="flex-1 h-8 rounded-lg bg-success text-white border-none flex items-center justify-center hover:scale-[1.05] active:scale-95 transition-all">
+                          <i className="fa-solid fa-check text-xs"></i>
+                        </button>
+                        <button className="flex-1 h-8 rounded-lg bg-danger text-white border-none flex items-center justify-center hover:scale-[1.05] active:scale-95 transition-all">
+                          <i className="fa-solid fa-xmark text-xs"></i>
+                        </button>
+                      </div>
+                      
+                      <div className="absolute top-2 left-2 px-2 py-0.5 bg-black/40 backdrop-blur-md rounded text-[9px] text-white font-bold uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity">
+                        {photo.guestName}
+                      </div>
                     </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center py-20 text-center">
+                  <div className="w-16 h-16 bg-bg-light rounded-full flex items-center justify-center mb-4">
+                    <i className="fa-regular fa-image text-2xl text-gray-text/20"></i>
                   </div>
-                ))}
-              </div>
+                  <h5 className="font-bold text-dark-text">No photos yet</h5>
+                  <p className="text-sm text-gray-text">Once guests start uploading, they will appear here.</p>
+                </div>
+              )}
             </div>
           )}
 
