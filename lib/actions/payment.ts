@@ -5,13 +5,15 @@ import { subscriptions, users } from "@/lib/db/schema";
 import { getServerSession } from "next-auth/next";
 import { eq } from "drizzle-orm";
 
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
 const CONVERSION_RATE = 1400; // 1 USD = 1,400 NGN
 
-export async function initializePaystack(plan: 'PRO' | 'PREMIUM') {
-  const session = await getServerSession();
+export async function initializePaystack(plan: 'PRO' | 'PREMIUM' | 'PLUS') {
+  const session = await getServerSession(authOptions);
   if (!session?.user?.id || !session.user.email) throw new Error("Unauthorized");
 
-  const amountInUsd = plan === 'PRO' ? 19 : 49;
+  const amountInUsd = plan === 'PLUS' ? 39 : plan === 'PRO' ? 99 : 149; // Default PREMIUM to 149 if not matched
   const amountInNgn = amountInUsd * CONVERSION_RATE;
   
   const response = await fetch('https://api.paystack.co/transaction/initialize', {

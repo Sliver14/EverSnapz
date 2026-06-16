@@ -2,14 +2,40 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { initializePaystack } from "@/lib/actions/payment";
 
 interface UpgradeModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+const CONVERSION_RATE = 1400;
+
 export default function UpgradeModal({ isOpen, onClose }: UpgradeModalProps) {
+  const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
+
   if (!isOpen) return null;
+
+  const handleUpgrade = async (planName: string) => {
+    if (planName === "Free") {
+      onClose();
+      return;
+    }
+
+    setLoadingPlan(planName);
+    try {
+      const planKey = planName.toUpperCase() as 'PLUS' | 'PRO' | 'PREMIUM';
+      const data = await initializePaystack(planKey);
+      if (data.authorization_url) {
+        window.location.href = data.authorization_url;
+      }
+    } catch (error) {
+      console.error("Payment initialization failed:", error);
+      alert("Failed to start payment. Please try again.");
+    } finally {
+      setLoadingPlan(null);
+    }
+  };
 
   const plans = [
     {
@@ -27,8 +53,8 @@ export default function UpgradeModal({ isOpen, onClose }: UpgradeModalProps) {
     },
     {
       name: "Plus",
-      price: "39",
-      oldPrice: "79",
+      price: (39 * CONVERSION_RATE).toLocaleString(),
+      oldPrice: (79 * CONVERSION_RATE).toLocaleString(),
       description: "Perfect for weddings & mid-size events.",
       features: [
         "Up to 500 uploads",
@@ -41,8 +67,8 @@ export default function UpgradeModal({ isOpen, onClose }: UpgradeModalProps) {
     },
     {
       name: "Pro",
-      price: "99",
-      oldPrice: "199",
+      price: (99 * CONVERSION_RATE).toLocaleString(),
+      oldPrice: (199 * CONVERSION_RATE).toLocaleString(),
       description: "The ultimate choice for large-scale events.",
       features: [
         "Unlimited uploads",
@@ -105,9 +131,9 @@ export default function UpgradeModal({ isOpen, onClose }: UpgradeModalProps) {
                 <div className="mb-6">
                   <div className="text-lg font-black text-dark-text mb-1">{plan.name}</div>
                   <div className="flex items-baseline gap-1">
-                    <span className="text-3xl font-black text-dark-text">${plan.price}</span>
+                    <span className="text-3xl font-black text-dark-text">₦{plan.price}</span>
                     {plan.oldPrice && (
-                      <span className="text-sm text-gray-text line-through opacity-50 font-bold ml-1">${plan.oldPrice}</span>
+                      <span className="text-sm text-gray-text line-through opacity-50 font-bold ml-1">₦{plan.oldPrice}</span>
                     )}
                   </div>
                 </div>
@@ -126,14 +152,15 @@ export default function UpgradeModal({ isOpen, onClose }: UpgradeModalProps) {
                 </ul>
 
                 <button 
+                  disabled={!!loadingPlan}
                   className={`btn w-full py-3.5 rounded-xl font-black uppercase tracking-widest text-[11px] transition-all ${
                     plan.isPopular 
                       ? 'btn-primary shadow-lg shadow-primary-lilac/30' 
                       : index === 0 ? 'btn-outline border-2' : 'btn-outline border-2'
-                  }`}
-                  onClick={index === 0 ? onClose : undefined}
+                  } ${loadingPlan === plan.name ? 'opacity-70' : ''}`}
+                  onClick={() => handleUpgrade(plan.name)}
                 >
-                  {plan.buttonText}
+                  {loadingPlan === plan.name ? "Processing..." : plan.buttonText}
                 </button>
               </div>
             ))}

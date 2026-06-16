@@ -6,8 +6,10 @@ import { getServerSession } from "next-auth/next";
 import { eq, desc } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
 export async function createEvent(formData: { name: string; date?: string }) {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
   if (!session?.user?.id) throw new Error("Unauthorized");
 
   const slug = formData.name
@@ -27,7 +29,7 @@ export async function createEvent(formData: { name: string; date?: string }) {
 }
 
 export async function getEvents() {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
   if (!session?.user?.id) return [];
 
   return await db.query.events.findMany({
