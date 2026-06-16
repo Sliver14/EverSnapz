@@ -99,8 +99,8 @@ function DashboardContent() {
               </button>
             </div>
 
-            <div className="flex gap-6 items-center mt-6">
-              <div className="w-[150px] text-center shrink-0">
+            <div className="flex flex-col md:flex-row gap-8 items-start mt-8">
+              <div className="w-full md:w-[150px] text-center shrink-0">
                 <div className="aspect-square border border-border-color rounded-xl flex items-center justify-center bg-white mb-3 shadow-sm p-2">
                   {activeEvent && (
                     <QRCodeSVG 
@@ -109,17 +109,47 @@ function DashboardContent() {
                     />
                   )}
                 </div>
-                <button className="btn btn-outline w-full text-xs py-2 rounded-lg font-bold">
+                <button 
+                  onClick={() => {
+                    const canvas = document.querySelector('canvas');
+                    if (canvas) {
+                      const url = canvas.toDataURL("image/png");
+                      const link = document.createElement('a');
+                      link.download = `qr-${activeEvent?.slug}.png`;
+                      link.href = url;
+                      link.click();
+                    }
+                  }}
+                  className="btn btn-outline w-full text-xs py-2 rounded-lg font-bold"
+                >
                   <i className="fa-solid fa-download mr-1"></i> Download QR
                 </button>
               </div>
-              <button 
-                onClick={() => setIsPreviewOpen(true)}
-                className="flex-1 w-full min-h-[150px] bg-[#f0f0f0] border border-border-color rounded-xl flex flex-col justify-center items-center text-center p-4 hover:bg-[#e8e8e8] transition-all group"
-              >
-                <i className="fa-solid fa-mobile-screen text-4xl text-primary-lilac opacity-20 mb-2 group-hover:scale-110 transition-transform"></i>
-                <span className="text-[11px] text-gray-text font-bold uppercase tracking-widest opacity-60">Open Guest View</span>
-              </button>
+
+              {/* LIVE MOBILE PREVIEW - Always Visible */}
+              <div className="flex-1 w-full flex justify-center md:justify-end pr-0 md:pr-4">
+                <div className="relative w-[280px] h-[500px] bg-dark-text rounded-[40px] p-2.5 shadow-2xl border-[2px] border-white/10 scale-90 md:scale-100 origin-top">
+                  {/* Notch */}
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-5 bg-dark-text rounded-b-2xl z-20 flex items-center justify-center gap-1.5">
+                    <div className="w-6 h-1 bg-white/10 rounded-full"></div>
+                    <div className="w-1.5 h-1.5 bg-white/10 rounded-full"></div>
+                  </div>
+                  
+                  {/* Screen Container */}
+                  <div className="w-full h-full bg-white rounded-[32px] overflow-hidden relative border border-white/5">
+                    <iframe 
+                      src={`/guest/${activeEvent?.slug}`} 
+                      className="w-full h-full border-none pointer-events-none select-none"
+                      title="Guest View Preview"
+                    />
+                  </div>
+
+                  {/* Device Decoration */}
+                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] font-black uppercase tracking-widest text-gray-text opacity-40">
+                    Live Guest Preview
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
