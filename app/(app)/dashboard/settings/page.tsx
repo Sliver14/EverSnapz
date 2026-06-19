@@ -201,13 +201,13 @@ function SettingsContent() {
                   </div>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-border-color flex justify-between items-center">
-                  <button className="btn btn-primary px-10 py-4 rounded-xl font-black uppercase tracking-widest text-xs">
+                <div className="pt-6 mt-6 border-t border-border-color flex flex-col sm:flex-row justify-between items-center gap-4">
+                  <button className="btn btn-primary px-10 py-4 rounded-xl font-black uppercase tracking-widest text-xs w-full sm:w-auto">
                     Save All Changes
                   </button>
                   <button 
                     onClick={() => handleDelete(selectedEvent.id)}
-                    className="text-danger font-black uppercase tracking-widest text-[11px] hover:underline bg-transparent border-none cursor-pointer"
+                    className="text-danger font-black uppercase tracking-widest text-[11px] hover:underline bg-transparent border-none cursor-pointer py-2"
                   >
                     Delete Event
                   </button>

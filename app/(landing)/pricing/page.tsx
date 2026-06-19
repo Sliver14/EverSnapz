@@ -13,25 +13,28 @@ export default function PricingPage() {
       
       <section className="section-padding px-6 md:px-10">
         <div className="container">
-          <div className="text-center mb-16">
-            <h3 className="text-[2.5rem] font-extrabold tracking-tight mb-3">Plans & Pricing</h3>
-            <p className="text-gray-text text-[1.15rem] max-w-[700px] mx-auto mb-16 leading-relaxed font-medium">Choose the plan that fits best to your event size and audience scope.</p>
-            <div className="mb-12">
-              <div className="bg-light-lavender border-2 border-border-color py-5 px-10 rounded-full inline-flex items-center gap-4 text-lg shadow-xl font-bold">
-                <span>✅ <strong>Money Back Guarantee.</strong> If you don&apos;t use it, get a refund under our <Link href="#" className="text-dark-lilac font-black no-underline hover:underline underline-offset-4">Fair Policy</Link>.</span>
+          <div className="text-center mb-10 md:mb-16">
+            <h3 className="text-3xl md:text-[2.5rem] font-extrabold tracking-tight mb-3">Plans & Pricing</h3>
+            <p className="text-gray-text text-base md:text-[1.15rem] max-w-[700px] mx-auto mb-10 md:mb-16 leading-relaxed font-medium">Choose the plan that fits best to your event size and audience scope.</p>
+            <div className="mb-8 md:mb-12 px-4">
+              <div className="bg-light-lavender border-2 border-border-color py-4 md:py-5 px-6 md:px-10 rounded-2xl md:rounded-full inline-flex items-center justify-center gap-3 md:gap-4 text-sm md:text-lg shadow-xl font-bold max-w-full">
+                <span className="flex flex-col md:flex-row items-center gap-1 md:gap-2 text-center">
+                  <span>✅ <strong>Money Back Guarantee.</strong></span>
+                  <span>If you don&apos;t use it, get a refund under our <Link href="#" className="text-dark-lilac font-black no-underline hover:underline underline-offset-4">Fair Policy</Link>.</span>
+                </span>
               </div>
             </div>
-            <div className="bg-gradient-to-r from-primary-lilac to-dark-lilac text-white font-black py-3 px-8 rounded-full text-xs inline-block tracking-[0.2em] shadow-2xl uppercase">🔥 50% OFF ON ALL PLANS</div>
+            <div className="bg-gradient-to-r from-primary-lilac to-dark-lilac text-white font-black py-3 px-6 md:px-8 rounded-full text-[10px] md:text-xs inline-block tracking-[0.2em] shadow-2xl uppercase">🔥 50% OFF ON ALL PLANS</div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center my-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch my-12">
             {/* Free Plan */}
-            <div className="card !p-8 border-none shadow-[0_30px_60px_-12px_rgba(0,0,0,0.1)] hover:shadow-2xl hover:-translate-y-2">
+            <div className="card w-full max-w-md mx-auto lg:max-w-none !p-8 border-none shadow-[0_30px_60px_-12px_rgba(0,0,0,0.1)] hover:shadow-2xl hover:-translate-y-2 flex flex-col">
               <div className="text-2xl font-black text-dark-text mb-2">Free</div>
               <div className="text-[3rem] font-extrabold text-dark-text mb-1 leading-none"><sup>$</sup>0</div>
               <div className="text-xs font-bold text-gray-text uppercase tracking-widest mb-6">No credit card required</div>
               <p className="text-[15px] text-gray-text mb-8 leading-relaxed">Great for birthdays, family gatherings and other small alternative celebrations.</p>
-              <ul className="list-none p-0 flex flex-col gap-4 mb-10">
+              <ul className="list-none p-0 flex flex-col gap-4 flex-1 mb-10">
                 {[
                   "Up to 100 uploads",
                   "Unlimited guests & participants",
@@ -52,12 +55,12 @@ export default function PricingPage() {
             </div>
 
             {/* Plus Plan */}
-            <div className="card !p-8 border-none shadow-[0_30px_60px_-12px_rgba(0,0,0,0.1)] hover:shadow-2xl hover:-translate-y-2">
+            <div className="card w-full max-w-md mx-auto lg:max-w-none !p-8 border-none shadow-[0_30px_60px_-12px_rgba(0,0,0,0.1)] hover:shadow-2xl hover:-translate-y-2 flex flex-col">
               <div className="text-2xl font-black text-dark-text mb-2">Plus</div>
               <div className="text-[3rem] font-extrabold text-dark-text mb-1 leading-none"><sup>$</sup>39 <span className="text-[1.5rem] line-through opacity-30 ml-2">$79</span></div>
               <div className="text-xs font-bold text-gray-text uppercase tracking-widest mb-6">One-time flat setup fee</div>
               <p className="text-[15px] text-gray-text mb-8 leading-relaxed">Perfect for small weddings, celebrations & other mid-size structured events.</p>
-              <ul className="list-none p-0 flex flex-col gap-4 mb-10">
+              <ul className="list-none p-0 flex flex-col gap-4 flex-1 mb-10">
                 {[
                   "Up to 500 uploads",
                   "Unlimited guests & participants",
@@ -79,13 +82,13 @@ export default function PricingPage() {
             </div>
 
             {/* Pro Plan (Popular) */}
-            <div className="card !p-8 border-4 border-primary-lilac shadow-[0_50px_100px_-20px_rgba(145,97,242,0.3)] scale-105 z-10 hover:-translate-y-3 relative">
+            <div className="card w-full max-w-md mx-auto lg:max-w-none !p-8 border-4 border-primary-lilac shadow-[0_50px_100px_-20px_rgba(145,97,242,0.3)] lg:scale-105 z-10 hover:-translate-y-3 relative flex flex-col mt-4 lg:mt-0">
               <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary-lilac to-dark-lilac text-white text-[10px] font-black px-5 py-2 rounded-full uppercase tracking-[0.2em] shadow-xl">🔥 Most Popular</div>
               <div className="text-2xl font-black text-dark-text mb-2">Pro</div>
               <div className="text-[3rem] font-extrabold text-dark-text mb-1 leading-none"><sup>$</sup>99 <span className="text-[1.5rem] line-through opacity-30 ml-2">$199</span></div>
               <div className="text-xs font-bold text-gray-text uppercase tracking-widest mb-6">One-time flat setup fee</div>
               <p className="text-[15px] text-gray-text mb-8 leading-relaxed">The ultimate choice for large-scale weddings, company parties & conferences.</p>
-              <ul className="list-none p-0 flex flex-col gap-4 mb-10">
+              <ul className="list-none p-0 flex flex-col gap-4 flex-1 mb-10">
                 {[
                   "Unlimited uploads",
                   "Unlimited guests & participants",

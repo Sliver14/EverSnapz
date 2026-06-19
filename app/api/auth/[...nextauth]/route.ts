@@ -1,4 +1,4 @@
-﻿import NextAuth, { NextAuthOptions } from 'next-auth';
+import NextAuth, { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { db } from '@/lib/db';
@@ -55,6 +55,17 @@ export const authOptions: NextAuthOptions = {
             image: user.image,
             googleId: account.providerAccountId,
           });
+        } else if (!existingUser.googleId) {
+          // Link Google ID to existing credentials-based user record
+          await db
+            .update(users)
+            .set({
+              googleId: account.providerAccountId,
+              name: existingUser.name || user.name,
+              image: existingUser.image || user.image,
+              updatedAt: new Date(),
+            })
+            .where(eq(users.id, existingUser.id));
         }
       }
 
@@ -62,7 +73,20 @@ export const authOptions: NextAuthOptions = {
     },
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
+        // Resolve database UUID on initial sign-in to keep IDs in sync
+        const email = user.email || token.email;
+        if (email) {
+          const dbUser = await db.query.users.findFirst({
+            where: eq(users.email, email),
+          });
+          if (dbUser) {
+            token.id = dbUser.id;
+          } else {
+            token.id = user.id;
+          }
+        } else {
+          token.id = user.id;
+        }
       }
       return token;
     },

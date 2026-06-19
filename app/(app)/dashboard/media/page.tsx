@@ -50,14 +50,14 @@ function MediaContent() {
 
   return (
     <div className="max-w-[1200px] mx-auto">
-      <div className="flex justify-between items-center mb-8 flex-wrap gap-4">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
         <div>
-          <h2 className="text-[32px] font-extrabold text-dark-text tracking-tighter m-0 leading-tight">
+          <h2 className="text-[24px] sm:text-[32px] font-extrabold text-dark-text tracking-tighter m-0 leading-tight">
             {activeEvent ? `${activeEvent.name} Media` : "Photos & Videos"}
           </h2>
           <p className="text-gray-text m-0 mt-1">Manage and moderate all media uploaded to your event.</p>
         </div>
-        <div className="flex gap-3">
+        <div className="flex gap-3 shrink-0">
           <Link href={activeEvent ? `/live-wall/${activeEvent.slug}` : "/live-wall"} className="btn btn-primary py-2 px-4 rounded-lg font-bold text-sm shadow-lg shadow-primary-lilac/10">
             <i className="fa-solid fa-tv mr-2"></i> Live Wall
           </Link>
@@ -66,12 +66,12 @@ function MediaContent() {
 
       <div className="bg-white rounded-2xl border border-border-color shadow-sm overflow-hidden min-h-[600px] flex flex-col">
         {/* Tabs Header */}
-        <div className="flex border-b border-border-color px-8 bg-white sticky top-0 z-10">
+        <div className="flex border-b border-border-color px-4 sm:px-8 bg-white sticky top-0 z-10 overflow-x-auto no-scrollbar">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-8 py-5 text-[14px] font-bold transition-all relative shrink-0 ${
+              className={`px-4 sm:px-8 py-4 sm:py-5 text-[14px] font-bold transition-all relative shrink-0 ${
                 activeTab === tab.id 
                   ? "text-primary-lilac" 
                   : "text-gray-text opacity-40 hover:opacity-100"
@@ -86,10 +86,10 @@ function MediaContent() {
         </div>
 
         {/* Tab Content */}
-        <div className="flex-1 p-8 animate-in fade-in duration-500">
+        <div className="flex-1 p-4 sm:p-8 animate-in fade-in duration-500">
           {activeTab === "moderation" && (
             <div>
-              <div className="flex justify-between items-center mb-8">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
                 <div>
                   <h4 className="text-[18px] font-black text-dark-text m-0 tracking-tight">
                     {photos.length > 0 ? "All Uploads" : "No Uploads Yet"}
@@ -97,7 +97,7 @@ function MediaContent() {
                   <p className="text-[13px] text-gray-text font-medium mt-1">{photos.length} items shared by guests</p>
                 </div>
                 {photos.length > 0 && (
-                  <div className="flex gap-3">
+                  <div className="flex gap-3 w-full sm:w-auto justify-end">
                     <button className="px-4 py-2 rounded-lg border border-border-color bg-white text-gray-600 font-bold text-[12px] hover:bg-bg-light transition-colors">Reject All</button>
                     <button className="px-4 py-2 rounded-lg bg-primary-lilac text-white font-bold text-[12px] hover:bg-dark-lilac transition-colors shadow-lg shadow-primary-lilac/10">Approve All</button>
                   </div>

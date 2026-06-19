@@ -42,7 +42,7 @@ function DashboardContent() {
     <div className="max-w-[1200px] mx-auto">
       <div className="flex justify-between items-center mb-6 flex-wrap gap-4">
         <div>
-          <h2 className="text-[32px] font-extrabold text-dark-text tracking-tighter m-0 leading-tight">
+          <h2 className="text-[20px] font-bold text-dark-text tracking-tighter m-0 leading-tight">
             {activeEvent ? activeEvent.name : "My Events"}
           </h2>
           <p className="text-gray-text m-0 mt-1">Manage your event, view uploads, and launch your live wall.</p>

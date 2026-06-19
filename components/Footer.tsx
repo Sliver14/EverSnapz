@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-[#120e1a] text-[#b3a9c9] section-padding pb-12 text-sm">
-      <div className="container grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-16 mb-20 text-center md:text-left">
+      <div className="container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-20 text-center sm:text-left">
         <div className="flex flex-col gap-4">
           <h4 className="text-white text-xl font-extrabold">
             EverSnapz<span className="text-primary-lilac">.</span>

@@ -122,12 +122,7 @@ export default function GuestPage() {
         {/* Dynamic Background Section - Now limited to 80vh and contains the hero */}
         <div className="relative h-[80vh] w-full overflow-hidden flex flex-col">
           {/* Animated Background Layers */}
-          {event.coverPhotoUrl ? (
-             <div 
-              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out opacity-40`}
-              style={{ backgroundImage: `url("${event.coverPhotoUrl}")` }}
-            />
-          ) : galleryImages.length > 0 ? (
+          {galleryImages.length > 0 ? (
             galleryImages.map((src, idx) => (
               <div 
                 key={src}
@@ -135,6 +130,11 @@ export default function GuestPage() {
                 style={{ backgroundImage: `url("${src}")` }}
               />
             ))
+          ) : event.coverPhotoUrl ? (
+            <div 
+              className={`absolute inset-0 bg-cover bg-center opacity-40`}
+              style={{ backgroundImage: `url("${event.coverPhotoUrl}")` }}
+            />
           ) : (
              <div className="absolute inset-0 bg-primary-lilac/5"></div>
           )}

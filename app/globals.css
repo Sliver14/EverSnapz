@@ -33,6 +33,10 @@
   * {
     @apply border-border-color;
   }
+  html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
   body {
     @apply bg-white text-dark-text antialiased;
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -42,7 +46,7 @@
 /* Custom Utilities */
 @layer utilities {
   .section-padding {
-    @apply py-20;
+    @apply py-12 md:py-20;
   }
   .section-padding-large {
     @apply py-24 md:py-32;

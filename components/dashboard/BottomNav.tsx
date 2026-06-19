@@ -5,9 +5,10 @@ import { usePathname } from "next/navigation";
 
 interface BottomNavProps {
   onUpgradeClick?: () => void;
+  activeEventId?: string;
 }
 
-export default function BottomNav({ onUpgradeClick }: BottomNavProps) {
+export default function BottomNav({ onUpgradeClick, activeEventId }: BottomNavProps) {
   const pathname = usePathname();
 
   const navItems = [
@@ -39,10 +40,12 @@ export default function BottomNav({ onUpgradeClick }: BottomNavProps) {
           );
         }
 
+        const href = item.href && activeEventId ? `${item.href}?eventId=${activeEventId}` : (item.href || "#");
+
         return (
           <Link
             key={item.name}
-            href={item.href || "#"}
+            href={href}
             className={`flex flex-col items-center gap-2 no-underline text-[10px] font-black uppercase tracking-[0.1em] transition-all ${
               isActive ? "text-primary-lilac scale-110" : "text-gray-text opacity-40"
             }`}
