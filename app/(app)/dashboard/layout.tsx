@@ -43,7 +43,7 @@ function DashboardLayoutContent({
       try {
         const data = await getEvents();
         setEvents(data);
-        
+
         const eventId = searchParams.get("eventId");
         if (eventId) {
           const found = data.find(e => e.id === eventId);
@@ -61,7 +61,7 @@ function DashboardLayoutContent({
   const handleEventSelect = (event: any) => {
     setActiveEvent(event);
     setIsMobileDropdownOpen(false);
-    
+
     const params = new URLSearchParams(searchParams.toString());
     params.set("eventId", event.id);
     router.push(`${pathname}?${params.toString()}`);
@@ -89,10 +89,10 @@ function DashboardLayoutContent({
                 EverSnapz<span className="text-primary-lilac">.</span>
               </span>
             </Link>
-            
+
             {/* Event Selector for Mobile */}
             <div className="relative shrink-0" ref={mobileDropdownRef}>
-              <button 
+              <button
                 onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
                 className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-border-color bg-white hover:border-primary-lilac transition-all text-left shadow-sm max-w-[150px] xs:max-w-[180px]"
               >
@@ -110,11 +110,10 @@ function DashboardLayoutContent({
                         <button
                           key={event.id}
                           onClick={() => handleEventSelect(event)}
-                          className={`w-full flex flex-col items-start px-3 py-2 rounded-lg transition-all text-left mb-1 last:mb-0 ${
-                            activeEvent?.id === event.id 
-                              ? "bg-primary-lilac text-white" 
-                              : "hover:bg-bg-light text-dark-text"
-                          }`}
+                          className={`w-full flex flex-col items-start px-3 py-2 rounded-lg transition-all text-left mb-1 last:mb-0 ${activeEvent?.id === event.id
+                            ? "bg-primary-lilac text-white"
+                            : "hover:bg-bg-light text-dark-text"
+                            }`}
                         >
                           <span className="font-bold text-xs truncate w-full">{event.name}</span>
                           <span className={`text-[9px] truncate w-full ${activeEvent?.id === event.id ? "text-white/70" : "text-gray-text"}`}>
@@ -142,7 +141,7 @@ function DashboardLayoutContent({
               <i className="fa-solid fa-circle-exclamation text-warning"></i>
               <span className="truncate whitespace-nowrap overflow-hidden max-w-[200px] sm:max-w-none">You&apos;re currently using the limited free plan. Upgrade your event to unlock all features!</span>
             </div>
-            <button 
+            <button
               onClick={() => setIsUpgradeModalOpen(true)}
               className="btn btn-outline py-1.5 px-3 text-xs rounded-md shrink-0 ml-4 border-[#ffe58f] hover:bg-[#fff9e6]"
             >
@@ -158,7 +157,7 @@ function DashboardLayoutContent({
               <i className="fa-solid fa-circle-exclamation text-warning shrink-0"></i>
               <span className="truncate">You&apos;re using the free plan. Upgrade to unlock all features!</span>
             </div>
-            <button 
+            <button
               onClick={() => setIsUpgradeModalOpen(true)}
               className="btn btn-outline py-1 px-2.5 text-[10px] rounded-md shrink-0 border-[#ffe58f] hover:bg-[#fff9e6] font-bold"
             >
@@ -172,9 +171,9 @@ function DashboardLayoutContent({
         </main>
       </div>
       <BottomNav onUpgradeClick={() => setIsUpgradeModalOpen(true)} activeEventId={activeEvent?.id} />
-      <UpgradeModal 
-        isOpen={isUpgradeModalOpen} 
-        onClose={() => setIsUpgradeModalOpen(false)} 
+      <UpgradeModal
+        isOpen={isUpgradeModalOpen}
+        onClose={() => setIsUpgradeModalOpen(false)}
       />
     </div>
   );

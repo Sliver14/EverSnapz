@@ -44,7 +44,7 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
     async function loadEvents() {
       const data = await getEvents();
       setEvents(data);
-      
+
       const eventId = searchParams.get("eventId");
       if (eventId) {
         const found = data.find(e => e.id === eventId);
@@ -59,7 +59,7 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
   const handleEventSelect = (event: any) => {
     setActiveEvent(event);
     setIsDropdownOpen(false);
-    
+
     const params = new URLSearchParams(searchParams.toString());
     params.set("eventId", event.id);
     router.push(`${pathname}?${params.toString()}`);
@@ -80,7 +80,7 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
           </span>
         </Link>
       </div>
-      
+
       <div className="px-6 py-4 relative" ref={dropdownRef}>
         <div className="flex justify-between items-center mb-2">
           <span className="text-[11px] font-bold text-gray-text/60 uppercase tracking-widest">Current Event</span>
@@ -88,9 +88,9 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
             View All
           </Link>
         </div>
-        
+
         <div className="relative">
-          <button 
+          <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             className="w-full flex justify-between items-center px-4 py-3 rounded-xl border border-border-color bg-white hover:border-primary-lilac transition-all text-left mb-4 group shadow-sm"
           >
@@ -108,11 +108,10 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
                     <button
                       key={event.id}
                       onClick={() => handleEventSelect(event)}
-                      className={`w-full flex flex-col items-start px-4 py-3 rounded-lg transition-all text-left mb-1 last:mb-0 ${
-                        activeEvent?.id === event.id 
-                          ? "bg-primary-lilac text-white" 
-                          : "hover:bg-bg-light text-dark-text"
-                      }`}
+                      className={`w-full flex flex-col items-start px-4 py-3 rounded-lg transition-all text-left mb-1 last:mb-0 ${activeEvent?.id === event.id
+                        ? "bg-primary-lilac text-white"
+                        : "hover:bg-bg-light text-dark-text"
+                        }`}
                     >
                       <span className="font-bold text-sm truncate w-full">{event.name}</span>
                       <span className={`text-[10px] truncate w-full ${activeEvent?.id === event.id ? "text-white/70" : "text-gray-text"}`}>
@@ -133,7 +132,7 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
           )}
         </div>
 
-        <button 
+        <button
           onClick={onUpgradeClick}
           className="w-full bg-light-lavender/50 border border-primary-lilac/10 rounded-xl p-3 flex items-center gap-3 group cursor-pointer hover:bg-light-lavender transition-colors text-left"
         >
@@ -148,25 +147,24 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
         {navItems.map((item) => {
           const isActive = pathname === item.href;
           const href = activeEvent ? `${item.href}?eventId=${activeEvent.id}` : item.href;
-          
+
           return (
             <Link
               key={item.name}
               href={href}
-              className={`flex items-center gap-3.5 px-4 py-3.5 rounded-xl no-underline transition-all ${
-                isActive 
-                  ? "bg-primary-lilac text-white font-bold shadow-lg shadow-primary-lilac/20" 
-                  : "text-gray-text hover:bg-bg-light hover:text-dark-text"
-              }`}
+              className={`flex items-center gap-3.5 px-4 py-3.5 rounded-xl no-underline transition-all ${isActive
+                ? "bg-primary-lilac text-white font-bold shadow-lg shadow-primary-lilac/20"
+                : "text-gray-text hover:bg-bg-light hover:text-dark-text"
+                }`}
             >
               <i className={`${item.icon} text-lg w-5 text-center ${isActive ? "text-white" : "opacity-40"}`}></i>
               <span className="text-[14px] font-bold">{item.name}</span>
             </Link>
           );
         })}
-        
+
         <div className="mt-auto border-t border-border-color pt-4 relative" ref={accountRef}>
-          <div 
+          <div
             onClick={() => setIsAccountMenuOpen(!isAccountMenuOpen)}
             className={`px-4 py-4 rounded-xl flex items-center gap-3.5 hover:bg-bg-light transition-all cursor-pointer group ${isAccountMenuOpen ? 'bg-bg-light' : ''}`}
           >
@@ -185,11 +183,11 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
 
           {/* Account Modal Popover - Positioned ABOVE profile */}
           {isAccountMenuOpen && (
-            <div 
+            <div
               className="absolute bottom-full left-4 right-4 bg-white border border-border-color rounded-2xl shadow-2xl z-[110] mb-2 p-2 animate-in fade-in slide-in-from-bottom-2 duration-200"
             >
-              <Link 
-                href="/dashboard/settings" 
+              <Link
+                href="/dashboard/settings"
                 className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-bg-light text-dark-text no-underline transition-colors"
                 onClick={() => setIsAccountMenuOpen(false)}
               >
@@ -199,8 +197,8 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
                 <span className="text-sm font-bold">Manage Account</span>
               </Link>
 
-              <Link 
-                href="/dashboard/events" 
+              <Link
+                href="/dashboard/events"
                 className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-bg-light text-dark-text no-underline transition-colors"
                 onClick={() => setIsAccountMenuOpen(false)}
               >
@@ -211,8 +209,8 @@ export default function Sidebar({ onUpgradeClick }: SidebarProps) {
               </Link>
 
               <div className="h-px bg-border-color my-1 mx-2"></div>
-              
-              <button 
+
+              <button
                 onClick={() => {
                   setIsAccountMenuOpen(false);
                   signOut({ callbackUrl: '/' });

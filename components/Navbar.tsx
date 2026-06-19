@@ -105,7 +105,7 @@ export default function Navbar() {
       </div>
 
       {/* Hamburger Menu Button */}
-      <button 
+      <button
         ref={hamburgerRef}
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         className="flex lg:hidden items-center justify-center w-10 h-10 rounded-full hover:bg-bg-light border border-border-color text-dark-text transition-colors z-[1100] cursor-pointer"
@@ -115,19 +115,17 @@ export default function Navbar() {
       </button>
 
       {/* Mobile Drawer Overlay */}
-      <div 
-        className={`fixed inset-0 bg-dark-text/40 backdrop-blur-sm z-[1050] transition-opacity duration-300 lg:hidden ${
-          isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
+      <div
+        className={`fixed inset-0 bg-dark-text/40 backdrop-blur-sm z-[1050] transition-opacity duration-300 lg:hidden ${isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          }`}
         onClick={() => setIsMobileMenuOpen(false)}
       ></div>
 
       {/* Mobile Menu Sidebar / Drawer */}
-      <div 
+      <div
         ref={mobileMenuRef}
-        className={`fixed top-0 right-0 h-full w-[80%] max-w-[320px] bg-white border-l border-border-color z-[1060] p-6 shadow-2xl flex flex-col transition-all duration-300 lg:hidden ${
-          isMobileMenuOpen ? "translate-x-0 visible opacity-100" : "translate-x-full invisible opacity-0"
-        }`}
+        className={`fixed top-0 right-0 h-full w-[80%] max-w-[320px] bg-white h-screen border-l border-border-color z-[1060] p-6 shadow-2xl flex flex-col transition-all duration-300 lg:hidden ${isMobileMenuOpen ? "translate-x-0 visible opacity-100" : "translate-x-full invisible opacity-0"
+          }`}
       >
         {/* Top brand */}
         <div className="flex justify-between items-center mb-8 border-b border-border-color pb-4">
@@ -140,40 +138,39 @@ export default function Navbar() {
         <nav className="flex flex-col gap-5 flex-1 overflow-y-auto pr-1">
           {/* Accordion Use Cases */}
           <div>
-            <button 
+            <button
               onClick={() => setIsUseCasesOpen(!isUseCasesOpen)}
               className="w-full flex justify-between items-center text-left py-2 font-bold text-dark-text border-none bg-transparent cursor-pointer text-lg group"
             >
               <span>Use Cases</span>
               <i className={`fa-solid fa-chevron-down text-xs text-gray-text group-hover:text-primary-lilac transition-transform ${isUseCasesOpen ? 'rotate-180' : ''}`}></i>
             </button>
-            
-            <div className={`pl-4 mt-2 flex flex-col gap-3.5 border-l-2 border-border-color overflow-hidden transition-all duration-300 ${
-              isUseCasesOpen ? "max-h-[200px] opacity-100 py-1" : "max-h-0 opacity-0 py-0 pointer-events-none"
-            }`}>
-              <Link 
-                href="/#use-cases" 
+
+            <div className={`pl-4 mt-2 flex flex-col gap-3.5 border-l-2 border-border-color overflow-hidden transition-all duration-300 ${isUseCasesOpen ? "max-h-[200px] opacity-100 py-1" : "max-h-0 opacity-0 py-0 pointer-events-none"
+              }`}>
+              <Link
+                href="/#use-cases"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="flex items-center gap-2.5 no-underline text-gray-text hover:text-primary-lilac font-medium text-[15px]"
               >
                 <span>💍</span> Weddings
               </Link>
-              <Link 
-                href="/#use-cases" 
+              <Link
+                href="/#use-cases"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="flex items-center gap-2.5 no-underline text-gray-text hover:text-primary-lilac font-medium text-[15px]"
               >
                 <span>🎈</span> Birthdays
               </Link>
-              <Link 
-                href="/#use-cases" 
+              <Link
+                href="/#use-cases"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="flex items-center gap-2.5 no-underline text-gray-text hover:text-primary-lilac font-medium text-[15px]"
               >
                 <span>🎉</span> Parties
               </Link>
-              <Link 
-                href="/#use-cases" 
+              <Link
+                href="/#use-cases"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="flex items-center gap-2.5 no-underline text-gray-text hover:text-primary-lilac font-medium text-[15px]"
               >
@@ -182,16 +179,16 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Link 
-            href="/pricing" 
+          <Link
+            href="/pricing"
             onClick={() => setIsMobileMenuOpen(false)}
             className="no-underline py-2 font-bold text-dark-text text-lg hover:text-primary-lilac transition-colors"
           >
             Pricing
           </Link>
-          
-          <Link 
-            href="/reviews" 
+
+          <Link
+            href="/reviews"
             onClick={() => setIsMobileMenuOpen(false)}
             className="no-underline py-2 font-bold text-dark-text text-lg hover:text-primary-lilac transition-colors"
           >
@@ -201,15 +198,15 @@ export default function Navbar() {
 
         {/* Auth actions at the bottom */}
         <div className="flex flex-col gap-3.5 border-t border-border-color pt-6 mt-auto">
-          <Link 
-            href="/login" 
+          <Link
+            href="/login"
             onClick={() => setIsMobileMenuOpen(false)}
             className="btn btn-outline w-full py-3 rounded-xl font-bold justify-center"
           >
             Log in
           </Link>
-          <Link 
-            href="/signup" 
+          <Link
+            href="/signup"
             onClick={() => setIsMobileMenuOpen(false)}
             className="btn btn-primary w-full py-3 rounded-xl font-bold justify-center"
           >
